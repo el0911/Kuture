@@ -31,7 +31,7 @@ const Main = styled.main`
       width: 90%;
       margin: auto;
     }
-    .choose_div {
+    .enjoy_div {
       width: 90%;
       margin: auto;
       margin-top: 1.5rem;
@@ -42,10 +42,56 @@ const Main = styled.main`
       line-height: 24px;
       color: #aa614d;
       margin-top: 0.8rem;
+      margin-bottom: 0.5rem;
     }
     .choose_div p {
       font-weight: bold;
-      font-size: 16px;
+      font-size: 14px;
+      line-height: 19px;
+      color: #aa614d;
+      margin-top: 1rem;
+    }
+    .choose {
+      position: relative;
+
+      z-index: 10;
+    }
+    .deliver_div h5 {
+      font-weight: bold;
+      font-size: 20px;
+      line-height: 24px;
+      color: #aa614d;
+      margin-top: 0.8rem;
+      margin-bottom: 0.5rem;
+      text-align: left;
+    }
+    .deliver_div p {
+      font-weight: bold;
+      font-size: 14px;
+      line-height: 19px;
+      color: #aa614d;
+      width: 80%;
+      margin-top: 1rem;
+      text-align: left;
+    }
+    .deliverM {
+      position: relative;
+
+      z-index: 10;
+    }
+    .enjoy_div h5 {
+      font-weight: bold;
+      font-size: 20px;
+      line-height: 24px;
+      color: #aa614d;
+      margin-top: 0.8rem;
+      margin-bottom: 0.5rem;
+    }
+    .enjoy_div p {
+      width: 80%;
+
+      font-weight: bold;
+      font-size: 14px;
       line-height: 19px;
       color: #aa614d;
 
@@ -55,6 +101,10 @@ const Main = styled.main`
       position: relative;
 
       z-index: 10;
+    }
+    .choose_text {
+      width: 85%;
+      margin: auto;
     }
     .line1 {
       margin-top: -19rem;
@@ -67,11 +117,7 @@ const Main = styled.main`
       width: 90%;
       margin: auto;
     }
-    .deliver {
-      position: relative;
 
-      z-index: 10;
-    }
     .line2_div {
       display: block;
       text-align: center;
@@ -235,6 +281,10 @@ const Main = styled.main`
     .deliverM {
       display: none;
     }
+    .bannerL {
+      width: -moz-available;
+      width: -webkit-fill-available;
+    }
   }
 
   @media (min-width: 960px) and (max-width: 1024px) {
@@ -392,13 +442,13 @@ const Main = styled.main`
       font-weight: normal;
       font-size: 21px;
       line-height: 25px;
-      width: 75%;
+      width: 65%;
       margin: auto;
       margin-top: 2rem;
       color: #aa614d;
     }
     .operate_div {
-      width: 85%;
+      max-width: 58%;
       margin: auto;
       display: block;
     }

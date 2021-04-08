@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import BannerM from "./images/bannerM.svg";
 import BannerL from "./images/bannerL.jpg";
+import FavRec from "./images/favrecipe1.jpg";
 
 const Main = styled.main`
   @media (min-width: 300px) and (max-width: 600px) {
@@ -25,6 +26,8 @@ const Main = styled.main`
     .eachRec {
       width: 373px;
       margin: auto;
+      margin-bottom: 2rem;
+      margin-top: 2rem;
     }
     .btn_div {
       display: block;
@@ -106,6 +109,10 @@ const Main = styled.main`
       line-height: 22px;
       color: #10145f;
       text-align: center;
+    }
+    .bannerL {
+      width: -moz-available;
+      width: -webkit-fill-available;
     }
   }
 
@@ -201,8 +208,9 @@ const Main = styled.main`
       font-weight: normal;
       font-size: 16px;
       color: #aa614d;
-      width: 90%;
+      width: 60%;
       margin: auto;
+      margin-bottom: 3rem;
     }
   }
 `;
@@ -244,6 +252,6 @@ export default function FavouriteRecipes({ name, image }) {
 }
 
 FavouriteRecipes.defaultProps = {
-  image: "/images/favrecipe1.jpg",
+  image: `${FavRec}`,
   name: "FRIED RICE ONE",
 };

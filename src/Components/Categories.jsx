@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import ListCategories from "./ListofCategories";
+import { useHistory } from "react-router-dom";
 
 const Main = styled.main`
   font-family: "Sen", sans-serif;
@@ -36,6 +37,7 @@ const Main = styled.main`
       display: block;
       margin: auto;
       text-align: center;
+      margin-top: 5rem;
     }
     .btn_div button {
       width: 200px;
@@ -132,7 +134,7 @@ const Main = styled.main`
       display: grid;
       grid-template-columns: auto auto auto;
       grid-gap: 3em;
-      width: 80%;
+      width: 65%;
       margin: auto;
     }
     .title {
@@ -152,6 +154,7 @@ const Main = styled.main`
       display: block;
       margin: auto;
       text-align: center;
+      margin-top: 5rem;
     }
     .btn_div button {
       width: 230px;
@@ -168,6 +171,7 @@ const Main = styled.main`
 `;
 
 export default function Categories() {
+  const history = useHistory();
   return (
     <Main>
       <h2 className="title">OUR RECIPES</h2>
@@ -179,7 +183,13 @@ export default function Categories() {
               <h4>{category_name}</h4>
               <img alt="cat_image" src={image} />
               <div className="btn_div">
-                <button>VIEW RECPIES</button>
+                <button
+                  onClick={() => {
+                    history.push("/allrecipes");
+                  }}
+                >
+                  VIEW RECIPES
+                </button>
               </div>
             </div>
           );

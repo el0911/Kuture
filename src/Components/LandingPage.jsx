@@ -9,6 +9,7 @@ import Navbar from "./Navbar";
 import Categories from "./Categories";
 import HowWeOperate from "./HowWeOperate";
 import FavouriteRecipes from "./FavouriteRecipes";
+import Footer from "./Footer";
 
 const Main = styled.main`
   font-family: "Sen", sans-serif;
@@ -17,20 +18,21 @@ const Main = styled.main`
     .background {
     }
     .body_landing {
-      position: absolute;
-      top: 15%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 100%;
-      margin-top: 3rem;
+      padding-top: 0.51rem;
     }
     .background_mobile {
+      background-image: url(${Top});
       position: relative;
       width: 100%;
+      height: 84vh;
+      background-repeat: no-repeat;
+      background-position-y: top;
     }
     .bothsides_div {
       width: 100% !important;
-      margin-top: 5rem !important;
+      margin-top: 8rem;
+      position: absolute;
+      z-index: 1;
     }
     .rightside_div {
       width: auto !important;
@@ -55,7 +57,7 @@ const Main = styled.main`
       margin: auto;
     }
     .background_ipad {
-      display: none;
+      display: block;
     }
 
     .leftside_div {
@@ -72,19 +74,24 @@ const Main = styled.main`
     .top_right {
       display: none;
     }
+    .bothsides_divL {
+      display: none;
+    }
   }
   @media (min-width: 600px) and (max-width: 960px) {
     .body_landing {
-      position: absolute;
-      top: 15%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 100%;
-      margin-top: 1.52em;
     }
     .background_ipad {
       position: relative;
       width: -moz-available;
+    }
+    .background_mobile {
+      background-image: url(${TopIpad});
+      position: relative;
+      width: 100%;
+      height: 84vh;
+      background-repeat: no-repeat;
+      background-position-y: top;
     }
     .bothsides_div {
       margin-top: 5em;
@@ -111,9 +118,7 @@ const Main = styled.main`
       width: 80%;
       margin: auto;
     }
-    .background_mobile {
-      display: none;
-    }
+
     .leftside_div {
       display: none;
     }
@@ -130,6 +135,9 @@ const Main = styled.main`
       margin-top: 0;
     }
     .top_right {
+      display: none;
+    }
+    .bothsides_divL {
       display: none;
     }
   }
@@ -159,6 +167,9 @@ const Main = styled.main`
     .top_right {
       display: none;
     }
+    .bothsides_divL {
+      display: none;
+    }
   }
 
   @media (min-width: 1024px) {
@@ -175,8 +186,8 @@ const Main = styled.main`
       display: flex;
       width: 100%;
     }
-    .bothsides_div {
-      width: 90%;
+    .bothsides_divL {
+      width: 60%;
       margin: auto;
       margin-top: 14em;
     }
@@ -185,17 +196,23 @@ const Main = styled.main`
     }
     .rightside_div h2 {
       font-weight: 800;
-      font-size: 50px;
+      font-size: 80px;
       color: #013220;
+      max-width: 100%;
     }
     .rightside_div h6 {
-      font-weight: bold;
-      font-size: 20px;
-      line-height: 24px;
+      font-weight: 700;
+      font-size: 30px;
+      line-height: 44px;
       color: #013220;
+      max-width: 100%;
     }
     .leftside_div {
       width: 55%;
+    }
+    .left_side {
+      width: -moz-available;
+      width: -webkit-fill-available;
     }
     .arrdown {
       display: block;
@@ -206,6 +223,7 @@ const Main = styled.main`
       position: absolute;
       top: 30px;
       right: 16px;
+      width: 30%;
     }
   }
 `;
@@ -214,22 +232,29 @@ export default function LandingPage() {
   return (
     <Main>
       <div className="landing_div">
-        <div className="background">
-          <img src={Top} alt="top_back" className="background_mobile" />
-          <img src={TopIpad} alt="top_back" className="background_ipad" />
-
-          <div className="body_landing">
-            <Header />
-            <div className="bothsides_div">
-              <div className="rightside_div">
-                <h2>We are bringing your roots to you.</h2>
-                <h6>
-                  Lorem Ipsum has been the industry's standard dummy text ever
-                  since the 1500s, when an unknown printer took a galley of type
-                  and scrambled it.
-                </h6>
+        <div className="background_ipad">
+          <div className="background_mobile">
+            <div className="body_landing">
+              <Header />
+              <div className="bothsides_div">
+                <div className="rightside_div">
+                  <h2>We are bringing your roots to you.</h2>
+                  <h6>
+                    Lorem Ipsum has been the industry's standard dummy text ever
+                    since the 1500s.
+                  </h6>
+                </div>
               </div>
             </div>
+          </div>
+        </div>
+        <div className="bothsides_divL">
+          <div className="rightside_div">
+            <h2>We are bringing your roots to you.</h2>
+            <h6>
+              Lorem Ipsum has been the industry's standard dummy text ever since
+              the 1500s.
+            </h6>
           </div>
         </div>
         <div className="leftside_div">
@@ -243,6 +268,7 @@ export default function LandingPage() {
       <Categories />
       <HowWeOperate />
       <FavouriteRecipes />
+      <Footer />
     </Main>
   );
 }

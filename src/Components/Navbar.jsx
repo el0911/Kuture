@@ -48,6 +48,8 @@ const Link = styled.a`
   ${Li}:hover & {
     background: #10145f;
     color: #ffffff;
+    width: 143px;
+    height: 35px;
   }
 `;
 
@@ -58,7 +60,7 @@ const Nav = styled.nav`
       display: none;
     }
   }
-  @media (min-width: 960px) {
+  @media (min-width: 960px) (max-width: 1024px) {
     ul {
       list-style: none;
       display: flex;
@@ -106,6 +108,55 @@ const Nav = styled.nav`
       cursor: pointer;
     }
   }
+  @media (min-width: 1024px) {
+    ul {
+      list-style: none;
+      display: flex;
+    }
+    .whykulture {
+      background: rgba(230, 230, 230, 0.5);
+      border: 2px solid #10145f;
+      border-radius: 11px;
+      width: 183px;
+      height: 35px;
+      font-weight: bold;
+      font-size: 20px;
+      color: #ee4e2f;
+      text-align: center;
+      padding-top: 0.81rem;
+      margin-right: 1rem;
+    }
+    .recipes {
+      background: rgba(230, 230, 230, 0.5);
+      border: 2px solid #10145f;
+      border-radius: 11px;
+      width: 143px;
+      height: 35px;
+      font-weight: bold;
+      font-size: 20px;
+      color: #ee4e2f;
+      text-align: center;
+      padding-top: 0.81rem;
+      margin-right: 1rem;
+    }
+    .login {
+      background: rgba(230, 230, 230, 0.5);
+      border: 2px solid #10145f;
+      border-radius: 11px;
+      width: 116px;
+      height: 35px;
+      font-weight: bold;
+      font-size: 20px;
+      color: #ee4e2f;
+      text-align: center;
+      padding-top: 0.81rem;
+    }
+    a {
+      text-decoration: none;
+      cursor: pointer;
+    }
+  }
+
   ${Link}:hover & {
     color: #ffffff;
   }
