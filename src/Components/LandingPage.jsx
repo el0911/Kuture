@@ -3,7 +3,6 @@ import styled from "styled-components";
 import Header from "./Header";
 import Top from "./images/top_mobile.svg";
 import TopIpad from "./images/top_background.svg";
-import LeftSide from "./images/leftside.svg";
 import ArrowDown from "./images/arrowdown.svg";
 import Navbar from "./Navbar";
 import Categories from "./Categories";
@@ -328,7 +327,7 @@ export default function LandingPage() {
           <div className="top_right"></div>
         </div>
       </div>
-      <img src={ArrowDown} className="arrdown" />
+      <img src={ArrowDown} alt="arrow" className="arrdown" />
       <Categories />
       <HowWeOperate />
       <FavouriteRecipes />

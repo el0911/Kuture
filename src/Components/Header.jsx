@@ -341,10 +341,6 @@ const HeaderMain = styled.main`
 export default function Header() {
   const [close, setClose] = React.useState(false);
 
-  const handleClose = () => {
-    setClose(true);
-  };
-
   const Dropdown = [
     { id: 1, name: "SELECT" },
     { id: 2, name: "IGBOCENTRIC MEALS" },
