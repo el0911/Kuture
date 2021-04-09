@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import AllRecipesBack from "./images/allrecipes_back.svg";
+import AllRecipesBackI from "./images/allrecipes_bacI.svg";
 import Header from "./Header";
 import Egusi from "./images/Egusi.jpg";
 import LargeBanner from "./images/largebanner.jpg";
@@ -37,12 +38,12 @@ const Main = styled.main`
     .title_div h2 {
       font-weight: bold;
       font-size: 28px;
-      color: #ae5d29;
+      color: #cf301b;
     }
     .title_div h6 {
       font-weight: bold;
       font-size: 17px;
-      color: #ae5d29;
+      color: #cf301b;
       margin-bottom: 5px;
       margin-top: 10px;
     }
@@ -51,7 +52,7 @@ const Main = styled.main`
       font-size: 16px;
       line-height: 19px;
       text-align: center;
-      color: #ae5d29;
+      color: #cf301b;
     }
     .btn_div {
       display: block;
@@ -125,17 +126,20 @@ const Main = styled.main`
       font-weight: bold;
       letter-spacing: 1px;
     }
+    .select_div {
+      display: none;
+    }
   }
   @media (min-width: 600px) and (max-width: 960px) {
     .background_mobile {
-      background-image: url(${LargeBanner});
+      background-image: url(${AllRecipesBackI});
       position: relative;
       width: auto;
       background-repeat: no-repeat;
       background-position-y: top;
       margin-top: -2rem;
-      background-size: cover;
-      height: 67vh;
+      background-size: contain;
+      height: 53vh;
     }
     .header_div {
       padding-top: 1rem;
@@ -298,6 +302,7 @@ const Main = styled.main`
     .recipes_div {
       display: grid;
       grid-template-columns: auto auto;
+      justify-content: center;
     }
     .recipes_div_h5 {
       font-weight: bold;
@@ -430,6 +435,7 @@ const Main = styled.main`
       max-width: 75%;
       margin: auto;
       grid-gap: 2em;
+      justify-content: center;
     }
     .recipes_div_h5 {
       font-weight: bold;

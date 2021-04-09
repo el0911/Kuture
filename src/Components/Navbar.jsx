@@ -117,10 +117,10 @@ const Nav = styled.nav`
       background: rgba(230, 230, 230, 0.5);
       border: 2px solid #10145f;
       border-radius: 11px;
-      width: 183px;
+      width: 173px;
       height: 35px;
       font-weight: bold;
-      font-size: 20px;
+      font-size: 18px;
       color: #ee4e2f;
       text-align: center;
       padding-top: 0.81rem;
@@ -130,10 +130,10 @@ const Nav = styled.nav`
       background: rgba(230, 230, 230, 0.5);
       border: 2px solid #10145f;
       border-radius: 11px;
-      width: 143px;
+      width: 135px;
       height: 35px;
       font-weight: bold;
-      font-size: 20px;
+      font-size: 18px;
       color: #ee4e2f;
       text-align: center;
       padding-top: 0.81rem;
@@ -143,10 +143,10 @@ const Nav = styled.nav`
       background: rgba(230, 230, 230, 0.5);
       border: 2px solid #10145f;
       border-radius: 11px;
-      width: 116px;
+      width: 110px;
       height: 35px;
       font-weight: bold;
-      font-size: 20px;
+      font-size: 18px;
       color: #ee4e2f;
       text-align: center;
       padding-top: 0.81rem;

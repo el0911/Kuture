@@ -58,6 +58,7 @@ const Main = styled.main`
       grid-gap: 3em;
       width: 80%;
       margin: auto;
+      justify-content: center;
     }
     .title {
       font-weight: bold;
@@ -76,6 +77,7 @@ const Main = styled.main`
       display: block;
       margin: auto;
       text-align: center;
+      margin-top: 3rem;
     }
     .btn_div button {
       width: 200px;
@@ -136,6 +138,7 @@ const Main = styled.main`
       grid-gap: 3em;
       width: 65%;
       margin: auto;
+      justify-content: center;
     }
     .title {
       font-weight: bold;

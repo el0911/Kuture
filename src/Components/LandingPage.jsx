@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import Header from "./Header";
-import Top from "./images/topback.svg";
-import TopIpad from "./images/topipad.svg";
+import Top from "./images/top_mobile.svg";
+import TopIpad from "./images/top_background.svg";
 import LeftSide from "./images/leftside.svg";
 import ArrowDown from "./images/arrowdown.svg";
 import Navbar from "./Navbar";
@@ -10,6 +10,7 @@ import Categories from "./Categories";
 import HowWeOperate from "./HowWeOperate";
 import FavouriteRecipes from "./FavouriteRecipes";
 import Footer from "./Footer";
+import Big from "./images/banner_big.svg";
 
 const Main = styled.main`
   font-family: "Sen", sans-serif;
@@ -20,13 +21,14 @@ const Main = styled.main`
     .body_landing {
       padding-top: 0.51rem;
     }
-    .background_mobile {
+    .landing_div {
       background-image: url(${Top});
       position: relative;
       width: 100%;
-      height: 84vh;
+      height: 80vh;
       background-repeat: no-repeat;
       background-position-y: top;
+      background-size: cover;
     }
     .bothsides_div {
       width: 100% !important;
@@ -79,20 +81,21 @@ const Main = styled.main`
     }
   }
   @media (min-width: 600px) and (max-width: 960px) {
-    .body_landing {
-    }
     .background_ipad {
       position: relative;
       width: -moz-available;
     }
-    .background_mobile {
+    .landing_div {
+      display: block;
       background-image: url(${TopIpad});
       position: relative;
       width: 100%;
-      height: 84vh;
+      height: 45vh;
       background-repeat: no-repeat;
       background-position-y: top;
+      background-size: contain;
     }
+
     .bothsides_div {
       margin-top: 5em;
     }
@@ -122,9 +125,7 @@ const Main = styled.main`
     .leftside_div {
       display: none;
     }
-    .landing_div {
-      display: block;
-    }
+
     .arrdown {
       display: block;
       margin: auto;
@@ -158,11 +159,20 @@ const Main = styled.main`
     }
     .landing_div {
       display: block;
+      background-image: url(${Big});
+      position: relative;
+      width: 100%;
+      height: 55vh;
+      background-repeat: no-repeat;
+      background-position-y: top;
+      background-size: contain;
+      margin-top: -2rem;
     }
     .arrdown {
       display: block;
       margin: auto;
       margin-top: 1.5rem;
+      text-align: center;
     }
     .top_right {
       display: none;
@@ -170,9 +180,78 @@ const Main = styled.main`
     .bothsides_divL {
       display: none;
     }
+    .all_divs {
+      padding-top: 2rem;
+      padding-bottom: 2rem;
+    }
   }
+  @media (min-width: 1024px) and (max-width: 1690px) {
+    .background {
+      width: 50%;
+    }
+    .background_ipad {
+      display: none;
+    }
+    .background_mobile {
+      display: none;
+    }
+    .all_divs {
+      display: flex;
+      width: 90%;
+      justify-content: space-between;
+    }
+    .bothsides_divL {
+      width: 80%;
+      margin: auto;
+      margin-top: 10em;
+    }
+    .landing_div {
+      display: block;
+      background-image: url(${Big});
+      position: relative;
+      background-repeat: no-repeat;
+      background-size: contain;
+      height: 155vh;
+      width: 95%;
+      margin-left: auto;
+    }
+    .rightside_div h2 {
+      font-weight: 800;
+      font-size: 53px;
+      color: #013220;
+      line-height: 74px;
 
-  @media (min-width: 1024px) {
+      max-width: 100%;
+      margin-bottom: 0.7rem;
+    }
+    .rightside_div h6 {
+      font-weight: 600;
+      font-size: 25px;
+      color: #013220;
+      margin-top: 1rem;
+      max-width: 100%;
+    }
+    .leftside_div {
+      width: 50%;
+      margin-top: -5rem;
+    }
+    .left_side {
+      width: -moz-available;
+      width: -webkit-fill-available;
+    }
+    .top_right {
+      position: absolute;
+      top: 30px;
+      right: 0;
+      width: 45%;
+    }
+    .arrdown {
+      display: block;
+      margin: auto;
+      margin-top: 2.5rem;
+    }
+  }
+  @media (min-width: 1690px) {
     .background {
       width: 45%;
     }
@@ -182,9 +261,20 @@ const Main = styled.main`
     .background_mobile {
       display: none;
     }
-    .landing_div {
+    .all_divs {
       display: flex;
-      width: 100%;
+      width: 90%;
+      justify-content: space-between;
+    }
+    .landing_div {
+      display: block;
+      background-image: url(${Big});
+      position: relative;
+      background-repeat: no-repeat;
+      background-size: cover;
+      height: 155vh;
+      width: 95%;
+      margin-left: auto;
     }
     .bothsides_divL {
       width: 60%;
@@ -232,36 +322,10 @@ export default function LandingPage() {
   return (
     <Main>
       <div className="landing_div">
-        <div className="background_ipad">
-          <div className="background_mobile">
-            <div className="body_landing">
-              <Header />
-              <div className="bothsides_div">
-                <div className="rightside_div">
-                  <h2>We are bringing your roots to you.</h2>
-                  <h6>
-                    Lorem Ipsum has been the industry's standard dummy text ever
-                    since the 1500s.
-                  </h6>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="bothsides_divL">
-          <div className="rightside_div">
-            <h2>We are bringing your roots to you.</h2>
-            <h6>
-              Lorem Ipsum has been the industry's standard dummy text ever since
-              the 1500s.
-            </h6>
-          </div>
-        </div>
-        <div className="leftside_div">
-          <img src={LeftSide} alt="leftside" className="left_side" />
-          <div className="top_right">
-            <Navbar />
-          </div>
+        <div className="all_divs">
+          <Header />
+          <Navbar />
+          <div className="top_right"></div>
         </div>
       </div>
       <img src={ArrowDown} className="arrdown" />

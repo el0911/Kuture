@@ -313,11 +313,10 @@ const HeaderMain = styled.main`
   }
   @media (min-width: 1024px) {
     header {
-      display: flex;
-      width: 60%;
+      display: block;
+      width: 85%;
       margin: auto;
       margin-top: 2em;
-      justify-content: space-between;
     }
     header h3 {
       font-family: "Sen", sans-serif;
