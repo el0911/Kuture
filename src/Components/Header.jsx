@@ -4,6 +4,7 @@ import Menu from "./images/menu.svg";
 import SideMenu from "./images/sidemenu.svg";
 import Close from "./images/close(1).svg";
 import Login from "./images/user1.svg";
+import Cart from "./images/cart.svg";
 import WhyKulture from "./images/why.svg";
 import OurRecipes from "./images/dropdown.svg";
 
@@ -18,9 +19,10 @@ const HeaderMain = styled.main`
     header {
       width: 80%;
       margin: auto;
-      margin-top: 2em;
+      margin-top: -2em;
       display: flex;
       justify-content: space-between;
+      padding-top: 4rem;
     }
     header h3 {
       font-family: "Sen", sans-serif;
@@ -35,6 +37,7 @@ const HeaderMain = styled.main`
     .menu {
       width: 2.5rem;
       height: 2rem;
+      cursor: pointer;
     }
     ul {
       display: block;
@@ -55,7 +58,7 @@ const HeaderMain = styled.main`
       height: 35px;
       background: #e18f4e;
       border-radius: 10px;
-      font-size: 14px;
+      font-size: 12px;
       margin-bottom: 0.8rem;
       margin-top: 0.8rem;
       padding: 5px 5px;
@@ -63,7 +66,7 @@ const HeaderMain = styled.main`
       text-transform: uppercase;
     }
     .cat span {
-      font-size: 14px;
+      font-size: 12px;
       text-transform: uppercase;
       color: #10145f;
     }
@@ -83,7 +86,7 @@ const HeaderMain = styled.main`
       padding: 5px 5px;
     }
     .login_drop_span {
-      font-size: 14px;
+      font-size: 12px;
       text-transform: uppercase;
       color: #10145f;
     }
@@ -97,7 +100,7 @@ const HeaderMain = styled.main`
       height: 35px;
       background: #e18f4e;
       border-radius: 10px;
-      font-size: 14px;
+      font-size: 12px;
       color: #10145f;
       font-weight: bold;
       margin-bottom: 0.8rem;
@@ -105,7 +108,7 @@ const HeaderMain = styled.main`
       text-transform: uppercase;
     }
     .why_span {
-      font-size: 14px;
+      font-size: 12px;
       text-transform: uppercase;
       color: #10145f;
     }
@@ -126,8 +129,7 @@ const HeaderMain = styled.main`
       display: block;
       width: 200px;
       height: 45px;
-      margin: 5px 0px;
-      font-size: 13px;
+      font-size: 12px;
       background-color: transparent;
       border: none;
       word-break: normal;
@@ -261,7 +263,6 @@ const HeaderMain = styled.main`
       display: block;
       width: 200px;
       height: 45px;
-      margin: 5px 0px;
       font-size: 13px;
       background-color: transparent;
       border: none;
@@ -396,6 +397,11 @@ export default function Header() {
               {" "}
               <img src={WhyKulture} alt="why" />
               <span className="why_span">Why kulturefresh</span>
+            </li>
+            <li className="why">
+              {" "}
+              <img src={Cart} alt="why" />
+              <span className="why_span">Your Cart</span>
             </li>
           </ul>
           <ul className="login_ul">

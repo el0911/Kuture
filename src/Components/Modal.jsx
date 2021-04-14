@@ -4,6 +4,7 @@ import OverlayM from "./images/overlayM.svg";
 import styled from "styled-components";
 import Recipes from "./Recipe";
 import closeImg from "./images/close(1).svg";
+import { useHistory } from "react-router-dom";
 
 const Div = styled.div`
   @media (min-width: 300px) and (max-width: 600px) {
@@ -436,6 +437,7 @@ const Div = styled.div`
 `;
 
 export default function Modal({ modalOpen }) {
+  const history = useHistory();
   return (
     <Div>
       <div className="modal_background">

@@ -8,6 +8,7 @@ import LargeBanner from "./images/largebanner.jpg";
 import Footer from "./Footer";
 import Navbar from "./Navbar";
 import Modal from "./Modal";
+import { useHistory } from "react-router-dom";
 
 const Main = styled.main`
   font-family: "Sen", sans-serif;
@@ -158,7 +159,7 @@ const Main = styled.main`
     .title_div h6 {
       font-weight: bold;
       font-size: 17px;
-      color: #ae5d29;
+      color: #cf301b;
       margin-bottom: 5px;
       margin-top: 10px;
     }
@@ -167,7 +168,7 @@ const Main = styled.main`
       font-size: 16px;
       line-height: 19px;
       text-align: center;
-      color: #ae5d29;
+      color: #cf301b;
     }
     select::-ms-expand {
       display: none;
@@ -261,7 +262,7 @@ const Main = styled.main`
     .title_div h2 {
       font-weight: bold;
       font-size: 28px;
-      color: #ae5d29;
+      color: #cf301b;
     }
     .title_div h6 {
       font-weight: bold;
@@ -275,7 +276,7 @@ const Main = styled.main`
       font-size: 16px;
       line-height: 19px;
       text-align: center;
-      color: #ae5d29;
+      color: #cf301b;
     }
     select::-ms-expand {
       display: none;
@@ -384,13 +385,13 @@ const Main = styled.main`
       font-weight: bold;
       font-size: 40px;
       line-height: 48px;
-      color: #ae5d29;
+      color: #cf301b;
       margin-bottom: 3rem;
     }
     .title_div h6 {
       font-weight: bold;
       font-size: 30px;
-      color: #ae5d29;
+      color: #cf301b;
       margin-bottom: 5px;
       margin-top: 10px;
       text-align: left;
@@ -400,7 +401,7 @@ const Main = styled.main`
       font-size: 21px;
       line-height: 19px;
       text-align: left;
-      color: #ae5d29;
+      color: #cf301b;
     }
     select::-ms-expand {
       display: none;
@@ -531,13 +532,13 @@ const Main = styled.main`
       font-weight: bold;
       font-size: 40px;
       line-height: 48px;
-      color: #ae5d29;
+      color: #cf301b;
       margin-bottom: 3rem;
     }
     .title_div h6 {
       font-weight: bold;
       font-size: 30px;
-      color: #ae5d29;
+      color: #cf301b;
       margin-bottom: 5px;
       margin-top: 10px;
       text-align: left;
@@ -547,7 +548,7 @@ const Main = styled.main`
       font-size: 21px;
       line-height: 19px;
       text-align: left;
-      color: #ae5d29;
+      color: #cf301b;
     }
     select::-ms-expand {
       display: none;
@@ -657,6 +658,7 @@ const Main = styled.main`
 
 export default function OurRecipes() {
   const [modalOpen, setModalOpen] = React.useState(false);
+  const history = useHistory();
 
   const Recipe = [
     {
@@ -712,7 +714,7 @@ export default function OurRecipes() {
               {Dropdown.map((cat) => {
                 return (
                   <option key={cat.id} value={cat.name}>
-                    {cat.name}{" "}
+                    {cat.name}
                   </option>
                 );
               })}
@@ -747,7 +749,14 @@ export default function OurRecipes() {
                   <p className="duration">{rec.duration} </p>
                 </div>
                 <div className="bttn_div">
-                  <button>ADD TO CART</button>
+                  <button
+                    onClick={() => {
+                      alert("added to cart");
+                      history.push("/allrecipes");
+                    }}
+                  >
+                    ADD TO CART
+                  </button>
                 </div>
               </div>
             );

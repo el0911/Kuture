@@ -120,7 +120,7 @@ const Nav = styled.nav`
       width: 173px;
       height: 35px;
       font-weight: bold;
-      font-size: 18px;
+      font-size: 16px;
       color: #ee4e2f;
       text-align: center;
       padding-top: 0.81rem;
@@ -133,7 +133,7 @@ const Nav = styled.nav`
       width: 135px;
       height: 35px;
       font-weight: bold;
-      font-size: 18px;
+      font-size: 16px;
       color: #ee4e2f;
       text-align: center;
       padding-top: 0.81rem;
@@ -146,7 +146,7 @@ const Nav = styled.nav`
       width: 110px;
       height: 35px;
       font-weight: bold;
-      font-size: 18px;
+      font-size: 16px;
       color: #ee4e2f;
       text-align: center;
       padding-top: 0.81rem;

@@ -234,15 +234,6 @@ const Main = styled.main`
       background-size: cover;
       background-position-y: top;
     }
-    .modal_background h2 {
-      font-weight: bold;
-      font-size: 27px;
-      line-height: 36px;
-      color: #c47357;
-      margin-top: 6rem;
-      margin-bottom: 2rem;
-      text-align: center;
-    }
     .men_div {
       background: #fff;
       width: 60%;
@@ -432,23 +423,16 @@ const Main = styled.main`
   }
   @media (min-width: 960px) and (max-width: 1024px) {
     .modal_background {
-      position: relative;
+      position: fixed;
       z-index: 10;
-      width: 100%;
+      left: 50%;
+      top: 50%;
+      width: 85%;
       overflow: auto;
       background-image: url(${Overlay});
       background-repeat: no-repeat;
       background-size: cover;
       background-position-y: top;
-    }
-    .modal_background h2 {
-      font-weight: bold;
-      font-size: 27px;
-      line-height: 36px;
-      color: #c47357;
-      margin-top: 6rem;
-      margin-bottom: 2rem;
-      text-align: center;
     }
     .modal_title {
       font-style: normal;
@@ -641,26 +625,16 @@ const Main = styled.main`
     }
   }
   @media (min-width: 1024px) and (max-width: 1700px) {
-    .modal_div {
-      position: relative;
+    .modal_background {
+      position: fixed;
       z-index: 10;
-      width: 100%;
-      margin: auto;
+      width: 85%;
       overflow: auto;
       background-image: url(${Overlay});
       height: 100%;
       background-repeat: no-repeat;
       background-size: cover;
       background-position-y: top;
-    }
-    .modal_background h2 {
-      font-weight: bold;
-      font-size: 27px;
-      line-height: 36px;
-      color: #c47357;
-      margin-top: 6rem;
-      margin-bottom: 2rem;
-      text-align: center;
     }
     .modal_title {
       font-style: normal;
@@ -749,7 +723,7 @@ const Main = styled.main`
     }
     .men_div {
       background: #fff;
-      width: 25%;
+      width: 60%;
       margin: auto;
       margin-top: 2rem;
       border-radius: 10px;
@@ -853,27 +827,17 @@ const Main = styled.main`
     }
   }
   @media (min-width: 1700px) {
-    .modal_div {
+    .modal_background {
       position: relative;
       z-index: 10;
-      max-width: 100%;
+      max-width: 60%;
       overflow: auto;
-      margin: auto;
       background-image: url(${Overlay});
       width: 100%;
       height: 100%;
       background-repeat: no-repeat;
       background-size: cover;
       background-position-y: top;
-    }
-    .modal_background h2 {
-      font-weight: bold;
-      font-size: 27px;
-      line-height: 36px;
-      color: #c47357;
-      margin-top: 6rem;
-      margin-bottom: 2rem;
-      text-align: center;
     }
     .modal_title {
       font-style: normal;
@@ -948,7 +912,7 @@ const Main = styled.main`
     }
     .men_div {
       background: #fff;
-      width: 20%;
+      width: 60%;
       margin: auto;
       margin-top: 2rem;
       border-radius: 10px;
@@ -959,8 +923,6 @@ const Main = styled.main`
     }
     .both_menu {
       display: flex;
-      max-width: 80%;
-      margin: auto;
     }
     .finger_down {
       width: 2rem !important;
@@ -977,7 +939,7 @@ const Main = styled.main`
       background: #fff;
       box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
       border-radius: 10px 10px 0px 0px;
-      max-width: 20%;
+      width: 35%;
       margin: auto;
       margin-bottom: 3rem;
       margin-top: 3rem;
@@ -990,7 +952,7 @@ const Main = styled.main`
       background: #fff;
       box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
       border-radius: 10px 10px 0px 0px;
-      max-width: 20%;
+      width: 35%;
       margin: auto;
       margin-bottom: 3rem;
       margin-top: 3rem;
@@ -1076,87 +1038,7 @@ export default function CustomiseMenu() {
       <div className="">
         <Header />
         <div className="modal_background">
-          <h2>SELECT YOUR PLAN</h2>
-          <div className="modal_div">
-            <div className="men_div">
-              <p>Select your customised menu</p>
-              <img src={Finger} className="finger_down" alt="finger_down" />
-            </div>
-            <div>
-              <div className="both_menu">
-                <div className="couple_menu">
-                  <img src={CoupleMenu} alt="couple_menu" />
-                  <div className="couple_text">
-                    <h4>The couple - 2 Servings</h4>
-                    <p>
-                      Choose from an ever-changing mix of meat, fish, Beyond
-                      Meat, WW Approved, Diabetes Friendly recipes and
-                      health-conscious offerings.
-                    </p>
-                  </div>
-                  <div className="norecipes_div">
-                    <h4>No of recipes per week</h4>
-                    <div className="btns_div">
-                      <button className="btn_non">1</button>
-                      <button className="btn_non">2</button>
-                      <button className="btn_active">3</button>
-                    </div>
-                  </div>
-                  <div className="ship_serving_div">
-                    <div className="shipping_div">
-                      <h4>Shipping</h4>
-                      <h4></h4>
-                    </div>
-                    <div className="serving_div">
-                      <h4>Per Serving</h4>
-                      <h4></h4>
-                    </div>
-                  </div>
-                  <div className="bttn_div">
-                    <button>SELECT PLAN</button>
-                  </div>
-                </div>
-                <div className="family_menu">
-                  <img src={FamilyMenu} alt="family_menu" />
-                  <div className="couple_text">
-                    <h4>Da Family - 4 Servings</h4>
-                    <p>
-                      Choose from an ever-changing mix of meat, fish, Beyond
-                      Meat, WW Approved, Diabetes Friendly recipes and
-                      health-conscious offerings.
-                    </p>
-                  </div>
-                  <div className="norecipes_div">
-                    <h4>No of recipes per week</h4>
-                    <div className="btns_div">
-                      <button className="btn_non">1</button>
-                      <button className="btn_non">2</button>
-                      <button className="btn_active">3</button>
-                    </div>
-                  </div>
-                  <div className="ship_serving_div">
-                    <div className="shipping_div">
-                      <h4>Shipping</h4>
-                      <h4></h4>
-                    </div>
-                    <div className="serving_div">
-                      <h4>Per Serving</h4>
-                      <h4></h4>
-                    </div>
-                  </div>
-                  <div className="bttn_div">
-                    <button
-                      onClick={() => {
-                        history.push("/allrecipes");
-                      }}
-                    >
-                      SELECT PLAN
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+          <div className="modal_div"></div>
         </div>
       </div>
     </Main>
