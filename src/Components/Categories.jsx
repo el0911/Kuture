@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import ListCategories from "./ListofCategories";
 import { useHistory } from "react-router-dom";
+import { commerce } from "../lib/Commerce";
 
 const Main = styled.main`
   font-family: "Sen", sans-serif;
@@ -175,16 +176,32 @@ const Main = styled.main`
 
 export default function Categories() {
   const history = useHistory();
+  const [cat, setCat] = React.useState([]);
+
+  const fetchCat = async () => {
+    const { data } = await commerce.categories.list();
+    await commerce.categories
+      .retrieve("cat_8XxzoByZNwPQAZ")
+      .then((category) => console.log(category.name));
+    console.log(data);
+
+    setCat(data);
+  };
+  React.useEffect(() => {
+    fetchCat();
+    console.log(cat, "cstegories");
+  }, []);
+
   return (
     <Main>
-      <h2 className="title">OUR RECIPES</h2>
+      <h2 className="title">OUR CATEGORIES</h2>
       <div className="categories_div">
-        {ListCategories.map((category) => {
-          const { category_name, id, image } = category;
+        {cat.map((category) => {
+          const { name, id } = category;
           return (
             <div className="each_cat" key={id}>
-              <h4>{category_name}</h4>
-              <img alt="cat_image" src={image} />
+              <h4>{name}</h4>
+              {/* <img alt="cat_image" src={image} /> */}
               <div className="btn_div">
                 <button
                   onClick={() => {

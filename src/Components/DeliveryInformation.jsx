@@ -275,7 +275,7 @@ const Main = styled.main`
       border-radius: 10px;
       height: 45px;
       margin-bottom: 1.5rem;
-      width: 30%;
+      width: 50%;
       padding-inline-start: 9px;
       margin-right: 1rem;
       margin-left: 1rem;
@@ -294,24 +294,37 @@ const Main = styled.main`
       margin-bottom: 2rem;
     }
     form {
-      width: 85%;
+      width: 40%;
       margin-right: auto;
+      background: #fafafa;
+      border-radius: 15px;
+      margin-bottom: 2rem;
+      padding-left: 10px;
     }
     .first_inputs {
       display: flex;
     }
+    .first_input {
+      display: block;
+    }
     .second_inputs {
       display: flex;
     }
+    .second_input {
+      display: block;
+    }
     .third_inputs {
       display: flex;
+    }
+    .third_input {
+      display: block;
     }
     .btn_div {
       display: block;
       margin: auto;
       text-align: left;
-      margin-top: 2rem;
-      padding-bottom: 3rem;
+      margin-top: 1rem;
+      padding-bottom: 1.5rem;
       margin-left: 1rem;
     }
     .btn_div button {
@@ -357,16 +370,19 @@ export default function DeliveryInformation() {
               <label>Card Number</label>
               <input />
             </div>
-            <div className="second_inputs">
-              <div>
+            <div className="first_inputs">
+              <div className="second_input">
                 <label>Expiration Date</label>
                 <input placeholder="" />
               </div>
               <div>
-                <label>CVV</label>
-                <input placeholder="" />
+                <div className="third_input">
+                  <label>CVV</label>
+                  <input placeholder="" />
+                </div>
               </div>
             </div>
+
             <div className="btn_div">
               <button>PROCEED TO CHECKOUT</button>
             </div>

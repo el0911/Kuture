@@ -10,6 +10,7 @@ import HowWeOperate from "./HowWeOperate";
 import FavouriteRecipes from "./FavouriteRecipes";
 import Footer from "./Footer";
 import Big from "./images/banner_big.svg";
+import { commerce } from "../lib/Commerce";
 
 const Main = styled.main`
   font-family: "Sen", sans-serif;
@@ -93,6 +94,7 @@ const Main = styled.main`
       background-repeat: no-repeat;
       background-position-y: top;
       background-size: contain;
+      padding-top: 1rem;
     }
 
     .bothsides_div {

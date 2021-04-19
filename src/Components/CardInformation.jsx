@@ -300,11 +300,20 @@ const Main = styled.main`
     .first_inputs {
       display: flex;
     }
+    .first_inputs div {
+      display: block;
+    }
     .second_inputs {
       display: flex;
     }
+    .second_inputs div {
+      display: block;
+    }
     .third_inputs {
       display: flex;
+    }
+    .third_inputs div {
+      display: block;
     }
     .btn_div {
       display: block;

@@ -9,6 +9,7 @@ import Footer from "./Footer";
 import Navbar from "./Navbar";
 import Modal from "./Modal";
 import { useHistory } from "react-router-dom";
+import { commerce } from "../lib/Commerce";
 
 const Main = styled.main`
   font-family: "Sen", sans-serif;
@@ -181,7 +182,7 @@ const Main = styled.main`
     }
     .recipes_div {
       display: grid;
-      grid-template-columns: auto auto;
+      grid-template-columns: auto auto auto;
     }
     .recipes_div_h5 {
       font-weight: bold;
@@ -191,7 +192,6 @@ const Main = styled.main`
       text-align: center;
     }
     .each_recipe {
-      width: 90%;
       margin: auto;
       text-align: center;
       filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
@@ -199,6 +199,7 @@ const Main = styled.main`
       border-radius: 10px;
       margin-bottom: 4rem;
       padding-bottom: 2.5rem;
+      width: 40%;
     }
     .rec_text {
       display: flex;
@@ -212,6 +213,9 @@ const Main = styled.main`
       text-align: center;
       padding-right: 0.7rem;
       border-right: 2px solid #10145f;
+    }
+    .each_recipe img {
+      width: -moz-available;
     }
     .duration {
       font-weight: bold;
@@ -446,7 +450,7 @@ const Main = styled.main`
       text-align: center;
     }
     .each_recipe {
-      width: 90%;
+      width: 25%;
       margin: auto;
       text-align: center;
       filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
@@ -454,6 +458,9 @@ const Main = styled.main`
       border-radius: 10px;
       margin-bottom: 4rem;
       padding-bottom: 2.5rem;
+    }
+    .each_recipe img {
+      width: -moz-available;
     }
     .each_recipe img {
       width: -moz-available;
@@ -580,9 +587,9 @@ const Main = styled.main`
     .recipes_div {
       display: grid;
       grid-template-columns: auto auto auto;
-      max-width: 65%;
+      max-width: 80%;
       margin: auto;
-      grid-gap: 2em;
+      grid-gap: 3rem;
     }
     .recipes_div_h5 {
       font-weight: bold;
@@ -592,8 +599,6 @@ const Main = styled.main`
       text-align: center;
     }
     .each_recipe {
-      width: 90%;
-      margin: auto;
       text-align: center;
       filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
       background: #fafaef;
@@ -602,8 +607,8 @@ const Main = styled.main`
       padding-bottom: 2.5rem;
     }
     .each_recipe img {
-      width: -moz-available;
-      width: -webkit-fill-available;
+      width: 45%;
+      max-height: 60%;
     }
     .rec_text {
       display: flex;
@@ -659,45 +664,22 @@ const Main = styled.main`
 export default function OurRecipes() {
   const [modalOpen, setModalOpen] = React.useState(false);
   const history = useHistory();
+  const [products, setProducts] = React.useState([]);
+  const [categ, setCateg] = React.useState([]);
 
-  const Recipe = [
-    {
-      id: 1,
-      image: `${Egusi}`,
-      name: "EGUSI SOUP",
-      duration: "1HR",
-    },
-    {
-      id: 2,
-      image: `${Egusi}`,
-      name: "EGUSI SOUP",
-      duration: "1HR",
-    },
-    {
-      id: 3,
-      image: `${Egusi}`,
-      name: "EGUSI SOUP",
-      duration: "1HR",
-    },
-    {
-      id: 4,
-      image: `${Egusi}`,
-      name: "EGUSI SOUP",
-      duration: "1HR",
-    },
-  ];
+  const fetchProducts = async () => {
+    const { data } = await commerce.products.list();
 
-  const Dropdown = [
-    { id: 1, name: "SELECT CATEGORY" },
-    { id: 2, name: "IGBOCENTRIC MEALS" },
-    { id: 3, name: "YORUBACENTRIC MEALS" },
-    { id: 4, name: "HAUSACENTRIC MEALS" },
-    { id: 5, name: "MIX IT UP" },
-  ];
+    setProducts(data);
+  };
+
+  React.useEffect(() => {
+    fetchProducts();
+    console.log(products, "products");
+  }, []);
 
   return (
     <Main>
-      {modalOpen && <Modal modalOpen={modalOpen} />}
       <div className="background_mobile">
         <div className="heading_div">
           <div className="header_div">
@@ -710,17 +692,16 @@ export default function OurRecipes() {
         <div className="title_div">
           <h2>ALL RECIPES</h2>
           <div className="select_div">
-            <select className="select_drop">
-              {Dropdown.map((cat) => {
+            {/* <select className="select_drop">
+              {categ.map((cat) => {
                 return (
                   <option key={cat.id} value={cat.name}>
                     {cat.name}
                   </option>
                 );
               })}
-            </select>
+            </select> */}
           </div>
-
           <h6>Everything you need for your all meals</h6>
           <p>
             It has survived not only five centuries, but also the leap into
@@ -734,19 +715,22 @@ export default function OurRecipes() {
       <div>
         <h5 className="recipes_div_h5">Menu for 20th Feb. - 26th Feb. 2021</h5>
         <div className="recipes_div">
-          {Recipe.map((rec) => {
+          {products.map((rec) => {
             return (
               <div
                 className="each_recipe"
                 onClick={() => {
-                  setModalOpen(!modalOpen);
-                  console.log("clicked");
+                  let prodID = localStorage.setItem("prodid", rec.id);
+                  commerce.products
+                    .retrieve(prodID)
+                    .then((product) => console.log(product.name));
+                  console.log("clicked", prodID);
                 }}
               >
-                <img src={rec.image} alt="egusi" />
+                <img src={rec.media.source} alt="egusi" />
                 <div className="rec_text">
                   <p className="name">{rec.name}</p>
-                  <p className="duration">{rec.duration} </p>
+                  <p className="duration">{rec.price.formatted_with_symbol} </p>
                 </div>
                 <div className="bttn_div">
                   <button

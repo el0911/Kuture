@@ -6,9 +6,12 @@ import CoupleMenu from "./images/2servings.svg";
 import FamilyMenu from "./images/4servings.svg";
 import { useHistory } from "react-router-dom";
 import Header from "./Header";
+import Footer from "./Footer";
+import Navbar from "./Navbar";
 
 const Main = styled.main`
   background: fafaef;
+  font-family: "Sen", serif;
   @media (min-width: 300px) and (max-width: 600px) {
     .modal_div {
       position: relative;
@@ -33,6 +36,8 @@ const Main = styled.main`
       margin-top: 2rem;
       margin-bottom: 2rem;
       color: #ee4e2f;
+    }
+    .footy_div {
     }
     .modal_div img {
       display: block;
@@ -639,8 +644,20 @@ const Main = styled.main`
     .shipping_div h4 {
       margin-right: 2rem;
     }
+    .head_div {
+      display: flex;
+      justify-content: space-between;
+      width: 90%;
+      margin: auto;
+    }
   }
   @media (min-width: 1024px) and (max-width: 1700px) {
+    .head_div {
+      display: flex;
+      justify-content: space-between;
+      width: 90%;
+      margin: auto;
+    }
     .modal_div {
       position: relative;
       z-index: 10;
@@ -853,6 +870,12 @@ const Main = styled.main`
     }
   }
   @media (min-width: 1700px) {
+    .head_div {
+      display: flex;
+      justify-content: space-between;
+      max-width: 70%;
+      margin: auto;
+    }
     .modal_div {
       position: relative;
       z-index: 10;
@@ -1074,7 +1097,10 @@ export default function CustomiseMenu() {
   return (
     <Main>
       <div className="">
-        <Header />
+        <div className="head_div">
+          <Header />
+          <Navbar />
+        </div>
         <div className="modal_background">
           <h2>SELECT YOUR PLAN</h2>
           <div className="modal_div">
@@ -1113,7 +1139,14 @@ export default function CustomiseMenu() {
                     </div>
                   </div>
                   <div className="bttn_div">
-                    <button>SELECT PLAN</button>
+                    <button
+                      onClick={() => {
+                        alert("You selected the couple plan");
+                        history.push("/allrecipes");
+                      }}
+                    >
+                      SELECT PLAN
+                    </button>
                   </div>
                 </div>
                 <div className="family_menu">
@@ -1147,6 +1180,7 @@ export default function CustomiseMenu() {
                   <div className="bttn_div">
                     <button
                       onClick={() => {
+                        alert("You selected the family plan");
                         history.push("/allrecipes");
                       }}
                     >
@@ -1157,6 +1191,9 @@ export default function CustomiseMenu() {
               </div>
             </div>
           </div>
+        </div>
+        <div className="footy_div">
+          <Footer />
         </div>
       </div>
     </Main>
