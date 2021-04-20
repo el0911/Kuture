@@ -436,8 +436,10 @@ const Div = styled.div`
   }
 `;
 
-export default function Modal({ modalOpen }) {
+export default function Modal({ product }) {
   const history = useHistory();
+  console.log(product, "product");
+
   return (
     <Div>
       <div className="modal_background">
@@ -447,46 +449,14 @@ export default function Modal({ modalOpen }) {
           className="close_img"
           onClick={() => {}}
         />
-        {Recipes.map((recipe) => {
-          const {
-            name,
-            image,
-            rec_text,
-            recipe_title,
-            Needed,
-            Ingredients_title,
-            ingredients,
-            preparation,
-            prepare_steps,
-          } = recipe;
-          return (
-            <div className="modal_div">
-              <h2 className="modal_title">{name}</h2>
-              <img src={image} alt="modal_image" />
-              <div className="each_ingre_div">
-                <h4> {recipe_title} </h4>
-                <p> {rec_text} </p>
-                <h5>{Needed} </h5>
-                <h4> {Ingredients_title} </h4>
-                {ingredients.map((each_ingre) => {
-                  return (
-                    <ul>
-                      <li> {each_ingre} </li>
-                    </ul>
-                  );
-                })}
-                <h4>{preparation} </h4>
-                {prepare_steps.map((step) => {
-                  return (
-                    <ul>
-                      <li>{step} </li>
-                    </ul>
-                  );
-                })}
-              </div>
-            </div>
-          );
-        })}
+        return (
+        <div className="modal_div">
+          <h2 className="modal_title">{product.name}</h2>
+          <img src={product.media.source} alt="modal_image" />
+          <div className="each_ingre_div">
+            <ul dangerouslySetInnerHTML={{ __html: product.description }}></ul>
+          </div>
+        </div>
         <div className="bttn_div">
           <button>ADD RECIPE</button>
         </div>

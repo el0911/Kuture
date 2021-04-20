@@ -320,6 +320,29 @@ const Main = styled.main`
 `;
 
 export default function LandingPage() {
+  const [products, setProducts] = React.useState([]);
+  const [cart, setCart] = React.useState({});
+  const [categories, setCategories] = React.useState([]);
+
+  const fetchProducts = async () => {
+    const { data } = await commerce.products.list();
+    setProducts(data);
+  };
+
+  const fetchCategories = async () => {
+    const { data } = await commerce.categories.list();
+    console.log(data, "cat");
+
+    setCategories(data);
+  };
+  console.log(categories, "cate");
+
+  const fetchCart = async () => {};
+
+  React.useEffect(() => {
+    fetchCategories();
+  }, []);
+
   return (
     <Main>
       <div className="landing_div">
@@ -330,7 +353,7 @@ export default function LandingPage() {
         </div>
       </div>
       <img src={ArrowDown} alt="arrow" className="arrdown" />
-      <Categories />
+      <Categories products={products} categories={categories} />
       <HowWeOperate />
       <FavouriteRecipes />
       <Footer />

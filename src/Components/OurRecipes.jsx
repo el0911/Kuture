@@ -669,7 +669,6 @@ export default function OurRecipes() {
 
   const fetchProducts = async () => {
     const { data } = await commerce.products.list();
-
     setProducts(data);
   };
 
@@ -715,22 +714,15 @@ export default function OurRecipes() {
       <div>
         <h5 className="recipes_div_h5">Menu for 20th Feb. - 26th Feb. 2021</h5>
         <div className="recipes_div">
-          {products.map((rec) => {
+          {products.map((product) => {
             return (
-              <div
-                className="each_recipe"
-                onClick={() => {
-                  let prodID = localStorage.setItem("prodid", rec.id);
-                  commerce.products
-                    .retrieve(prodID)
-                    .then((product) => console.log(product.name));
-                  console.log("clicked", prodID);
-                }}
-              >
-                <img src={rec.media.source} alt="egusi" />
+              <div className="each_recipe" onClick={() => {}} key={product.id}>
+                <img src={product.media.source} alt="egusi" />
                 <div className="rec_text">
-                  <p className="name">{rec.name}</p>
-                  <p className="duration">{rec.price.formatted_with_symbol} </p>
+                  <p className="name">{product.name}</p>
+                  <p className="duration">
+                    {product.price.formatted_with_symbol}{" "}
+                  </p>
                 </div>
                 <div className="bttn_div">
                   <button
@@ -742,6 +734,7 @@ export default function OurRecipes() {
                     ADD TO CART
                   </button>
                 </div>
+                <Modal product={product} />;
               </div>
             );
           })}

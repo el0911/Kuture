@@ -174,34 +174,17 @@ const Main = styled.main`
   }
 `;
 
-export default function Categories() {
+export default function Categories({ categories }) {
   const history = useHistory();
-  const [cat, setCat] = React.useState([]);
-
-  const fetchCat = async () => {
-    const { data } = await commerce.categories.list();
-    await commerce.categories
-      .retrieve("cat_8XxzoByZNwPQAZ")
-      .then((category) => console.log(category.name));
-    console.log(data);
-
-    setCat(data);
-  };
-  React.useEffect(() => {
-    fetchCat();
-    console.log(cat, "cstegories");
-  }, []);
 
   return (
     <Main>
       <h2 className="title">OUR CATEGORIES</h2>
       <div className="categories_div">
-        {cat.map((category) => {
-          const { name, id } = category;
+        {categories.map((category) => {
           return (
-            <div className="each_cat" key={id}>
-              <h4>{name}</h4>
-              {/* <img alt="cat_image" src={image} /> */}
+            <div className="each_cat" key={category.id}>
+              <h4>{category.name}</h4>
               <div className="btn_div">
                 <button
                   onClick={() => {
