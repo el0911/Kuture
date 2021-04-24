@@ -4,7 +4,6 @@ import Header from "./Header";
 import Top from "./images/top_mobile.svg";
 import TopIpad from "./images/top_background.svg";
 import ArrowDown from "./images/arrowdown.svg";
-import Navbar from "./Navbar";
 import Categories from "./Categories";
 import HowWeOperate from "./HowWeOperate";
 import FavouriteRecipes from "./FavouriteRecipes";
@@ -320,14 +319,7 @@ const Main = styled.main`
 `;
 
 export default function LandingPage() {
-  const [products, setProducts] = React.useState([]);
-  const [cart, setCart] = React.useState({});
   const [categories, setCategories] = React.useState([]);
-
-  const fetchProducts = async () => {
-    const { data } = await commerce.products.list();
-    setProducts(data);
-  };
 
   const fetchCategories = async () => {
     const { data } = await commerce.categories.list();
@@ -336,8 +328,6 @@ export default function LandingPage() {
     setCategories(data);
   };
   console.log(categories, "cate");
-
-  const fetchCart = async () => {};
 
   React.useEffect(() => {
     fetchCategories();
@@ -348,12 +338,11 @@ export default function LandingPage() {
       <div className="landing_div">
         <div className="all_divs">
           <Header />
-          <Navbar />
           <div className="top_right"></div>
         </div>
       </div>
       <img src={ArrowDown} alt="arrow" className="arrdown" />
-      <Categories products={products} categories={categories} />
+      <Categories categories={categories} />
       <HowWeOperate />
       <FavouriteRecipes />
       <Footer />

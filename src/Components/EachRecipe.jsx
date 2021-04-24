@@ -2,18 +2,13 @@ import React from "react";
 import Overlay from "./images/overlay.svg";
 import OverlayM from "./images/overlayM.svg";
 import styled from "styled-components";
-import Recipes from "./Recipe";
 import closeImg from "./images/close(1).svg";
-import { useHistory } from "react-router-dom";
 
 const Div = styled.div`
   @media (min-width: 300px) and (max-width: 600px) {
     .modal_background {
-      position: fixed;
-      z-index: 10;
-      left: 18px;
-      top: 0;
-      width: 100%;
+      margin: auto;
+      max-width: 85%;
       overflow: auto;
       background-image: url(${OverlayM});
       width: 90%;
@@ -95,11 +90,8 @@ const Div = styled.div`
   }
   @media (min-width: 600px) and (max-width: 960px) {
     .modal_background {
-      position: fixed;
-      z-index: 10;
-      left: 0;
-      top: 0;
-      width: 100%;
+      margin: auto;
+      max-width: 85%;
       overflow: auto;
       background-image: url(${Overlay});
       width: 100%;
@@ -181,11 +173,8 @@ const Div = styled.div`
   }
   @media (min-width: 960px) and (max-width: 1024px) {
     .modal_background {
-      position: fixed;
-      z-index: 10;
-      left: 50%;
-      top: 50%;
-      width: 85%;
+      margin: auto;
+      max-width: 85%;
       overflow: auto;
       background-image: url(${Overlay});
       background-repeat: no-repeat;
@@ -265,11 +254,8 @@ const Div = styled.div`
   }
   @media (min-width: 1024px) and (max-width: 1700px) {
     .modal_background {
-      position: fixed;
-      z-index: 10;
-      top: 50%;
-      left: 50%;
-      width: 85%;
+      margin: auto;
+      max-width: 85%;
       overflow: auto;
       background-image: url(${Overlay});
       height: 100%;
@@ -350,14 +336,10 @@ const Div = styled.div`
   }
   @media (min-width: 1700px) {
     .modal_background {
-      position: fixed;
-      z-index: 10;
-      top: 50%;
-      left: 50%;
+      margin: auto;
       max-width: 60%;
       overflow: auto;
       background-image: url(${Overlay});
-      width: 100%;
       height: 100%;
       background-repeat: no-repeat;
       background-size: cover;
@@ -436,8 +418,9 @@ const Div = styled.div`
   }
 `;
 
-export default function Modal({ modalOpen }) {
-  const history = useHistory();
+export default function Modal({ product }) {
+  console.log(product, "product");
+
   return (
     <Div>
       <div className="modal_background">
@@ -447,46 +430,14 @@ export default function Modal({ modalOpen }) {
           className="close_img"
           onClick={() => {}}
         />
-        {Recipes.map((recipe) => {
-          const {
-            name,
-            image,
-            rec_text,
-            recipe_title,
-            Needed,
-            Ingredients_title,
-            ingredients,
-            preparation,
-            prepare_steps,
-          } = recipe;
-          return (
-            <div className="modal_div">
-              <h2 className="modal_title">{name}</h2>
-              <img src={image} alt="modal_image" />
-              <div className="each_ingre_div">
-                <h4> {recipe_title} </h4>
-                <p> {rec_text} </p>
-                <h5>{Needed} </h5>
-                <h4> {Ingredients_title} </h4>
-                {ingredients.map((each_ingre) => {
-                  return (
-                    <ul>
-                      <li> {each_ingre} </li>
-                    </ul>
-                  );
-                })}
-                <h4>{preparation} </h4>
-                {prepare_steps.map((step) => {
-                  return (
-                    <ul>
-                      <li>{step} </li>
-                    </ul>
-                  );
-                })}
-              </div>
-            </div>
-          );
-        })}
+        return (
+        <div className="modal_div">
+          <h2 className="modal_title">{product.name}</h2>
+          <img src={product.media.source} alt="modal_image" />
+          <div className="each_ingre_div">
+            <ul dangerouslySetInnerHTML={{ __html: product.description }}></ul>
+          </div>
+        </div>
         <div className="bttn_div">
           <button>ADD RECIPE</button>
         </div>

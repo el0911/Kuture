@@ -1131,11 +1131,9 @@ export default function CustomiseMenu() {
                   <div className="ship_serving_div">
                     <div className="shipping_div">
                       <h4>Shipping</h4>
-                      <h4></h4>
                     </div>
                     <div className="serving_div">
                       <h4>Per Serving</h4>
-                      <h4></h4>
                     </div>
                   </div>
                   <div className="bttn_div">
@@ -1170,11 +1168,9 @@ export default function CustomiseMenu() {
                   <div className="ship_serving_div">
                     <div className="shipping_div">
                       <h4>Shipping</h4>
-                      <h4></h4>
                     </div>
                     <div className="serving_div">
                       <h4>Per Serving</h4>
-                      <h4></h4>
                     </div>
                   </div>
                   <div className="bttn_div">

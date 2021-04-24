@@ -801,7 +801,7 @@ export default function CompletedOrder({ name, address, pnumber, cardno }) {
                     className="each_img"
                   />
                   <p>{eachrecipe.name}</p>
-                  <img src={Trash} className="mappedimg" />
+                  <img src={Trash} className="mappedimg" alt="trash" />
                 </div>
               );
             })}

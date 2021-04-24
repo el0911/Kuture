@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import Cart from "./images/cart.svg";
 
 const Li = styled.li`
   .whykulture {
@@ -151,9 +152,24 @@ const Nav = styled.nav`
       text-align: center;
       padding-top: 0.81rem;
     }
+    .cart {
+      width: 1.52rem;
+      padding-right: 8px;
+      height: 35px;
+      color: #ee4e2f;
+      text-align: center;
+      padding-top: 0.81rem;
+      margin-right: 1rem;
+      margin-left: 1rem;
+    }
     a {
       text-decoration: none;
       cursor: pointer;
+    }
+    .cart img {
+      width: 2rem;
+      padding-right: 8px;
+      padding-top: 1px;
     }
   }
 
@@ -174,6 +190,9 @@ export default function Navbar() {
         </Li>
         <Li className="login">
           <Link href="/login">Login</Link>
+        </Li>
+        <Li className="cart">
+          <img src={Cart} alt="cart" />
         </Li>
       </ul>
     </Nav>

@@ -3,12 +3,8 @@ import styled from "styled-components";
 import AllRecipesBack from "./images/allrecipes_back.svg";
 import AllRecipesBackI from "./images/allrecipes_bacI.svg";
 import Header from "./Header";
-import Egusi from "./images/Egusi.jpg";
 import LargeBanner from "./images/largebanner.jpg";
 import Footer from "./Footer";
-import Navbar from "./Navbar";
-import Modal from "./Modal";
-import { useHistory } from "react-router-dom";
 import { commerce } from "../lib/Commerce";
 
 const Main = styled.main`
@@ -89,6 +85,10 @@ const Main = styled.main`
       border-radius: 10px;
       margin-bottom: 4rem;
       padding-bottom: 2.5rem;
+    }
+    .each_recipe img {
+      width: -moz-available;
+      width: -webkit-fill-available;
     }
     .rec_text {
       display: flex;
@@ -662,30 +662,29 @@ const Main = styled.main`
 `;
 
 export default function OurRecipes() {
-  const [modalOpen, setModalOpen] = React.useState(false);
-  const history = useHistory();
   const [products, setProducts] = React.useState([]);
-  const [categ, setCateg] = React.useState([]);
 
   const fetchProducts = async () => {
     const { data } = await commerce.products.list();
     setProducts(data);
   };
+  const addToCart = async (productId, quantity) => {
+    const item = await commerce.cart.add(productId, quantity);
+    console.log(item, "item");
+  };
 
   React.useEffect(() => {
     fetchProducts();
     console.log(products, "products");
-  }, []);
+  }, [products]);
 
   return (
     <Main>
       <div className="background_mobile">
         <div className="heading_div">
-          <div className="header_div">
-            <Header />
-          </div>
+          <div className="header_div"></div>
           <div className="nav_div">
-            <Navbar />
+            <Header />
           </div>
         </div>
         <div className="title_div">
@@ -727,14 +726,14 @@ export default function OurRecipes() {
                 <div className="bttn_div">
                   <button
                     onClick={() => {
-                      alert("added to cart");
-                      history.push("/allrecipes");
+                      alert("Item added to cart");
+                      addToCart(product.id, 1);
                     }}
                   >
                     ADD TO CART
                   </button>
                 </div>
-                <Modal product={product} />;
+                {/* <EachRecipe product={product} />; */}
               </div>
             );
           })}

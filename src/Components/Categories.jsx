@@ -1,8 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import ListCategories from "./ListofCategories";
 import { useHistory } from "react-router-dom";
-import { commerce } from "../lib/Commerce";
 
 const Main = styled.main`
   font-family: "Sen", sans-serif;

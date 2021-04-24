@@ -2,12 +2,9 @@ import React from "react";
 import styled from "styled-components";
 import Header from "./Header";
 import Line from "./images/totalline.svg";
-import Navbar from "./Navbar";
 import DeliveryInformation from "./DeliveryInformation";
-import BackM from "./images/delivery_back.svg";
 import BackL from "./images/deliv_backL.svg";
 import Footer from "./Footer";
-import CardInformation from "./CardInformation";
 
 const Main = styled.main`
   background: #fafaef;
@@ -586,7 +583,6 @@ export default function OrderSummary({
       <div className="background">
         <div className="head_div">
           <Header />
-          <Navbar />
         </div>
         <div className="body_order">
           <div className="order_div">
