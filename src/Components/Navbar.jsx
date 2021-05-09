@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import Cart from "./images/cart.svg";
+import carticon from "./images/cart.svg";
+import Cart from "./Cart";
+import Close from "./images/close(1).svg";
 
 const Li = styled.li`
   .whykulture {
@@ -161,6 +163,7 @@ const Nav = styled.nav`
       padding-top: 0.81rem;
       margin-right: 1rem;
       margin-left: 1rem;
+      cursor: pointer;
     }
     a {
       text-decoration: none;
@@ -170,6 +173,7 @@ const Nav = styled.nav`
       width: 2rem;
       padding-right: 8px;
       padding-top: 1px;
+      cursor: pointer;
     }
   }
 
@@ -178,7 +182,7 @@ const Nav = styled.nav`
   }
 `;
 
-export default function Navbar() {
+export default function Navbar({ cart, showcart, handleClick }) {
   return (
     <Nav>
       <ul>
@@ -191,8 +195,20 @@ export default function Navbar() {
         <Li className="login">
           <Link href="/login">Login</Link>
         </Li>
-        <Li className="cart">
-          <img src={Cart} alt="cart" />
+        <Li className="cart" onClick={handleClick}>
+          <img src={carticon} alt="cart" />
+          {showcart && (
+            <Cart cart={cart} showcart={showcart}>
+              <img
+                src={Close}
+                alt="sidemenu"
+                className="side_menuimg"
+                // onClick={() => {
+                //   setClose(!close);
+                // }}
+              />
+            </Cart>
+          )}
         </Li>
       </ul>
     </Nav>

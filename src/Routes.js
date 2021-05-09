@@ -15,7 +15,7 @@ export default function Routes() {
         <Route exact path="/" component={LandingPage} />
         <Route exact path="/allrecipes" component={OurRecipes} />
         <Route exact path="/customise" component={CustomiseMenu} />
-        <Route exact path="/recipe" component={EachRecipe} />
+        <Route  path="/recipe/:productId" component={EachRecipe} />
         <Route exact path="/deliveryinfo" component={DeliveryInformation} />
         <Route exact path="/ordersummary" component={OrderSummary} />
         <Route exact path="/completed" component={CompletedOrder} />
@@ -23,3 +23,4 @@ export default function Routes() {
     </Router>
   );
 }
+ 

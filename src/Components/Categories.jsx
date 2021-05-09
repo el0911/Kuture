@@ -8,10 +8,15 @@ const Main = styled.main`
   @media (min-width: 300px) and (max-width: 600px) {
     .title {
       font-weight: bold;
-      font-size: 30px;
+      font-size: 25px;
       line-height: 36px;
       text-align: center;
       color: #aa614d;
+    }
+    .categories_div {
+      display: flex;
+      width: 95%;
+      margin: auto;
     }
     .each_cat {
       width: 320px;
@@ -36,28 +41,25 @@ const Main = styled.main`
       display: block;
       margin: auto;
       text-align: center;
-      margin-top: 5rem;
+      margin-top: 1.3rem;
+      width: 45%;
     }
     .btn_div button {
-      width: 200px;
-      height: 46.93px;
+      height: 55px;
       background: #ee4e2f;
       border-radius: 10px;
       border: none;
       color: #fff;
       font-weight: bold;
-      font-size: 20px;
+      font-size: 15px;
       text-align: center;
     }
   }
   @media (min-width: 600px) and (max-width: 960px) {
     .categories_div {
-      display: grid;
-      grid-template-columns: auto auto;
-      grid-gap: 3em;
-      width: 80%;
+      display: flex;
+      width: 95%;
       margin: auto;
-      justify-content: center;
     }
     .title {
       font-weight: bold;
@@ -76,11 +78,10 @@ const Main = styled.main`
       display: block;
       margin: auto;
       text-align: center;
-      margin-top: 3rem;
+      margin-top: 1rem;
     }
     .btn_div button {
-      width: 200px;
-      height: 40px;
+      height: 55px;
       background: #ee4e2f;
       border-radius: 10px;
       border: none;
@@ -93,9 +94,44 @@ const Main = styled.main`
 
   @media (min-width: 960px) and (max-width: 1024px) {
     .categories_div {
-      display: grid;
-      grid-template-columns: auto auto auto;
-      grid-gap: 3em;
+      display: flex;
+      width: 95%;
+      margin: auto;
+    }
+    .title {
+      font-weight: bold;
+      font-size: 40px;
+      line-height: 48px;
+      text-align: center;
+      color: #aa614d;
+    }
+    .categories_div h4 {
+      font-weight: bold;
+      font-size: 22px;
+      color: #aa614d;
+      text-align: center;
+    }
+    .btn_div {
+      display: block;
+      margin: auto;
+      text-align: center;
+    }
+    .btn_div button {
+      width: 230px;
+      height: 50px;
+      background: #ee4e2f;
+      border-radius: 10px;
+      border: none;
+      color: #fff;
+      font-weight: bold;
+      font-size: 18px;
+      text-align: center;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .categories_div {
+      display: flex;
       width: 80%;
       margin: auto;
     }
@@ -116,50 +152,9 @@ const Main = styled.main`
       display: block;
       margin: auto;
       text-align: center;
+      margin-top: 2rem;
     }
     .btn_div button {
-      width: 230px;
-      height: 50px;
-      background: #ee4e2f;
-      border-radius: 10px;
-      border: none;
-      color: #fff;
-      font-weight: bold;
-      font-size: 20px;
-      text-align: center;
-    }
-  }
-
-  @media (min-width: 1024px) {
-    .categories_div {
-      display: grid;
-      grid-template-columns: auto auto auto;
-      grid-gap: 3em;
-      width: 65%;
-      margin: auto;
-      justify-content: center;
-    }
-    .title {
-      font-weight: bold;
-      font-size: 40px;
-      line-height: 48px;
-      text-align: center;
-      color: #aa614d;
-    }
-    .categories_div h4 {
-      font-weight: bold;
-      font-size: 25px;
-      color: #aa614d;
-      text-align: center;
-    }
-    .btn_div {
-      display: block;
-      margin: auto;
-      text-align: center;
-      margin-top: 5rem;
-    }
-    .btn_div button {
-      width: 230px;
       height: 50px;
       background: #ee4e2f;
       border-radius: 10px;
@@ -181,17 +176,14 @@ export default function Categories({ categories }) {
       <div className="categories_div">
         {categories.map((category) => {
           return (
-            <div className="each_cat" key={category.id}>
-              <h4>{category.name}</h4>
-              <div className="btn_div">
-                <button
-                  onClick={() => {
-                    history.push("/allrecipes");
-                  }}
-                >
-                  VIEW RECIPES
-                </button>
-              </div>
+            <div className="btn_div" key={category.id}>
+              <button
+                onClick={() => {
+                  history.push("/allrecipes");
+                }}
+              >
+                {category.name}{" "}
+              </button>
             </div>
           );
         })}

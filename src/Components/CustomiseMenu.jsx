@@ -217,8 +217,8 @@ const Main = styled.main`
       line-height: 22px;
       color: #e85d5d;
     }
-    .shipping_div {
-      border-right: 2px solid #2f3676;
+    .shipping_hr {
+      color: #2f3676;
     }
     .shipping_div h4 {
       margin-right: 2rem;
@@ -428,8 +428,8 @@ const Main = styled.main`
       line-height: 22px;
       color: #e85d5d;
     }
-    .shipping_div {
-      border-right: 2px solid #2f3676;
+    .shipping_hr {
+      color: #2f3676;
     }
     .shipping_div h4 {
       margin-right: 2rem;
@@ -638,8 +638,8 @@ const Main = styled.main`
       line-height: 22px;
       color: #e85d5d;
     }
-    .shipping_div {
-      border-right: 2px solid #2f3676;
+    .shipping_hr {
+      color: #2f3676;
     }
     .shipping_div h4 {
       margin-right: 2rem;
@@ -672,7 +672,7 @@ const Main = styled.main`
     }
     .modal_background h2 {
       font-weight: bold;
-      font-size: 27px;
+      font-size: 37px;
       line-height: 36px;
       color: #c47357;
       margin-top: 6rem;
@@ -852,21 +852,26 @@ const Main = styled.main`
     }
     .ship_serving_div {
       display: flex;
-      width: 93%;
+      width: 85%;
       justify-content: space-around;
       margin: auto;
+      margin-top: 0.7rem;
     }
     .ship_serving_div h4 {
       font-weight: bold;
       font-size: 18px;
       line-height: 22px;
       color: #e85d5d;
+      margin-bottom: 0.5rem;
+      margin-top: 0.5rem;
     }
-    .shipping_div {
-      border-right: 2px solid #2f3676;
+    .shipping_hr {
+      color: #2f3676;
     }
     .shipping_div h4 {
       margin-right: 2rem;
+      margin-bottom: 0.5rem;
+      margin-top: 0.8rem;
     }
   }
   @media (min-width: 1700px) {
@@ -891,7 +896,7 @@ const Main = styled.main`
     }
     .modal_background h2 {
       font-weight: bold;
-      font-size: 27px;
+      font-size: 37px;
       line-height: 36px;
       color: #c47357;
       margin-top: 6rem;
@@ -1073,34 +1078,43 @@ const Main = styled.main`
     }
     .ship_serving_div {
       display: flex;
-      width: 93%;
+      width: 85%;
       justify-content: space-around;
       margin: auto;
+      margin-top: 0.7rem;
     }
     .ship_serving_div h4 {
       font-weight: bold;
       font-size: 18px;
       line-height: 22px;
       color: #e85d5d;
+      margin-bottom: 0.5rem;
+      margin-top: 0.5rem;
     }
-    .shipping_div {
-      border-right: 2px solid #2f3676;
+    .shipping_hr {
+      color: #2f3676;
     }
     .shipping_div h4 {
       margin-right: 2rem;
+      margin-bottom: 0.5rem;
+      margin-top: 0.5rem;
     }
   }
 `;
 
 export default function CustomiseMenu() {
+  const fourPerson = 4;
+  const twoPerson = 2;
+
+  const twoPersonFunction = () => {};
+
+  const fourPersonFunction = () => {};
+
   const history = useHistory();
   return (
     <Main>
       <div className="">
-        <div className="head_div">
-          <Header />
-          <Navbar />
-        </div>
+        <Header />
         <div className="modal_background">
           <h2>SELECT YOUR PLAN</h2>
           <div className="modal_div">
@@ -1131,9 +1145,12 @@ export default function CustomiseMenu() {
                   <div className="ship_serving_div">
                     <div className="shipping_div">
                       <h4>Shipping</h4>
+                      <h4>$10.99</h4>
                     </div>
+                    <hr className="shipping_hr" />
                     <div className="serving_div">
                       <h4>Per Serving</h4>
+                      <h4>$9.99</h4>
                     </div>
                   </div>
                   <div className="bttn_div">
@@ -1168,9 +1185,12 @@ export default function CustomiseMenu() {
                   <div className="ship_serving_div">
                     <div className="shipping_div">
                       <h4>Shipping</h4>
+                      <h4>$10.99</h4>
                     </div>
+                    <hr className="shipping_hr" />
                     <div className="serving_div">
                       <h4>Per Serving</h4>
+                      <h4>$9.99</h4>
                     </div>
                   </div>
                   <div className="bttn_div">

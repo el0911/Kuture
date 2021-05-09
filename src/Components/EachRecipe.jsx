@@ -1,4 +1,5 @@
 import React from "react";
+import { useParams } from "react-router-dom";
 import Overlay from "./images/overlay.svg";
 import OverlayM from "./images/overlayM.svg";
 import styled from "styled-components";
@@ -418,30 +419,40 @@ const Div = styled.div`
   }
 `;
 
-export default function Modal({ product }) {
-  console.log(product, "product");
+export default function EachRecipe({ produc }) {
+  // let id = useParams();
 
-  return (
-    <Div>
-      <div className="modal_background">
-        <img
-          src={closeImg}
-          alt="close_img"
-          className="close_img"
-          onClick={() => {}}
-        />
-        return (
-        <div className="modal_div">
-          <h2 className="modal_title">{product.name}</h2>
-          <img src={product.media.source} alt="modal_image" />
-          <div className="each_ingre_div">
-            <ul dangerouslySetInnerHTML={{ __html: product.description }}></ul>
-          </div>
-        </div>
-        <div className="bttn_div">
-          <button>ADD RECIPE</button>
-        </div>
-      </div>
-    </Div>
-  );
+  // let productID = parseInt(id.productId);
+
+  // // console.log(productID,product.id, "params");
+  // const eachprod = product;
+  // const Eachproduct = product.find((p) => p.id === productID);
+  // console.log(Eachproduct, "EACH");
+  console.log(produc);
+
+  return <h3>test</h3>;
+  // return (
+  //   <Div>
+  //     <div className="modal_background">
+  //       <h1>you suck</h1>
+  //       <img
+  //         src={closeImg}
+  //         alt="close_img"
+  //         className="close_img"
+  //         onClick={() => {}}
+  //       />
+  //       return (
+  //       <div className="modal_div">
+  //         <h2 className="modal_title">{product.name}</h2>
+  //         <img src={product.media.source} alt="modal_image" />
+  //         <div className="each_ingre_div">
+  //           <ul dangerouslySetInnerHTML={{ __html: product.description }}></ul>
+  //         </div>
+  //       </div>
+  //       <div className="bttn_div">
+  //         <button>ADD RECIPE</button>
+  //       </div>
+  //     </div>
+  //   </Div>
+  // );
 }

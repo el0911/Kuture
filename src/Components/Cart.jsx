@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { useHistory } from "react-router-dom";
+import Close from "./images/close(1).svg";
 
 const Main = styled.main`
   background: #fafaef;
@@ -285,20 +286,27 @@ const Main = styled.main`
     .close_div {
       display: block;
       margin: auto;
-      margin-top: 1rem;
+      margin-top: 4rem;
       text-align: right;
       width: 85%;
     }
   }
 `;
 
-export default function Cart({ cart }) {
+export default function Cart({ cart, onClose }) {
   const history = useHistory();
 
   return (
     <Main>
       <div className="cart_bodydiv">
-        <div className="close_div"></div>
+        <div className="close_div">
+          <img
+            src={Close}
+            alt="sidemenu"
+            className="side_menuimg"
+            onClick={onClose}
+          />
+        </div>
         <h1 className="each_itemh1">Your Cart</h1>
         {cart.line_items.map((item) => {
           return (
@@ -310,7 +318,7 @@ export default function Cart({ cart }) {
               </div>
             </div>
           );
-        })}
+        })}{" "}
         <div className="text_div">
           <h4>Sub-Total</h4>
           <h4> {cart.subtotal.formatted_with_symbol} </h4>

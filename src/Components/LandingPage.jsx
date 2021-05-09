@@ -211,7 +211,7 @@ const Main = styled.main`
       position: relative;
       background-repeat: no-repeat;
       background-size: contain;
-      height: 155vh;
+      height: 114vh;
       width: 95%;
       margin-left: auto;
     }
@@ -336,10 +336,7 @@ export default function LandingPage() {
   return (
     <Main>
       <div className="landing_div">
-        <div className="all_divs">
-          <Header />
-          <div className="top_right"></div>
-        </div>
+        <Header />
       </div>
       <img src={ArrowDown} alt="arrow" className="arrdown" />
       <Categories categories={categories} />

@@ -6,6 +6,8 @@ import Header from "./Header";
 import LargeBanner from "./images/largebanner.jpg";
 import Footer from "./Footer";
 import { commerce } from "../lib/Commerce";
+import { useHistory, Link } from "react-router-dom";
+import EachRecipe from "./EachRecipe";
 
 const Main = styled.main`
   font-family: "Sen", sans-serif;
@@ -13,6 +15,12 @@ const Main = styled.main`
     font-family: "Sen", sans-serif;
     font-weight: 800;
     font-size: 15px;
+  }
+  .hidden_Div {
+    display: none;
+  }
+  .each_recipe a {
+    text-decoration: none;
   }
   @media (min-width: 300px) and (max-width: 600px) {
     .background_mobile {
@@ -93,6 +101,8 @@ const Main = styled.main`
     .rec_text {
       display: flex;
       justify-content: center;
+      width: 90%;
+      margin: auto;
     }
     .name {
       font-weight: bold;
@@ -155,7 +165,7 @@ const Main = styled.main`
     .title_div h2 {
       font-weight: bold;
       font-size: 28px;
-      color: #ae5d29;
+      color: #cf301b;
     }
     .title_div h6 {
       font-weight: bold;
@@ -182,7 +192,10 @@ const Main = styled.main`
     }
     .recipes_div {
       display: grid;
-      grid-template-columns: auto auto auto;
+      grid-template-columns: auto auto;
+      grid-gap: 2em;
+      width: 90%;
+      margin: auto;
     }
     .recipes_div_h5 {
       font-weight: bold;
@@ -199,15 +212,16 @@ const Main = styled.main`
       border-radius: 10px;
       margin-bottom: 4rem;
       padding-bottom: 2.5rem;
-      width: 40%;
     }
     .rec_text {
       display: flex;
       justify-content: center;
+      width: 90%;
+      margin: auto;
     }
     .name {
       font-weight: bold;
-      font-size: 20px;
+      font-size: 18px;
       line-height: 24px;
       color: #10145f;
       text-align: center;
@@ -215,11 +229,11 @@ const Main = styled.main`
       border-right: 2px solid #10145f;
     }
     .each_recipe img {
-      width: -moz-available;
+      max-width: 50%;
     }
     .duration {
       font-weight: bold;
-      font-size: 20px;
+      font-size: 18px;
       line-height: 24px;
       color: #10145f;
       display: flex;
@@ -329,10 +343,12 @@ const Main = styled.main`
     .rec_text {
       display: flex;
       justify-content: center;
+      width: 90%;
+      margin: auto;
     }
     .name {
       font-weight: bold;
-      font-size: 20px;
+      font-size: 18px;
       line-height: 24px;
       color: #10145f;
       text-align: center;
@@ -341,7 +357,7 @@ const Main = styled.main`
     }
     .duration {
       font-weight: bold;
-      font-size: 20px;
+      font-size: 18px;
       line-height: 24px;
       color: #10145f;
       display: flex;
@@ -373,8 +389,8 @@ const Main = styled.main`
       background-repeat: no-repeat;
       background-position-y: top;
       margin-top: -2rem;
-      background-size: cover;
-      height: 120vh;
+      background-size: contain;
+      height: 85vh;
     }
     .header_div {
       padding-top: 1rem;
@@ -450,7 +466,6 @@ const Main = styled.main`
       text-align: center;
     }
     .each_recipe {
-      width: 25%;
       margin: auto;
       text-align: center;
       filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
@@ -460,19 +475,17 @@ const Main = styled.main`
       padding-bottom: 2.5rem;
     }
     .each_recipe img {
-      width: -moz-available;
-    }
-    .each_recipe img {
-      width: -moz-available;
-      width: -webkit-fill-available;
+      max-width: 50%;
     }
     .rec_text {
       display: flex;
       justify-content: center;
+      width: 90%;
+      margin: auto;
     }
     .name {
       font-weight: bold;
-      font-size: 20px;
+      font-size: 19px;
       line-height: 24px;
       color: #10145f;
       text-align: center;
@@ -481,7 +494,7 @@ const Main = styled.main`
     }
     .duration {
       font-weight: bold;
-      font-size: 20px;
+      font-size: 19px;
       line-height: 24px;
       color: #10145f;
       display: flex;
@@ -663,10 +676,17 @@ const Main = styled.main`
 
 export default function OurRecipes() {
   const [products, setProducts] = React.useState([]);
+  const [product, setProduct] = React.useState({});
 
+  const history = useHistory();
   const fetchProducts = async () => {
-    const { data } = await commerce.products.list();
-    setProducts(data);
+    try {
+      const { data } = await commerce.products.list();
+      setProducts(data);
+      return;
+    } catch (error) {
+      return error;
+    }
   };
   const addToCart = async (productId, quantity) => {
     const item = await commerce.cart.add(productId, quantity);
@@ -677,16 +697,10 @@ export default function OurRecipes() {
     fetchProducts();
     console.log(products, "products");
   }, [products]);
-
   return (
     <Main>
       <div className="background_mobile">
-        <div className="heading_div">
-          <div className="header_div"></div>
-          <div className="nav_div">
-            <Header />
-          </div>
-        </div>
+        <Header />
         <div className="title_div">
           <h2>ALL RECIPES</h2>
           <div className="select_div">
@@ -713,27 +727,30 @@ export default function OurRecipes() {
       <div>
         <h5 className="recipes_div_h5">Menu for 20th Feb. - 26th Feb. 2021</h5>
         <div className="recipes_div">
-          {products.map((product) => {
+          {products.map((produc) => {
             return (
-              <div className="each_recipe" onClick={() => {}} key={product.id}>
-                <img src={product.media.source} alt="egusi" />
+              <div className="each_recipe" key={produc.id}>
+                <Link to={`/recipe/${produc.id}`}>
+                  <img src={produc.media.source} alt="egusi" />
+                </Link>
                 <div className="rec_text">
-                  <p className="name">{product.name}</p>
+                  <p className="name">{produc.name}</p>
                   <p className="duration">
-                    {product.price.formatted_with_symbol}{" "}
+                    {produc.price.formatted_with_symbol}{" "}
                   </p>
                 </div>
                 <div className="bttn_div">
                   <button
                     onClick={() => {
-                      alert("Item added to cart");
-                      addToCart(product.id, 1);
+                      history.push("/customise");
                     }}
                   >
-                    ADD TO CART
+                    VIEW RECIPE
                   </button>
                 </div>
-                {/* <EachRecipe product={product} />; */}
+                <div className="hidden_Div">
+                  <EachRecipe produc={product} />
+                </div>
               </div>
             );
           })}

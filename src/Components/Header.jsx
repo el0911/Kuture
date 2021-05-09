@@ -164,6 +164,9 @@ const HeaderMain = styled.main`
     }
   }
   @media (min-width: 600px) and (max-width: 960px) {
+    .both_headers {
+      padding-top: 2rem;
+    }
     .nav_div {
       display: none;
     }
@@ -178,7 +181,7 @@ const HeaderMain = styled.main`
       font-family: "Sen", sans-serif;
       font-size: 28px;
       font-weight: 800;
-      color: #013220;
+      color: #10145f;
       margin-top: 0;
       margin-bottom: 0;
     }
@@ -299,6 +302,9 @@ const HeaderMain = styled.main`
     .side_bar {
       margin-top: 3em;
     }
+    .cart_div {
+      display: none;
+    }
   }
 
   @media (min-width: 960px) and (max-width: 1024px) {
@@ -351,6 +357,18 @@ const HeaderMain = styled.main`
     .side_menu {
       display: none;
     }
+    .cart_div {
+      display: none;
+    }
+    .both_headers {
+      display: flex;
+      width: 90%;
+      margin: auto;
+      padding-top: 1rem;
+    }
+    .nav_div {
+      padding-top: 1rem;
+    }
   }
 `;
 
@@ -379,14 +397,44 @@ export default function Header() {
 
   return (
     <HeaderMain>
-      <header>
-        <h3>
-          <a href="/">kulturefresh</a>
-        </h3>
-        <div className="cart_div" onClick={handleClick}>
-          <img src={carticon} alt="cart" className="cart" />
-          {showcart && (
-            <Cart cart={cart} showcart={showcart}>
+      <div className="both_headers">
+        <header>
+          <h3>
+            <a href="/">kulturefresh</a>
+          </h3>
+          <div className="cart_div" onClick={handleClick}>
+            <img src={carticon} alt="cart" className="cart" />
+            {showcart && (
+              <Cart cart={cart} showcart={showcart}>
+                <img
+                  src={Close}
+                  alt="sidemenu"
+                  className="side_menuimg"
+                  onClick={() => {
+                    setClose(!close);
+                  }}
+                />
+              </Cart>
+            )}
+          </div>
+          <div className="menu_div">
+            <img
+              src={Menu}
+              alt="menu"
+              className="menu"
+              onClick={() => {
+                setClose(!close);
+              }}
+            />
+          </div>
+        </header>
+
+        {close && (
+          <div
+            className="side_menu"
+            style={{ backgroundImage: `url(${SideMenu})` }}
+          >
+            <ul>
               <img
                 src={Close}
                 alt="sidemenu"
@@ -395,63 +443,35 @@ export default function Header() {
                   setClose(!close);
                 }}
               />
-            </Cart>
-          )}
+              <li className="cat">
+                <img src={OurRecipes} alt="ourrecipes" />
+                <select>
+                  {Dropdown.map((cat) => {
+                    return (
+                      <option key={cat.id} value={cat.name}>
+                        {cat.name}{" "}
+                      </option>
+                    );
+                  })}
+                </select>
+              </li>
+              <li className="why">
+                {" "}
+                <img src={WhyKulture} alt="why" />
+                <span className="why_span">Why kulturefresh</span>
+              </li>
+            </ul>
+            <ul className="login_ul">
+              <li className="login_drop">
+                <img src={Login} alt="login" />
+                <span className="login_drop_span">Login</span>
+              </li>
+            </ul>
+          </div>
+        )}
+        <div className="nav_div">
+          <Navbar cart={cart} showcart={showcart} handleClick={handleClick} />
         </div>
-        <div className="menu_div">
-          <img
-            src={Menu}
-            alt="menu"
-            className="menu"
-            onClick={() => {
-              setClose(!close);
-            }}
-          />
-        </div>
-      </header>
-
-      {close && (
-        <div
-          className="side_menu"
-          style={{ backgroundImage: `url(${SideMenu})` }}
-        >
-          <ul>
-            <img
-              src={Close}
-              alt="sidemenu"
-              className="side_menuimg"
-              onClick={() => {
-                setClose(!close);
-              }}
-            />
-            <li className="cat">
-              <img src={OurRecipes} alt="ourrecipes" />
-              <select>
-                {Dropdown.map((cat) => {
-                  return (
-                    <option key={cat.id} value={cat.name}>
-                      {cat.name}{" "}
-                    </option>
-                  );
-                })}
-              </select>
-            </li>
-            <li className="why">
-              {" "}
-              <img src={WhyKulture} alt="why" />
-              <span className="why_span">Why kulturefresh</span>
-            </li>
-          </ul>
-          <ul className="login_ul">
-            <li className="login_drop">
-              <img src={Login} alt="login" />
-              <span className="login_drop_span">Login</span>
-            </li>
-          </ul>
-        </div>
-      )}
-      <div className="nav_div">
-        <Navbar />
       </div>
     </HeaderMain>
   );
