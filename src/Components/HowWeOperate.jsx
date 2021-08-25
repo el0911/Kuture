@@ -24,6 +24,17 @@ const Main = styled.main`
     .how_div {
       margin-top: 3em;
     }
+
+    .how_div  img{
+      max-width: 100vw;
+    }
+
+    .banner{
+      max-width: 100vw;
+      min-width: 100vw;
+
+    }
+    
     .sub_title {
       font-weight: normal;
       font-size: 16px;
@@ -720,8 +731,8 @@ export default function HowWeOperate() {
   return (
     <Main>
       <div className="how_div">
-        <img src={BannerM} alt="banner_mobile" className="bannerM" />
-        <img src={BannerL} alt="banner_mobile" className="bannerL" />
+        <img src={BannerM} alt="banner_mobile" className="bannerM banner" />
+        <img src={BannerL} alt="banner_mobile" className="bannerL banner" />
         <h2 className="title">HOW WE OPERATE</h2>
         <p className="sub_title">
           Lorem Ipsum has been the industry's standard dummy text ever since the

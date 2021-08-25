@@ -3,8 +3,16 @@ import styled from "styled-components";
 import BannerM from "./images/bannerM.svg";
 import BannerL from "./images/bannerL.jpg";
 import FavRec from "./images/favrecipe1.jpg";
+import Meal from "./sharedComponents/meal";
 
 const Main = styled.main`
+.title {
+  font-weight: bold;
+  font-size: 25px;
+  line-height: 36px;
+  text-align: center;
+  color: #aa614d;
+}
   @media (min-width: 300px) and (max-width: 600px) {
     .title {
       font-weight: bold;
@@ -15,6 +23,15 @@ const Main = styled.main`
     }
     .how_div {
       margin-top: 3em;
+    }
+
+    .how_div  img{
+      max-width: 100vw;
+    }
+
+    .how_div  .banner{
+      max-width: 100vw;
+      min-width: 100vw;
     }
     .sub_title {
       font-weight: normal;
@@ -54,9 +71,7 @@ const Main = styled.main`
     .bannerL {
       display: none;
     }
-    .bothfav {
-      display: block;
-    }
+  
   }
   @media (min-width: 600px) and (max-width: 960px) {
     .bannerM {
@@ -132,8 +147,7 @@ const Main = styled.main`
       margin: auto;
     }
     .bothfav {
-      display: flex;
-      margin-top: 2em;
+       margin-top: 2em;
       margin-bottom: 2em;
       justify-content: space-evenly;
     }
@@ -163,8 +177,7 @@ const Main = styled.main`
 
   @media (min-width: 1024px) {
     .bothfav {
-      display: flex;
-      margin-top: 2em;
+       margin-top: 2em;
       margin-bottom: 2em;
       justify-content: space-evenly;
     }
@@ -219,9 +232,9 @@ export default function FavouriteRecipes({ name, image }) {
   return (
     <Main>
       <div className="how_div">
-        <img src={BannerM} alt="banner_mobile" className="bannerM" />
-        <img src={BannerL} alt="banner_mobile" className="bannerL" />
-        <h2 className="title">OUR FAVOURITE RECIPES THIS WEEK</h2>
+        <img  src={BannerM} alt="banner_mobile" className="bannerM banner" />
+        <img  src={BannerL} alt="banner_mobile" className="bannerL banner" />
+        <h2 className="title" style={{}} >OUR FAVOURITE RECIPES THIS WEEK</h2>
         <p className="sub_title">
           Contrary to popular belief, Lorem Ipsum is not simply random text. It
           has roots in a piece of classical Latin literature from 45 BC, making
@@ -231,20 +244,8 @@ export default function FavouriteRecipes({ name, image }) {
           through the cites of the word in classical literature.
         </p>
         <div className="bothfav">
-          <div className="eachRec">
-            <img src={image} alt="fav_recipe" />
-            <h5>{name}</h5>
-            <div className="btn_div">
-              <button>CHECK IT OUT</button>
-            </div>
-          </div>
-          <div className="eachRec">
-            <img src={image} alt="fav_recipe" />
-            <h5>{name}</h5>
-            <div className="btn_div">
-              <button>CHECK IT OUT</button>
-            </div>
-          </div>
+          <Meal list={[{}, {}, {}, {}, {}]}>
+          </Meal>
         </div>
       </div>
     </Main>

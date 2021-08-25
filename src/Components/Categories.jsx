@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { useHistory } from "react-router-dom";
+import Meal from "./sharedComponents/meal";
 
 const Main = styled.main`
   font-family: "Sen", sans-serif;
@@ -14,8 +14,7 @@ const Main = styled.main`
       color: #aa614d;
     }
     .categories_div {
-      display: flex;
-      width: 95%;
+      display: block;
       margin: auto;
     }
     .each_cat {
@@ -57,8 +56,7 @@ const Main = styled.main`
   }
   @media (min-width: 600px) and (max-width: 960px) {
     .categories_div {
-      display: flex;
-      width: 95%;
+      display: block;
       margin: auto;
     }
     .title {
@@ -94,8 +92,7 @@ const Main = styled.main`
 
   @media (min-width: 960px) and (max-width: 1024px) {
     .categories_div {
-      display: flex;
-      width: 95%;
+      display: block;
       margin: auto;
     }
     .title {
@@ -131,8 +128,7 @@ const Main = styled.main`
 
   @media (min-width: 1024px) {
     .categories_div {
-      display: flex;
-      width: 80%;
+      display: block;
       margin: auto;
     }
     .title {
@@ -148,46 +144,31 @@ const Main = styled.main`
       color: #aa614d;
       text-align: center;
     }
-    .btn_div {
-      display: block;
-      margin: auto;
-      text-align: center;
-      margin-top: 2rem;
-    }
-    .btn_div button {
-      height: 50px;
-      background: #ee4e2f;
-      border-radius: 10px;
-      border: none;
-      color: #fff;
-      font-weight: bold;
-      font-size: 20px;
-      text-align: center;
-    }
+  
   }
+
+
+ 
 `;
 
 export default function Categories({ categories }) {
-  const history = useHistory();
-
+ 
   return (
     <Main>
       <h2 className="title">OUR CATEGORIES</h2>
       <div className="categories_div">
         {categories.map((category) => {
           return (
-            <div className="btn_div" key={category.id}>
-              <button
-                onClick={() => {
-                  history.push("/allrecipes");
-                }}
-              >
-                {category.name}{" "}
-              </button>
-            </div>
+
+            <Meal category={category}  list={[{}, {}, {}, {}, {}]}>
+            </Meal>
           );
         })}
+
+
+
       </div>
+
     </Main>
   );
 }

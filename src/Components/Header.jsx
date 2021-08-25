@@ -5,6 +5,7 @@ import Menu from "./images/menu.svg";
 import SideMenu from "./images/sidemenu.svg";
 import Close from "./images/close(1).svg";
 import Login from "./images/user1.svg";
+import List from "./images/list.svg";
 import carticon from "./images/cart.svg";
 import Cart from "./Cart";
 import WhyKulture from "./images/why.svg";
@@ -13,11 +14,50 @@ import Navbar from "./Navbar";
 
 const HeaderMain = styled.main`
   font-family: "Sen", sans-serif;
+      position: relative;
+    z-index: 2;
   a {
     text-decoration: none;
     cursor: pointer;
     color: #013220;
   }
+
+  .side_menu ul{
+    padding: 35px;
+  }
+
+  .side_menu {
+    background: #FAFAEF;
+   width: 100vw;
+   height: 70vh;
+   position: absolute;
+   padding:0;
+   margin:0;
+   top:0
+}
+
+.why{
+  height: 35px;
+  background: #e18f4e;
+  border-radius: 10px;
+  font-size: 14px;
+  color: #10145f;
+  font-weight: bold;
+  margin-bottom: 0.8rem;
+  padding: 5px 5px;
+  text-transform: uppercase;
+  display: flex;
+  margin-top: 20px;
+}
+
+.why_span{
+  font-size: 14px;
+  text-transform: uppercase;
+  color: #fff;
+  width: 100%;
+  margin-top: 10px;
+}
+
   @media (min-width: 300px) and (max-width: 600px) {
     .nav_div {
       display: none;
@@ -107,23 +147,8 @@ const HeaderMain = styled.main`
       padding-right: 8px;
       padding-top: 1px;
     }
-    .why {
-      width: 185px;
-      height: 35px;
-      background: #e18f4e;
-      border-radius: 10px;
-      font-size: 12px;
-      color: #10145f;
-      font-weight: bold;
-      margin-bottom: 0.8rem;
-      padding: 5px 5px;
-      text-transform: uppercase;
-    }
-    .why_span {
-      font-size: 12px;
-      text-transform: uppercase;
-      color: #10145f;
-    }
+   
+ 
     .why img {
       width: 1.52rem;
       padding-right: 8px;
@@ -149,15 +174,10 @@ const HeaderMain = styled.main`
       padding: 5px 5px;
     }
     .side_menu {
-      background-repeat: no-repeat;
-      background-size: cover;
-      position: fixed;
-      z-index: 10;
-      width: 75%;
-      margin-left: 7rem;
-      margin-top: -5.3rem;
-      border-bottom-left-radius: 25px;
-      border-top-left-radius: 25px;
+      background: #FAFAEF;
+      width: 100vw;
+      height: 70vh;
+      position: absolute;
     }
     .side_bar {
       margin-top: 3em;
@@ -247,23 +267,8 @@ const HeaderMain = styled.main`
       padding-right: 8px;
       padding-top: 1px;
     }
-    .why {
-      width: 185px;
-      height: 35px;
-      background: #e18f4e;
-      border-radius: 10px;
-      font-size: 14px;
-      color: #10145f;
-      font-weight: bold;
-      margin-bottom: 0.8rem;
-      padding: 5px 5px;
-      text-transform: uppercase;
-    }
-    .why_span {
-      font-size: 14px;
-      text-transform: uppercase;
-      color: #10145f;
-    }
+
+ 
     .why img {
       width: 1.52rem;
       padding-right: 8px;
@@ -288,16 +293,7 @@ const HeaderMain = styled.main`
       font-weight: bold;
       padding: 5px 5px;
     }
-    .side_menu {
-      background-repeat: no-repeat;
-      background-size: cover;
-      position: fixed;
-      z-index: 10;
-      width: 39%;
-      margin-left: 29rem;
-      margin-top: -4rem;
-      border-bottom-left-radius: 25px;
-      border-top-left-radius: 25px;
+  
     }
     .side_bar {
       margin-top: 3em;
@@ -368,6 +364,9 @@ const HeaderMain = styled.main`
     }
     .nav_div {
       padding-top: 1rem;
+      position: absolute;
+      right: 0;
+      top: 0;
     }
   }
 `;
@@ -402,6 +401,12 @@ export default function Header() {
           <h3>
             <a href="/">kulturefresh</a>
           </h3>
+
+          <div className="nav_div">
+            <Navbar cart={cart} showcart={showcart} handleClick={handleClick} />
+          </div>
+
+
           <div className="cart_div" onClick={handleClick}>
             <img src={carticon} alt="cart" className="cart" />
             {showcart && (
@@ -417,6 +422,7 @@ export default function Header() {
               </Cart>
             )}
           </div>
+
           <div className="menu_div">
             <img
               src={Menu}
@@ -426,52 +432,47 @@ export default function Header() {
                 setClose(!close);
               }}
             />
+
           </div>
+
+
         </header>
 
         {close && (
           <div
             className="side_menu"
-            style={{ backgroundImage: `url(${SideMenu})` }}
+
           >
             <ul>
-              <img
-                src={Close}
-                alt="sidemenu"
-                className="side_menuimg"
-                onClick={() => {
-                  setClose(!close);
-                }}
-              />
-              <li className="cat">
-                <img src={OurRecipes} alt="ourrecipes" />
-                <select>
-                  {Dropdown.map((cat) => {
-                    return (
-                      <option key={cat.id} value={cat.name}>
-                        {cat.name}{" "}
-                      </option>
-                    );
-                  })}
-                </select>
-              </li>
-              <li className="why">
-                {" "}
+
+            <img
+              src={Close}
+              alt="sidemenu"
+              className="side_menuimg"
+              onClick={() => {
+                setClose(!close);
+              }}
+            />
+
+<li className="why">
                 <img src={WhyKulture} alt="why" />
                 <span className="why_span">Why kulturefresh</span>
               </li>
-            </ul>
-            <ul className="login_ul">
-              <li className="login_drop">
+
+              <li className="why">
+                <img src={List} alt="why" />
+                <span className="why_span">Our Recepies</span>
+              </li>
+
+              <li className="why">
                 <img src={Login} alt="login" />
-                <span className="login_drop_span">Login</span>
+                <span className="why_span">Login</span>
               </li>
             </ul>
+           
           </div>
         )}
-        <div className="nav_div">
-          <Navbar cart={cart} showcart={showcart} handleClick={handleClick} />
-        </div>
+
       </div>
     </HeaderMain>
   );

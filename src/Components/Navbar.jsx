@@ -58,13 +58,13 @@ const Link = styled.a`
 
 const Nav = styled.nav`
   font-family: "Sen", sans-serif;
+  
   @media (min-width: 300px) and (max-width: 960px) {
     ul {
       display: none;
     }
   }
-  @media (min-width: 960px) (max-width: 1024px) {
-    ul {
+     ul {
       list-style: none;
       display: flex;
     }
@@ -110,7 +110,7 @@ const Nav = styled.nav`
       text-decoration: none;
       cursor: pointer;
     }
-  }
+  
   @media (min-width: 1024px) {
     ul {
       list-style: none;

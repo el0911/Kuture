@@ -30,6 +30,8 @@ const FooterDiv = styled.div`
       margin-left: auto;
       margin-right: auto;
       margin-top: -1.72rem;
+      text-align: center;
+      margin-bottom: 20px;
     }
     .second_div a {
       padding-right: 0.5rem;
@@ -65,6 +67,8 @@ const FooterDiv = styled.div`
       margin-left: auto;
       margin-right: auto;
       margin-top: -1.72rem;
+      text-align: center;
+      margin-bottom: 20px;
     }
     .second_div a {
       padding-right: 0.5rem;
@@ -80,6 +84,12 @@ const FooterDiv = styled.div`
     }
   }
   @media (min-width: 960px) {
+
+
+    footer{
+      display: flex;
+    }
+    
     .body_footer {
       display: flex;
       width: 95%;
@@ -121,12 +131,7 @@ export default function Footer() {
     <FooterDiv>
       <footer>
         <div className="body_footer">
-          <div className="first_div">
-            <p>Contact us</p>
-            <p>FAQs</p>
-            <p>Privacy Policy</p>
-            <p>T&C</p>
-          </div>
+        
           <div className="second_div">
             <h6>Follow us on social media</h6>
             <a href="facebook.com/kulturefresh">
