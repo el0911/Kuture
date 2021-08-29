@@ -1,13 +1,13 @@
 import React from "react";
 import styled from "styled-components";
-import Header from "./Header";
+import Header from "../Components/Header";
 import Top from "../assets/svg/rightside.svg";
-import TopIpad from "./images/top_background.svg";
-import ArrowDown from "./images/arrowdown.svg";
-import Categories from "./Categories";
-import HowWeOperate from "./HowWeOperate";
-import FavouriteRecipes from "./FavouriteRecipes";
-import Footer from "./Footer";
+import TopIpad from "../assets/svg/top_background.svg";
+import ArrowDown from "../assets/svg/arrowdown.svg";
+import Categories from "../Components/Categories";
+import HowWeOperate from "../Components/HowWeOperate";
+import FavouriteRecipes from "../Components/FavouriteRecipes";
+import Footer from "../Components/Footer";
 import { commerce } from "../lib/Commerce";
 
 const Main = styled.main`
@@ -459,7 +459,6 @@ export default function LandingPage() {
 
   return (
     <Main>
-      <Header />
       <div className="landing_page">
         <div className="leftside">
           <div className="overlay">

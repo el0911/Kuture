@@ -1,10 +1,10 @@
 import React from "react";
 import styled from "styled-components";
-import Overlay from "./images/plan_back.svg";
+import Overlay from "../assets/svg/plan_back.svg";
 import Header from "./Header";
 import Navbar from "./Navbar";
-import FavRec from "./images/favrecipe1.jpg";
-import Trash from "./images/trash.svg";
+import FavRec from "../assets/images/favrecipe1.jpg";
+import Trash from "../assets/svg/trash.svg";
 import Footer from "./Footer";
 
 const Main = styled.main`

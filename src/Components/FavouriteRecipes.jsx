@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import BannerM from "./images/bannerM.svg";
-import BannerL from "./images/bannerL.jpg";
-import FavRec from "./images/favrecipe1.jpg";
+import BannerM from "../assets/svg/bannerM.svg";
+import BannerL from "../assets/images/bannerL.jpg";
+import FavRec from "../assets/images/favrecipe1.jpg";
 import Meal from "./sharedComponents/meal";
 
 const Main = styled.main`

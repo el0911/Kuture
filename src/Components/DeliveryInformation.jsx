@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import BackM from "./images/delivery_new.svg";
+import BackM from "../assets/svg/delivery_new.svg";
 
 const Main = styled.main`
   font-family: "Sen", sans-serif;

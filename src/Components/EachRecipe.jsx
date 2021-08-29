@@ -1,10 +1,9 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import Overlay from "./images/overlay.svg";
-import OverlayM from "./images/overlayM.svg";
+import Overlay from "../assets/svg/overlay.svg";
+import OverlayM from "../assets/svg/overlayM.svg";
 import styled from "styled-components";
-import closeImg from "./images/close(1).svg";
-
+ 
 const Div = styled.div`
   @media (min-width: 300px) and (max-width: 600px) {
     .modal_background {

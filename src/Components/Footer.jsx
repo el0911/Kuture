@@ -1,9 +1,9 @@
 import React from "react";
 import styled from "styled-components";
-import Facebook from "./images/facebook.svg";
-import Twitter from "./images/twitter.svg";
-import Instagram from "./images/instagram.svg";
-import Copyright from "./images/kulture_copy.svg";
+import Facebook from "../assets/svg/facebook.svg";
+import Twitter from "../assets/svg/twitter.svg";
+import Instagram from "../assets/svg/instagram.svg";
+import Copyright from "../assets/svg/kulture_copy.svg";
 
 const FooterDiv = styled.div`
   background: #3f3d56;
@@ -89,7 +89,7 @@ const FooterDiv = styled.div`
     footer{
       display: flex;
     }
-    
+
     .body_footer {
       display: flex;
       width: 95%;

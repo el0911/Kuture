@@ -1,9 +1,9 @@
 import React from "react";
 import styled from "styled-components";
-import Finger from "./images/finger_down.svg";
-import Overlay from "./images/plan_back.svg";
-import CoupleMenu from "./images/2servings.svg";
-import FamilyMenu from "./images/4servings.svg";
+import Finger from "../assets/svg/finger_down.svg";
+import Overlay from "../assets/svg/plan_back.svg";
+import CoupleMenu from "../assets/svg/2servings.svg";
+import FamilyMenu from "../assets/svg/4servings.svg";
 import { useHistory } from "react-router-dom";
 import Header from "./Header";
 import Footer from "./Footer";

@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import { useHistory } from "react-router-dom";
-import Close from "./images/close(1).svg";
+import { useHistory,withRouter } from "react-router-dom";
+import Close from "../assets/svg/close(1).svg";
 
 const Main = styled.main`
   background: #fafaef;
@@ -295,6 +295,9 @@ const Main = styled.main`
 
 export default function Cart({ cart, onClose }) {
   const history = useHistory();
+  console.log({
+    history
+  })
 
   return (
     <Main>
@@ -336,3 +339,5 @@ export default function Cart({ cart, onClose }) {
     </Main>
   );
 }
+
+

@@ -1,9 +1,9 @@
-import egusi1 from "./images/egusi1.jpg";
+import egusi1 from "../assets/images/egusi1.jpg";
 
-export const Recipe = [
+export const Recipe = 
   {
     name: "EGUSI SOUP WITH GOAT MEAT",
-    image: `${egusi1}`,
+    image: `${require("../assets/images/favrecipe1.jpg").default}`,
     recipe_title: "Recipe Details",
     rec_text:
       "Egusi is a West African name for the seeds of plants like squash, melons, and gourds that, when dried and ground become a staple ingredient in many West African dishes.  Particularly, in Nigerian culture, egusi is a popular with pounded yam. These seeds are rich in fat and protein, and add these essential nutrients into West African Cuisine.",
@@ -35,7 +35,7 @@ export const Recipe = [
       "Add the bitter leaf.  Leave the lid off while the cooking finishes for another 5-10 minutes.",
       "Stir, check seasoning and adjust accordingly.",
     ],
-  },
-];
+  }
+;
 
 export default Recipe;

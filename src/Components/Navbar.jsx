@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import carticon from "./images/cart.svg";
+import carticon from "../assets/svg/cart.svg";
 import Cart from "./Cart";
-import Close from "./images/close(1).svg";
+import Close from "../assets/svg/close(1).svg";
 
 const Li = styled.li`
   .whykulture {

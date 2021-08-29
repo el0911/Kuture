@@ -1,16 +1,17 @@
 import React from "react";
 import { commerce } from "../lib/Commerce";
 import styled from "styled-components";
-import Menu from "./images/menu.svg";
-import SideMenu from "./images/sidemenu.svg";
-import Close from "./images/close(1).svg";
-import Login from "./images/user1.svg";
-import List from "./images/list.svg";
-import carticon from "./images/cart.svg";
+import Menu from "../assets/svg/menu.svg";
+import SideMenu from "../assets/svg/sidemenu.svg";
+import Close from "../assets/svg/close(1).svg";
+import Login from "../assets/svg/user1.svg";
+import List from "../assets/svg/list.svg";
+import carticon from "../assets/svg/cart.svg";
 import Cart from "./Cart";
-import WhyKulture from "./images/why.svg";
-import OurRecipes from "./images/dropdown.svg";
+import WhyKulture from "../assets/svg/why.svg";
+import OurRecipes from "../assets/svg/dropdown.svg";
 import Navbar from "./Navbar";
+import { useHistory } from "react-router-dom";
 
 const HeaderMain = styled.main`
   font-family: "Sen", sans-serif;
@@ -335,6 +336,7 @@ const HeaderMain = styled.main`
       width: 85%;
       margin: auto;
       margin-top: 2em;
+      margin-left: 0;
     }
     header h3 {
       font-family: "Sen", sans-serif;
@@ -357,10 +359,13 @@ const HeaderMain = styled.main`
       display: none;
     }
     .both_headers {
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
       display: flex;
-      width: 90%;
       margin: auto;
       padding-top: 1rem;
+      padding-left: 110px;
     }
     .nav_div {
       padding-top: 1rem;
@@ -375,6 +380,7 @@ export default function Header() {
   const [close, setClose] = React.useState(false);
   const [cart, setCart] = React.useState({});
   const [showcart, setShowCart] = React.useState(false);
+  const history  = useHistory()
 
   const Dropdown = [
     { id: 1, name: "NIGERIACENTRIC MEALS" },
@@ -382,8 +388,8 @@ export default function Header() {
   ];
 
   const viewCart = async () => {
-    const response = await commerce.cart.retrieve();
-    setCart(response);
+    // const response = await commerce.cart.retrieve();
+    // setCart(response);
   };
   const handleClick = () => {
     setShowCart(!showcart);
@@ -445,31 +451,37 @@ export default function Header() {
           >
             <ul>
 
-            <img
-              src={Close}
-              alt="sidemenu"
-              className="side_menuimg"
-              onClick={() => {
-                setClose(!close);
-              }}
-            />
+              <img
+                src={Close}
+                alt="sidemenu"
+                className="side_menuimg"
+                onClick={() => {
+                  setClose(!close);
+                }}
+              />
 
-<li className="why">
+              <li className="why"  onClick={e=>{
+                history.push('/ourrecipes')
+              }} >
                 <img src={WhyKulture} alt="why" />
                 <span className="why_span">Why kulturefresh</span>
               </li>
 
-              <li className="why">
+              <li className="why" onClick={e=>{
+                history.push('/whykulturefresh')
+              }} >
                 <img src={List} alt="why" />
                 <span className="why_span">Our Recepies</span>
               </li>
 
-              <li className="why">
+              <li className="why"  onClick={e=>{
+                history.push('/login')
+              }} >
                 <img src={Login} alt="login" />
                 <span className="why_span">Login</span>
               </li>
             </ul>
-           
+
           </div>
         )}
 

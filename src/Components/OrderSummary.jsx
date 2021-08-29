@@ -1,9 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 import Header from "./Header";
-import Line from "./images/totalline.svg";
+import Line from "../assets/svg/totalline.svg";
 import DeliveryInformation from "./DeliveryInformation";
-import BackL from "./images/deliv_backL.svg";
+import BackL from "../assets/svg/deliv_backL.svg";
 import Footer from "./Footer";
 
 const Main = styled.main`

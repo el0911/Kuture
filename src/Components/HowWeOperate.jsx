@@ -1,14 +1,14 @@
 import React from "react";
 import styled from "styled-components";
-import Choose from "./images/choose.svg";
-import Deliver from "./images/deliver.svg";
-import Enjoy from "./images/enjoy.svg";
-import Line1 from "./images/Line1.svg";
-import Line2 from "./images/Line2.svg";
-import Line1L from "./images/lineL.svg";
-import Line2L from "./images/line2L.svg";
-import BannerM from "./images/bannerM.svg";
-import BannerL from "./images/bannerL.jpg";
+import Choose from "../assets/svg/choose.svg";
+import Deliver from "../assets/svg/deliver.svg";
+import Enjoy from "../assets/svg/enjoy.svg";
+import Line1 from "../assets/svg/Line1.svg";
+import Line2 from "../assets/svg/Line2.svg";
+import Line1L from "../assets/svg/lineL.svg";
+import Line2L from "../assets/svg/line2L.svg";
+import BannerM from "../assets/svg/bannerM.svg";
+import BannerL from "../assets/images/bannerL.jpg";
 
 const Main = styled.main`
   font-family: "Sen", sans-serif;
