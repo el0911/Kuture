@@ -1,7 +1,6 @@
 import React from 'react'
 import styled from "styled-components";
 import { FamilyTable, SinglePerson, TwoPeople } from '../assets/svg';
-import Recipe from './Recipe';
 
 export default function CustomizedPlans() {
     const [stage, setStage] = React.useState(0)

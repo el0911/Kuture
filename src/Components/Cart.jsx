@@ -1,332 +1,91 @@
-import React from "react";
+import React,{ useEffect } from "react";
 import styled from "styled-components";
-import { useHistory,withRouter } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import Close from "../assets/svg/close(1).svg";
+import CartItem from "./cartItem.component";
+import cartObject from "../utils/cart";
 
 const Main = styled.main`
-  background: #fafaef;
-  @media (min-width: 300px) and (max-width: 600px) {
-    .cart_bodydiv {
-      width: 100%;
-      top: 5%;
-      position: absolute;
-      z-index: 10;
-      background: inherit;
-      left: 0%;
-    }
-    .each_itemh1 {
-      text-align: center;
-      font-size: 25px;
-      color: #10145f;
-    }
-    .each_item img {
-      width: 60%;
-      margin: auto;
-      display: block;
-    }
-    .text_div {
-      display: flex;
-      color: #10145f;
-      justify-content: space-evenly;
-    }
-    .text_div h6 {
-      font-size: 15px;
-      font-weight: bold;
-    }
-    .text_div h4 {
-      font-size: 19px;
-      font-weight: 800;
-    }
-    .buttn_div {
-      display: block;
-      margin: auto;
-      text-align: center;
-      padding-bottom: 3rem;
-      padding-top: 1rem;
-    }
-    .buttn_div button {
-      background: #ffc850;
-      border-radius: 31px;
-      border: none;
-      color: #10145f;
-      width: 250px;
-      height: 50px;
-      font-weight: bold;
-      letter-spacing: 1px;
-    }
-    .close_div {
-      display: block;
-      margin: auto;
-      margin-top: 1rem;
-      text-align: right;
-      width: 85%;
-    }
+  position: absolute;
+  right: 0;
+  min-width: 340px;
+  background: white;
+  min-height: 100vh;
+  top: 0;
+  z-index:1;
+
+  .each_itemh1{
+    color: #10145F;
   }
 
-  @media (min-width: 600px) and (max-width: 960px) {
-    .cart_bodydiv {
-      width: 100%;
-      top: 5%;
-      position: absolute;
-      z-index: 10;
-      background: inherit;
-      left: 0%;
-    }
-    .each_itemh1 {
-      text-align: center;
-      font-size: 25px;
-      color: #10145f;
-    }
-    .each_item img {
-      width: 40%;
-      margin: auto;
-      display: block;
-    }
-    .text_div {
-      display: flex;
-      color: #10145f;
-      justify-content: space-evenly;
-    }
-    .text_div h6 {
-      font-size: 15px;
-      font-weight: bold;
-    }
-    .text_div h4 {
-      font-size: 19px;
-      font-weight: 800;
-    }
-    .buttn_div {
-      display: block;
-      margin: auto;
-      text-align: center;
-      padding-bottom: 3rem;
-      padding-top: 1rem;
-    }
-    .buttn_div button {
-      background: #ffc850;
-      border-radius: 31px;
-      border: none;
-      color: #10145f;
-      width: 250px;
-      height: 50px;
-      font-weight: bold;
-      letter-spacing: 1px;
-    }
-    .close_div {
-      display: block;
-      margin: auto;
-      margin-top: 1rem;
-      text-align: right;
-      width: 85%;
-    }
+  .close_div{
+    text-align:left;
+    padding:30px
   }
-  @media (min-width: 960px) and (max-width: 1024px) {
-    .cart_bodydiv {
-      width: 100%;
-      top: 5%;
-      position: absolute;
-      z-index: 10;
-      background: inherit;
-      left: 0%;
-    }
-    .each_itemh1 {
-      text-align: center;
-      font-size: 25px;
-      color: #10145f;
-    }
-    .each_item img {
-      max-width: 40%;
-      margin: auto;
-      display: block;
-    }
-    .text_div {
-      display: flex;
-      color: #10145f;
-      justify-content: space-evenly;
-    }
-    .text_div h6 {
-      font-size: 15px;
-      font-weight: bold;
-    }
-    .text_div h4 {
-      font-size: 19px;
-      font-weight: 800;
-    }
-    .buttn_div {
-      display: block;
-      margin: auto;
-      text-align: center;
-      padding-bottom: 3rem;
-      padding-top: 1rem;
-    }
-    .buttn_div button {
-      background: #ffc850;
-      border-radius: 31px;
-      border: none;
-      color: #10145f;
-      width: 250px;
-      height: 50px;
-      font-weight: bold;
-      letter-spacing: 1px;
-    }
-    .close_div {
-      display: block;
-      margin: auto;
-      margin-top: 1rem;
-      text-align: right;
-      width: 85%;
-    }
+
+  .close_div img{
+    width: 20px;
+    text-align: left;
+    height: 20px;
   }
-  @media (min-width: 1024px) and (max-width: 1700px) {
-    .cart_bodydiv {
-      max-width: 55%;
-      top: 0%;
-      position: absolute;
-      z-index: 10;
-      background: inherit;
-      left: 45%;
-    }
-    .each_itemh1 {
-      text-align: center;
-      font-size: 25px;
-      color: #10145f;
-    }
-    .each_item img {
-      width: 40%;
-      margin: auto;
-      display: block;
-    }
-    .text_div {
-      display: flex;
-      color: #10145f;
-      justify-content: space-evenly;
-    }
-    .text_div h6 {
-      font-size: 15px;
-      font-weight: bold;
-    }
-    .text_div h4 {
-      font-size: 19px;
-      font-weight: 800;
-    }
-    .buttn_div {
-      display: block;
-      margin: auto;
-      text-align: center;
-      padding-bottom: 3rem;
-      padding-top: 1rem;
-    }
-    .buttn_div button {
-      background: #ffc850;
-      border-radius: 31px;
-      border: none;
-      color: #10145f;
-      width: 250px;
-      height: 50px;
-      font-weight: bold;
-      letter-spacing: 1px;
-    }
-    .close_div {
-      display: block;
-      margin: auto;
-      margin-top: 1rem;
-      text-align: right;
-      width: 85%;
-    }
+
+  .buttn_div{
+    z-index: 2;
+    position:absolute;
+    width: 100%;
+    bottom:10px
   }
-  @media (min-width: 1700px) {
-    .cart_bodydiv {
-      max-width: 55%;
-      top: 0%;
-      position: absolute;
-      z-index: 10;
-      background: inherit;
-      left: 65%;
-    }
-    .each_itemh1 {
-      text-align: center;
-      font-size: 25px;
-      color: #10145f;
-    }
-    .each_item img {
-      width: 40%;
-      margin: auto;
-      display: block;
-    }
-    .text_div {
-      display: flex;
-      color: #10145f;
-      justify-content: space-evenly;
-    }
-    .text_div h6 {
-      font-size: 15px;
-      font-weight: bold;
-    }
-    .text_div h4 {
-      font-size: 19px;
-      font-weight: 800;
-    }
-    .buttn_div {
-      display: block;
-      margin: auto;
-      text-align: center;
-      padding-bottom: 3rem;
-      padding-top: 1rem;
-    }
-    .buttn_div button {
-      background: #ffc850;
-      border-radius: 31px;
-      border: none;
-      color: #10145f;
-      width: 250px;
-      height: 50px;
-      font-weight: bold;
-      letter-spacing: 1px;
-    }
-    .close_div {
-      display: block;
-      margin: auto;
-      margin-top: 4rem;
-      text-align: right;
-      width: 85%;
-    }
+
+ .buttn_div button{
+    height: 60px;
+    width: 80%;
+    background: #FFC850;
+    border-radius: 16px;
+    border: 0;
+    font-family: Sen;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 13px;
+    line-height: 32px;
+    color: #10145F;
+    bottom: 0;
+  }
+
+  .cart_bodydiv{
+    padding-top: 20px;
+    padding: 20px 5px;
+  }
+
+  .buttn_div{
+    text-align: center;
   }
 `;
 
-export default function Cart({ cart, onClose }) {
+export default function Cart({  onClose,children }) {
   const history = useHistory();
-  console.log({
-    history
-  })
+  const [cart,setCart] = React.useState([])
 
+    useEffect(()=>{
+      setCart(cartObject.allCart)
+    },[])
   return (
     <Main>
       <div className="cart_bodydiv">
         <div className="close_div">
-          <img
-            src={Close}
-            alt="sidemenu"
-            className="side_menuimg"
-            onClick={onClose}
-          />
+          {children}
         </div>
-        <h1 className="each_itemh1">Your Cart</h1>
-        {cart.line_items.map((item) => {
+        <h1 className="each_itemh1">Added to your Cart</h1>
+        {cart && cart.map((item,i) => {
           return (
-            <div key={item.id} className="each_item">
-              <img src={item.media.source} alt="each" />
-              <div className="text_div">
-                <h6>{item.name} </h6>
-                <h6>{item.line_total.formatted_with_symbol} </h6>
-              </div>
-            </div>
+            <CartItem item={item} key={i} id={i} />
           );
         })}{" "}
-        <div className="text_div">
-          <h4>Sub-Total</h4>
-          <h4> {cart.subtotal.formatted_with_symbol} </h4>
-        </div>
+       
         <div className="buttn_div">
+        <div className="text_div">
+          <h4>Total</h4>
+          <h4> ${89} </h4>
+        </div>
           <button
             onClick={() => {
               history.push("/ordersummary");

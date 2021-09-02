@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import Header from "../Components/Header";
 import Top from "../assets/svg/rightside.svg";
 import TopIpad from "../assets/svg/top_background.svg";
 import ArrowDown from "../assets/svg/arrowdown.svg";

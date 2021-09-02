@@ -1,29 +1,39 @@
 import React from "react";
 import styled from "styled-components";
 import BackM from "../assets/svg/delivery_new.svg";
+import RedButton from "./sharedComponents/redButton";
 
 const Main = styled.main`
   font-family: "Sen", sans-serif;
 
-  @media (min-width: 300px) and (max-width: 600px) {
+  @media  (max-width: 768px) {
+
+    form div{
+      display:grid !important;
+    }
+
+    form div input{
+      width: -webkit-fill-available;
+    }
+    
     .delivery_div {
       display: block;
       position: relative;
       background-repeat: no-repeat;
       background-size: cover;
       height: 100%;
-      background-image: url(${BackM});
-    }
+     }
     input {
-      background: #ffffff;
-      border: 1px solid #c47357;
+      background: transparent;
+      border: 0;
       box-sizing: border-box;
       border-radius: 10px;
       height: 45px;
       margin-bottom: 1.5rem;
-      width: -moz-available;
-      width: -webkit-fill-available;
+      width: 30%;
       padding-inline-start: 9px;
+      margin-right: 1rem;
+
     }
     .h4_ {
       font-weight: bold;
@@ -55,18 +65,12 @@ const Main = styled.main`
       margin-top: 2rem;
       padding-bottom: 3rem;
     }
-    .btn_div button {
-      width: 250px;
-      height: 50px;
-      background: #ee4e2f;
-      border-radius: 33px;
-      color: #fff;
-      font-weight: bold;
-      font-size: 16px;
-      border: none;
 
-      letter-spacing: 0.02em;
+    .btn_div button{
+      width: -webkit-fill-available;
     }
+
+    
   }
   @media (min-width: 600px) and (max-width: 960px) {
     .delivery_div {
@@ -75,20 +79,18 @@ const Main = styled.main`
       background-repeat: no-repeat;
       background-size: cover;
       height: 100%;
-      background-image: url(${BackM});
-    }
+     }
     input {
-      background: #ffffff;
-      border: 1px solid #c47357;
+      background: transparent;
+      border: 0;
       box-sizing: border-box;
       border-radius: 10px;
       height: 45px;
       margin-bottom: 1.5rem;
-      width: -moz-available;
-      width: -webkit-fill-available;
+      width: 30%;
       padding-inline-start: 9px;
       margin-right: 1rem;
-      margin-left: 1rem;
+
     }
     .h4_ {
       font-weight: bold;
@@ -101,7 +103,6 @@ const Main = styled.main`
     }
     form {
       width: 90%;
-      padding-top: 8rem;
       margin: auto;
     }
     .first_inputs {
@@ -119,17 +120,6 @@ const Main = styled.main`
       text-align: center;
       margin-top: 2rem;
       padding-bottom: 3rem;
-    }
-    .btn_div button {
-      width: 250px;
-      height: 50px;
-      background: #ee4e2f;
-      border-radius: 33px;
-      color: #fff;
-      font-weight: 900;
-      font-size: 16px;
-      border: none;
-      letter-spacing: 0.1em;
     }
   }
   @media (min-width: 960px) and (max-width: 1024px) {
@@ -141,17 +131,16 @@ const Main = styled.main`
       height: 100%;
     }
     input {
-      background: #ffffff;
-      border: 1px solid #c47357;
+      background: transparent;
+      border: 0;
       box-sizing: border-box;
       border-radius: 10px;
       height: 45px;
       margin-bottom: 1.5rem;
-      width: -moz-available;
-      width: -webkit-fill-available;
+      width: 30%;
       padding-inline-start: 9px;
       margin-right: 1rem;
-      margin-left: 1rem;
+
     }
     .h4_ {
       font-weight: bold;
@@ -164,7 +153,6 @@ const Main = styled.main`
     }
     form {
       width: 90%;
-      padding-top: 8rem;
       margin: auto;
     }
     .first_inputs {
@@ -183,17 +171,7 @@ const Main = styled.main`
       margin-top: 2rem;
       padding-bottom: 3rem;
     }
-    .btn_div button {
-      width: 250px;
-      height: 50px;
-      background: #ee4e2f;
-      border-radius: 33px;
-      color: #fff;
-      font-weight: 900;
-      font-size: 16px;
-      border: none;
-      letter-spacing: 0.1em;
-    }
+    
   }
   @media (min-width: 1024px) and (max-width: 1700px) {
     .delivery_div {
@@ -204,8 +182,8 @@ const Main = styled.main`
       height: 100%;
     }
     input {
-      background: #ffffff;
-      border: 1px solid #c47357;
+      background: transparent;
+      border: 0;
       box-sizing: border-box;
       border-radius: 10px;
       height: 45px;
@@ -213,7 +191,7 @@ const Main = styled.main`
       width: 30%;
       padding-inline-start: 9px;
       margin-right: 1rem;
-      margin-left: 1rem;
+
     }
     .h4_ {
       font-weight: bold;
@@ -226,7 +204,6 @@ const Main = styled.main`
     }
     form {
       width: 90%;
-      padding-top: 11rem;
       margin: auto;
     }
     .first_inputs {
@@ -245,18 +222,7 @@ const Main = styled.main`
       margin-top: 2rem;
       padding-bottom: 3rem;
     }
-    .btn_div button {
-      width: 320px;
-      height: 50px;
-      background: #ee4e2f;
-      border-radius: 33px;
-      color: #fff;
-      font-weight: 900;
-      font-size: 16px;
-      border: none;
-      letter-spacing: 0.1em;
-      margin-left: 1rem;
-    }
+     
   }
   @media (min-width: 1700px) {
     .delivery_div {
@@ -266,16 +232,16 @@ const Main = styled.main`
       margin-top: -2rem;
     }
     input {
-      background: #ffffff;
-      border: 1px solid #c47357;
+      background: transparent;
+      border: 0;
       box-sizing: border-box;
       border-radius: 10px;
       height: 45px;
       margin-bottom: 1.5rem;
-      width: 50%;
+      width: 30%;
       padding-inline-start: 9px;
       margin-right: 1rem;
-      margin-left: 1rem;
+
     }
     .h4_ {
       font-weight: 900;
@@ -322,19 +288,9 @@ const Main = styled.main`
       text-align: left;
       margin-top: 1rem;
       padding-bottom: 1.5rem;
-      margin-left: 1rem;
+
     }
-    .btn_div button {
-      width: 250px;
-      height: 50px;
-      background: #ee4e2f;
-      border-radius: 33px;
-      color: #fff;
-      font-weight: 900;
-      font-size: 16px;
-      border: none;
-      letter-spacing: 0.1em;
-    }
+   
   }
 `;
 
@@ -358,10 +314,10 @@ export default function DeliveryInformation() {
               <input placeholder="State" />
             </div>
             <div className="btn_div">
-              <button>PROCEED TO BILLING</button>
+              <RedButton  title='PROCEED TO BILLING'/>
             </div>
           </form>
-          <form>
+          {/* <form>
             <h4 className="h4_">Billing Information</h4>
             <div className="first_input">
               <label>Card Number</label>
@@ -383,7 +339,7 @@ export default function DeliveryInformation() {
             <div className="btn_div">
               <button>PROCEED TO CHECKOUT</button>
             </div>
-          </form>
+          </form> */}
         </div>
       </div>
     </Main>

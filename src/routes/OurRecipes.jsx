@@ -1,12 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import AllRecipesBack from "../assets/svg/allrecipes_back.svg";
 import AllRecipesBackI from "../assets/svg/allrecipes_bacI.svg";
-import Header from "../Components/Header";
-import LargeBanner from "../assets/images/largebanner.jpg";
 import Footer from "../Components/Footer";
 import { commerce } from "../lib/Commerce";
-import { useHistory, Link } from "react-router-dom";
 import Select from 'react-select';
 import Meal from "../Components/sharedComponents/meal";
 
@@ -120,7 +116,6 @@ const Main = styled.main`
 
 export default function OurRecipes() {
   const [products, setProducts] = React.useState([]);
-  const [product, setProduct] = React.useState({});
   const [type, setType] = React.useState(false);
 
   const options = [
@@ -167,7 +162,6 @@ export default function OurRecipes() {
     })
   }
 
-  const history = useHistory();
   const fetchProducts = async () => {
     try {
       const { data } = await commerce.products.list();
@@ -177,10 +171,7 @@ export default function OurRecipes() {
       return error;
     }
   };
-  const addToCart = async (productId, quantity) => {
-    const item = await commerce.cart.add(productId, quantity);
-    console.log(item, "item");
-  };
+ 
 
   React.useEffect(() => {
     fetchProducts();

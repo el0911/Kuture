@@ -10,6 +10,7 @@ import EachRecipe from "../Components/EachRecipe";
 import DeliveryInformation from "../Components/DeliveryInformation";
 import Whyus from "./whyus";
 import Layout from "../Components/layout";
+import Login from "./login";
 export default function Routes() {
   return (
 
@@ -19,6 +20,7 @@ export default function Routes() {
           <Route exact path="/" component={LandingPage} />
           <Route exact path="/allrecipes" component={OurRecipes} />
           <Route exact path="/customise" component={CustomiseMenu} />
+          <Route exact path="/login" component={Login} />
           <Route path="/recipe/:productId" component={EachRecipe} />
           <Route exact path="/deliveryinfo" component={DeliveryInformation} />
           <Route exact path="/ordersummary" component={OrderSummary} />

@@ -1,5 +1,4 @@
-import egusi1 from "../assets/images/egusi1.jpg";
-
+ 
 export const Recipe = 
   {
     name: "EGUSI SOUP WITH GOAT MEAT",

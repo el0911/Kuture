@@ -101,7 +101,6 @@ const Main = styled.main`
     }
     form {
       width: 90%;
-      padding-top: 8rem;
       margin: auto;
     }
     .first_inputs {
@@ -164,7 +163,6 @@ const Main = styled.main`
     }
     form {
       width: 90%;
-      padding-top: 8rem;
       margin: auto;
     }
     .first_inputs {

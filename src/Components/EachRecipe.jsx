@@ -1,5 +1,4 @@
 import React from "react";
-import { useParams } from "react-router-dom";
 import Overlay from "../assets/svg/overlay.svg";
 import OverlayM from "../assets/svg/overlayM.svg";
 import styled from "styled-components";

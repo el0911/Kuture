@@ -1,22 +1,19 @@
 import React from "react";
-import { commerce } from "../lib/Commerce";
 import styled from "styled-components";
 import Menu from "../assets/svg/menu.svg";
-import SideMenu from "../assets/svg/sidemenu.svg";
 import Close from "../assets/svg/close(1).svg";
 import Login from "../assets/svg/user1.svg";
 import List from "../assets/svg/list.svg";
-import carticon from "../assets/svg/cart.svg";
+import carticon from "../assets/svg/cartWhite.svg";
 import Cart from "./Cart";
 import WhyKulture from "../assets/svg/why.svg";
-import OurRecipes from "../assets/svg/dropdown.svg";
 import Navbar from "./Navbar";
 import { useHistory } from "react-router-dom";
 
 const HeaderMain = styled.main`
   font-family: "Sen", sans-serif;
       position: relative;
-    z-index: 2;
+    z-index: 3;
   a {
     text-decoration: none;
     cursor: pointer;
@@ -36,6 +33,10 @@ const HeaderMain = styled.main`
    margin:0;
    top:0
 }
+
+ 
+
+ 
 
 .why{
   height: 35px;
@@ -299,9 +300,7 @@ const HeaderMain = styled.main`
     .side_bar {
       margin-top: 3em;
     }
-    .cart_div {
-      display: none;
-    }
+    
   }
 
   @media (min-width: 960px) and (max-width: 1024px) {
@@ -355,9 +354,7 @@ const HeaderMain = styled.main`
     .side_menu {
       display: none;
     }
-    .cart_div {
-      display: none;
-    }
+   
     .both_headers {
       display: -webkit-box;
       display: -webkit-flex;
@@ -378,21 +375,18 @@ const HeaderMain = styled.main`
 
 export default function Header() {
   const [close, setClose] = React.useState(false);
-  const [cart, setCart] = React.useState({});
+  const [cart] = React.useState({});
   const [showcart, setShowCart] = React.useState(false);
   const history  = useHistory()
 
-  const Dropdown = [
-    { id: 1, name: "NIGERIACENTRIC MEALS" },
-    { id: 2, name: "NIGERIACENTRIC SNACKS" },
-  ];
+ 
 
   const viewCart = async () => {
     // const response = await commerce.cart.retrieve();
     // setCart(response);
   };
-  const handleClick = () => {
-    setShowCart(!showcart);
+  const handleClick = (state) => {
+    setShowCart( state || !showcart);
   };
 
   React.useEffect(() => {
@@ -413,8 +407,9 @@ export default function Header() {
           </div>
 
 
-          <div className="cart_div" onClick={handleClick}>
-            <img src={carticon} alt="cart" className="cart" />
+             <img onClick={()=>{
+               handleClick(false)
+             }} src={carticon} alt="cart" className="cart" />
             {showcart && (
               <Cart cart={cart} showcart={showcart}>
                 <img
@@ -422,12 +417,11 @@ export default function Header() {
                   alt="sidemenu"
                   className="side_menuimg"
                   onClick={() => {
-                    setClose(!close);
+                    handleClick(false);
                   }}
                 />
               </Cart>
             )}
-          </div>
 
           <div className="menu_div">
             <img
@@ -472,6 +466,13 @@ export default function Header() {
               }} >
                 <img src={List} alt="why" />
                 <span className="why_span">Our Recepies</span>
+              </li>
+
+              <li className="why cartt"  onClick={e=>{
+                 handleClick()
+              }} >
+                <img src={carticon} alt="login" />
+                <span className="why_span">Cart</span>
               </li>
 
               <li className="why"  onClick={e=>{

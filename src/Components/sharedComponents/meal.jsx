@@ -3,7 +3,6 @@ import styled from "styled-components";
 import { useHistory } from "react-router-dom";
 import Modal from 'react-modal';
 import { Question } from "../../assets/svg";
-import MealPopup from "../mealPopUp";
 import CustomizedPlans from "../customizedPlans";
 
 
@@ -128,7 +127,6 @@ export default function Meal({ category, list }) {
         },
     };
 
-    let subtitle;
     const [modalIsOpen, setIsOpen] = React.useState(false);
 
     function openModal() {

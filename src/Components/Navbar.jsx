@@ -169,12 +169,7 @@ const Nav = styled.nav`
       text-decoration: none;
       cursor: pointer;
     }
-    .cart img {
-      width: 2rem;
-      padding-right: 8px;
-      padding-top: 1px;
-      cursor: pointer;
-    }
+ 
   }
 
   ${Link}:hover & {
@@ -183,6 +178,7 @@ const Nav = styled.nav`
 `;
 
 export default function Navbar({ cart, showcart, handleClick }) {
+   
   return (
     <Nav>
       <ul>
@@ -197,20 +193,22 @@ export default function Navbar({ cart, showcart, handleClick }) {
         </Li>
         <Li className="cart" onClick={handleClick}>
           <img src={carticon} alt="cart" />
-          {showcart && (
+         
+        </Li>
+      </ul>
+
+      {showcart && (
             <Cart cart={cart} showcart={showcart}>
               <img
                 src={Close}
                 alt="sidemenu"
                 className="side_menuimg"
-                // onClick={() => {
-                //   setClose(!close);
-                // }}
+                onClick={() => {
+                  handleClick(false);
+                }}
               />
             </Cart>
           )}
-        </Li>
-      </ul>
     </Nav>
   );
 }

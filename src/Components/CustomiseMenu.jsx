@@ -7,7 +7,6 @@ import FamilyMenu from "../assets/svg/4servings.svg";
 import { useHistory } from "react-router-dom";
 import Header from "./Header";
 import Footer from "./Footer";
-import Navbar from "./Navbar";
 
 const Main = styled.main`
   background: fafaef;
@@ -1103,12 +1102,7 @@ const Main = styled.main`
 `;
 
 export default function CustomiseMenu() {
-  const fourPerson = 4;
-  const twoPerson = 2;
 
-  const twoPersonFunction = () => {};
-
-  const fourPersonFunction = () => {};
 
   const history = useHistory();
   return (
