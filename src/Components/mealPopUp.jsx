@@ -1,8 +1,8 @@
 import React from 'react'
 import styled from "styled-components";
 import Recipe from './Recipe';
-
-export default function MealPopup() {
+import Loader from "react-loader-spinner";
+import axiosCall from '../utils/axios';
 
 const ModalComponent = styled.div`
 width: 70vw;
@@ -12,8 +12,7 @@ background:white;
 
 
 .background{
-    background-image:url("${Recipe.image}");
-    height:200px;
+     height:200px;
     width:100%
 }
 
@@ -107,13 +106,55 @@ hr{
 
 
 `
+
+export default function MealPopup({ recipeId,recipeName }) {
+
+    const [info, setInfo] = React.useState({ ingredients:[],steps:[] })
+
+
+    React.useEffect(() => {
+
+        loadData()
+
+    }, [])
+
+
+    const loadData = async () => {
+        setInfo(false)
+
+        try {
+            const { data } = await axiosCall.get('/meals/recipe/' + recipeId)
+            // setCategories( data );
+
+            setInfo(data.payload.data)
+
+        } catch (error) {
+            setInfo({})
+        }
+    }
+
+
+    if (!info) {
+        return <div>
+            <Loader
+                type="ThreeDots"
+                color="#FFC850"
+                height={100}
+                width={100}
+            />
+        </div>
+    }
+
     return (
         <ModalComponent>
-        <div className="background"></div>
+            <div className="background" style={{
+                    backgroundImage:'url('+info.recipeImg+")"
+
+            }}  ></div>
 
             <div className="info">
                 <p className="title">
-                    EGUSI SOUP WITH GOAT  MEAT
+                   {recipeName}
                 </p>
 
                 <p className="recipe_title">
@@ -121,67 +162,28 @@ hr{
                 </p>
 
                 <p className="reciiope_text">
-                    Egusi is a West African name for the seeds of plants like squash, melons,
-                    and gourds that, when dried and ground become a staple ingredient
-                    in many West African dishes.  Particularly, in Nigerian culture,
-                    egusi is a popular with pounded yam. These seeds are rich in fat
-                    and protein, and add these essential nutrients into West African Cuisine.
+                    {info.textDetails}
                 </p>
 
                 <hr />
 
                 <div className="ingredients">
                     <p className="reciiope_text">
-                        What you’ll need: Maggi, Salt.
+                        What you’ll need: {info.ingredients.map((ingredient) => {
+                            return ingredient + ' '
+                        })}.
                     </p>
 
-                    <div className="list">
-                        <ul>
-                            <li>
-                                <p className="number">1</p> <p className="text">piece of onion</p>
-                            </li>
-
-                            <li>
-                                <p className="number">3</p> <p className="text">tablespoons of bitter leaf</p>
-                            </li>
-
-                            <li>
-                                <p className="number">6</p> <p className="text">pieces of smoked Meat & fish</p>
-                            </li>
-
-                            <li>
-                                <p className="number">10</p> <p className="text">grams of waterleaf</p>
-                            </li>
-
-                            <li>
-                                <p className="number">15</p> <p className="text">grams of cut pumpkin leaves</p>
-                            </li>
-
-                            <li>
-                                <p className="number">3</p> <p className="text">pieces of fresh chilies</p>
-                            </li>
-
-                            <li>
-                                <p className="number">4</p> <p className="text">teaspoons of ground crayfish</p>
-                            </li>
-
-                            <li>
-                                <p className="number">40</p> <p className="text">grams of ground melon seeds (egusi)</p>
-                            </li>
-                        </ul>
-
-                        <hr />
-
-                    </div>
+                 
 
 
                     <div className="steps">
                         <p className="recipe_title">
                             Recipe Steps
                             <ul className="list">
-                                {Recipe.prepare_steps.map((text) => {
+                                {info.steps.map(({ text }, index) => {
                                     return <li>
-                                        {text}
+                                         <p className="number">{index + 1}</p> <p className="text">{text}</p>
                                     </li>
                                 })}
                             </ul>

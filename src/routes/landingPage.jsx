@@ -8,6 +8,8 @@ import HowWeOperate from "../Components/HowWeOperate";
 import FavouriteRecipes from "../Components/FavouriteRecipes";
 import Footer from "../Components/Footer";
 import { commerce } from "../lib/Commerce";
+import axiosCall from "../utils/axios";
+import { useLoadrConttext } from "../providers/fullLoader.provider";
 
 const Main = styled.main`
   font-family: "Sen", sans-serif;
@@ -196,12 +198,8 @@ const Main = styled.main`
     }
   }
 
-
-
-
-
    .rightside{
-    height: 100vh;
+    height:  -webkit-fill-available;
     background-size: cover;
     width: 70vw;
     position: absolute;
@@ -210,7 +208,6 @@ const Main = styled.main`
 
   .landing_page{
     position: relative;
-    top: -116px;
     display:flex;
     width: 100vw;
     display: -webkit-inline-box;
@@ -223,7 +220,7 @@ const Main = styled.main`
   }
 
   .overlay{
-    margin-top: 28vh;
+    margin-top: 220px;
     margin-left: 110px;
     position: relative;
     z-index: 2;
@@ -259,9 +256,9 @@ const Main = styled.main`
 
     .overlay{
       text-align: center;
-      width: max-content;
       margin-left: auto;
       margin-right: auto;
+      
     }
 
     .overlay .header{
@@ -271,7 +268,7 @@ const Main = styled.main`
     }
 
     .overlay .text{
-      font-size: 16px;
+      font-size: 13px;
       line-height: 19px;
       text-align: center;
     }
@@ -443,17 +440,68 @@ const Main = styled.main`
 
 export default function LandingPage() {
   const [categories, setCategories] = React.useState([]);
+  const [favourites, setFavour] = React.useState([]);
+  const { setLoader } = useLoadrConttext()
 
   const fetchCategories = async () => {
-    const { data } = await commerce.categories.list();
-    console.log(data, "cat");
+ 
+    try {
+      setLoader(true)
+      const { data } = await axiosCall.get('/meals/randomMeals/10')
+      // setCategories( data );
+      const info = data.payload
 
-    setCategories(data);
+      
+
+      const group = {}
+
+      info.data.map(({ category, ...rest }) => {
+        if (group[`${category.name}`]) {
+          group[`${category.name}`].push({ ...rest })
+        }
+
+        else {
+          group[`${category.name}`] = [{ ...rest }]
+        }
+      })
+
+      console.log({group})
+      setCategories(group)
+      setLoader(false)
+    } catch (error) {
+      console.log(error)
+      // setLoader(false)
+
+    }
   };
-  console.log(categories, "cate");
+
+
+
+  const fetcFavourites = async () => {
+ 
+    try {
+      setLoader(true)
+      const { data } = await axiosCall.get('/meals/poromoted/10')
+      // setCategories( data );
+      const info = data.payload
+
+    
+
+       setFavour(info.data)
+      setLoader(false)
+    } catch (error) {
+      console.log(error)
+      setLoader(false)
+
+    }
+  };
+
+
 
   React.useEffect(() => {
     fetchCategories();
+    fetcFavourites();
+
   }, []);
 
   return (
@@ -480,7 +528,7 @@ export default function LandingPage() {
 
       <Categories categories={categories} />
       <HowWeOperate />
-      <FavouriteRecipes />
+      <FavouriteRecipes favourites={favourites}/>
       <Footer />
     </Main>
   );

@@ -3,6 +3,8 @@ import styled from "styled-components";
 import carticon from "../assets/svg/cart.svg";
 import Cart from "./Cart";
 import Close from "../assets/svg/close(1).svg";
+import AuthUtil from "../utils/auth";
+import { useHistory } from "react-router-dom";
 
 const Li = styled.li`
   .whykulture {
@@ -155,7 +157,7 @@ const Nav = styled.nav`
       padding-top: 0.81rem;
     }
     .cart {
-      width: 1.52rem;
+      width: 30px;
       padding-right: 8px;
       height: 35px;
       color: #ee4e2f;
@@ -178,29 +180,53 @@ const Nav = styled.nav`
 `;
 
 export default function Navbar({ cart, showcart, handleClick }) {
-   
+
+  const history = useHistory()
+
   return (
     <Nav>
-      <ul>
+      <ul style={{
+        marginRight: '20px'
+      }} >
         <Li className="recipes">
-          <Link href="/ourrecipes">Our recipes</Link>
+          <Link onClick={e => {
+            history.push('allrecipes')
+          }} > Our recipes</Link>
         </Li>
         <Li className="whykulture">
-          <Link href="/whykulturefresh">Why kulturefresh</Link>
+          <Link onClick={e => {
+            history.push('whykulturefresh')
+          }}   >Why kulturefresh</Link>
         </Li>
-        <Li className="login">
-          <Link href="/login">Login</Link>
-        </Li>
-        <Li className="cart" onClick={handleClick}>
-          <img src={carticon} alt="cart" />
-         
-        </Li>
+        {!AuthUtil.isLogedIn() && <Li className="login">
+          <Link onClick={e => {
+            history.push('login')
+          }}    >Login</Link>
+        </Li>}
+
+
+        {AuthUtil.isLogedIn() && <Li className="login">
+          <Link onClick={e => {
+            AuthUtil.logout()
+          }} >Logout</Link>
+        </Li>}
+
+        {AuthUtil.isLogedIn() && <Li className="cart" onClick={handleClick}>
+          <img src={carticon} style={{
+            width: '30px'
+          }} alt="cart" />
+
+        </Li>}
+
       </ul>
 
-      {showcart && (
+      {/* {showcart && (
             <Cart cart={cart} showcart={showcart}>
               <img
                 src={Close}
+                style={{
+                  width: '30px'
+                }}
                 alt="sidemenu"
                 className="side_menuimg"
                 onClick={() => {
@@ -208,7 +234,7 @@ export default function Navbar({ cart, showcart, handleClick }) {
                 }}
               />
             </Cart>
-          )}
+          )} */}
     </Nav>
   );
 }

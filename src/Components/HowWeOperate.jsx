@@ -136,6 +136,7 @@ const Main = styled.main`
     .line2 {
       margin-top: -19rem;
       position: absolute;
+      margin-left: -20px;
     }
     .enjoy {
       position: relative;

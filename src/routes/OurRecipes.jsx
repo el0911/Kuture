@@ -5,6 +5,7 @@ import Footer from "../Components/Footer";
 import { commerce } from "../lib/Commerce";
 import Select from 'react-select';
 import Meal from "../Components/sharedComponents/meal";
+import axiosCall from "../utils/axios";
 
 const Main = styled.main`
   font-family: "Sen", sans-serif;
@@ -116,6 +117,7 @@ const Main = styled.main`
 
 export default function OurRecipes() {
   const [products, setProducts] = React.useState([]);
+  const [categories, setCategories] = React.useState([]);
   const [type, setType] = React.useState(false);
 
   const options = [
@@ -162,21 +164,59 @@ export default function OurRecipes() {
     })
   }
 
-  const fetchProducts = async () => {
+  /**
+   * @description fetch all the cattetgories available
+   * @param {*} category 
+   * @returns 
+   */
+   const fetchCategories = async () => {
     try {
-      const { data } = await commerce.products.list();
-      setProducts(data);
+      const { data } = await axiosCall.get('/meals/category')
+      // setCategories( data );
+      const holdCat = []
+      data.payload.data.map((data)=>{
+        holdCat.push({
+          value:{id:data._id,shortText:data.shortText,name:data.name} ,label:data.name
+        })
+      })
+      console.log({
+        holdCat
+      })
+      setCategories(holdCat)
+
       return;
     } catch (error) {
+      console.log(error)
       return error;
     }
   };
+
+  /**
+   * @description gets meals by categories
+   * @param {*} categoryId 
+   */
+  const getAllMealsForCategory = async (categoryId) =>{
+    try {
+      const { data } = await axiosCall.get('/meals/category/'+categoryId)
+       const allMeals = []
+       data.payload.data.map(( meal )=>{
+        allMeals.push({
+          ...meal,
+          nonView: true 
+        }) 
+       })
+
+       setProducts(allMeals)
+    } catch (error) {
+      console.log(error)
+      return error;
+    }
+  }
  
 
   React.useEffect(() => {
-    fetchProducts();
-    console.log(products, "products");
-  }, [products]);
+    fetchCategories();
+   }, [ ]);
   return (
     <Main>
       <div class="custom-shape-divider-bottom-1629899704 background_div">
@@ -195,20 +235,21 @@ export default function OurRecipes() {
           <Select styles={customStyles}
             placeholder="SELECT CATEGORY"
             onChange={e => {
+              console.log({d:e.value})
+              getAllMealsForCategory(e.value.id)
               setType(e.value)
             }}
-            value={type}
-            className="select" options={options} />
+            value={type.name}
+            className="select" options={categories} />
 
 
           {type && <div className="text select">
             <p className='title' >
-              Everything you need for your {data[type].cuture} meals
+              Everything you need for your {type.name} meals
             </p>
 
             <p className="alltext">
-              It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was
-              popularised in the 1960s with the release of Letraset sheets containing.
+             {type.shortText}
             </p>
           </div>}
 
@@ -224,7 +265,7 @@ export default function OurRecipes() {
         </p>
 
         <div className="products">
-          <Meal list={[{ nonView: true }, { nonView: true }, { nonView: true }, { nonView: true }, { nonView: true }]}>
+          <Meal list={products}>
           </Meal>
         </div>
       </div>

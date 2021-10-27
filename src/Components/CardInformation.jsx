@@ -352,7 +352,7 @@ export default function CardInformation() {
               <input placeholder="State" />
             </div>
             <div className="btn_div">
-              <button>PROCEED TO BILLING</button>
+              <button>Save the address</button>
             </div>
           </form>
         </div>

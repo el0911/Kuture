@@ -1,26 +1,44 @@
 import React from 'react'
+import { toast } from 'react-toastify';
 import styled from "styled-components";
 import Line from "../../assets/svg/totalline.svg";
+import axiosCall from '../../utils/axios';
+import Modal from 'react-modal';
 import RedButton from './redButton';
+import CardPayments from '../cardPayments';
+import { loadStripe } from "@stripe/stripe-js";
+import { Elements } from "@stripe/react-stripe-js";
 
- function orderSummaryComponent({
-   data
-  }) {
-    const { name,
-      amt,
-      serving,
-      noofrecipes,
-      priceperserving,
-      shipping,
-      tax,
-      total } =  data 
-    const Main = styled.main`
+const customStyles = {
+  content: {
+    top: '50%',
+    left: '50%',
+    right: 'auto',
+    bottom: 'auto',
+    padding: 0,
+    background: 'transparent',
+    marginRight: '-50%',
+    transform: 'translate(-50%, -50%)',
+    border: 'none'
+  },
+};
+
+
+
+const PUBLIC_KEY = "pk_test_TYooMQauvdEDq54NiTphI7jx";
+
+const stripeTestPromise = loadStripe(PUBLIC_KEY);
+const Main = styled.main`
 
     .background {
       display: block;
        position: relative;
       background-repeat: no-repeat;
       background-size: cover;
+    }
+
+    .back{
+      cursor:pointer
     }
     .order_div {
       background: #ffffff;
@@ -229,55 +247,121 @@ import RedButton from './redButton';
   
    
 `
-    return (
-        <Main>
-             <div className="background">
- 
+
+function OrderSummaryComponent({
+  data
+}) {
+  const { mark,
+    setMark,
+  } = data
+  const [summary, setSummary] = React.useState(false)
+  const [modalIsOpen, toggleModal] = React.useState(false)
+
+  const loadOrderSummary = async () => {
+    try {
+      const { data } = await axiosCall.get('orders/ordersummary/' + mark)
+
+      setSummary(data.payload.data)
+    } catch (error) {
+      toast('Cant load order summary ')
+    }
+  }
+
+  React.useEffect(() => {
+    loadOrderSummary()
+  }, [])
+
+
+  const initPyment = () => {
+    toggleModal(true)
+  }
+
+
+  function closeModal() {
+    toggleModal(false);
+}
+
+
+  if (!summary) {
+    return <p>Getting summary details...</p>
+  }
+
+  return (
+    <Main>
+
+
+      <div className="background">
+
+
         <div className="body_order">
+
           <div className="order_div">
+
+            <div className="back" onClick={e => {
+              setMark(false)
+            }} >
+              <p>
+                Click to go back to change Address
+              </p>
+            </div>
             <h4>Order Summary</h4>
-             
+
             <div className="name_amt_div">
-              <h5>{name} </h5>
-              <h5>{amt}</h5>
+              <h5>{'The Total'} </h5>
+              <h5>${summary.itemCost}</h5>
             </div>
-            <div className="serving_price_div">
-              <div className="serving_div">
-                <p>{serving}</p>
-                <p>{noofrecipes}</p>
-              </div>
-              <p>{priceperserving}</p>
-            </div>
+
             <div className="shipping_div">
               <h5>Shipping</h5>
-              <h5>{shipping}</h5>
+              <h5>${summary.shipping}</h5>
             </div>
             <div className="tax_div">
               <h5>Tax</h5>
-              <h5>{tax}</h5>
+              <h5>${summary.tax}</h5>
+            </div>
+
+            <div>
+              <p className="selected-address">
+                {summary.selectedAddress}
+              </p>
             </div>
             <div className="last_div">
               <img src={Line} alt="line" />
               <div className="total_div">
-                <h5>Total each per week</h5>
-                <h5>{total}</h5>
+                <h5>Total</h5>
+                <h5>${summary.total}</h5>
               </div>
               <img src={Line} alt="line" />
             </div>
             <RedButton style={{
-                  width: 'inherit',
-                  position: 'absolute',
-                  right: '0',
-                  bottom: '-25px',
-                  borderRadius:'0px 0px 5px 5px'
-            }}  title='Confirm Your Order'/>
+              width: 'inherit',
+              position: 'absolute',
+              right: '0',
+              bottom: '-25px',
+              borderRadius: '0px 0px 5px 5px'
+            }} onClick={e => {
+              initPyment()
+            }} title='Confirm Your Order' />
           </div>
         </div>
 
-       </div>
-        </Main>
-    )
+      </div>
+
+      <Modal
+        isOpen={modalIsOpen}
+        onRequestClose={closeModal}
+        style={customStyles}
+        contentLabel="Example Modal"
+      >
+        <Elements stripe={stripeTestPromise}>
+          <CardPayments addressId ={mark} />
+        </Elements>
+
+
+      </Modal>
+    </Main>
+  )
 }
 
 
-export default orderSummaryComponent
+export default OrderSummaryComponent

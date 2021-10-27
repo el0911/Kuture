@@ -152,15 +152,18 @@ const Main = styled.main`
 `;
 
 export default function Categories({ categories }) {
- 
+
+  const keys = Object.keys(categories)
+
   return (
     <Main>
       <h2 className="title">OUR CATEGORIES</h2>
       <div className="categories_div">
-        {categories.map((category) => {
+        {keys.map((key) => {
+          console.log({ key:categories[key] })
           return (
 
-            <Meal category={category}  list={[{}, {}, {}, {}, {}]}>
+            <Meal category={{ name: key }} list={categories[key]}>
             </Meal>
           );
         })}

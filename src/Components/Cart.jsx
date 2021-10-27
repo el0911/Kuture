@@ -1,18 +1,31 @@
-import React,{ useEffect } from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import { useHistory } from "react-router-dom";
-import Close from "../assets/svg/close(1).svg";
 import CartItem from "./cartItem.component";
 import cartObject from "../utils/cart";
 
 const Main = styled.main`
-  position: absolute;
-  right: 0;
-  min-width: 340px;
-  background: white;
-  min-height: 100vh;
-  top: 0;
-  z-index:1;
+
+position: fixed;
+right: 0;
+min-height: 100vh;
+z-index: 4;
+background: rgb(178 182 193 / 70%);
+height: 100vh;
+width: -webkit-fill-available;     
+top: 0;
+
+
+  .main{
+    width: 340px;
+    position: absolute;
+    height: 100vh;
+    padding: 0 15px;
+    right: 0;
+    background: white;
+  }
+  
+  height: 100vh;
 
   .each_itemh1{
     color: #10145F;
@@ -20,13 +33,18 @@ const Main = styled.main`
 
   .close_div{
     text-align:left;
-    padding:30px
+  }
+
+  .cart_list{
+    max-height: calc(80vh - 131px);
+    overflow: scroll
   }
 
   .close_div img{
     width: 20px;
     text-align: left;
     height: 20px;
+    margin-top: 25px;
   }
 
   .buttn_div{
@@ -52,48 +70,70 @@ const Main = styled.main`
   }
 
   .cart_bodydiv{
-    padding-top: 20px;
+    height: 100vh;
     padding: 20px 5px;
   }
 
   .buttn_div{
     text-align: center;
   }
+
+
+  @media (max-width: 708px) {
+   .main{
+    width: calc(100vw - 30px);
+    min-width: -webkit-fill-available;
+   }
+  }
+
 `;
 
-export default function Cart({  onClose,children }) {
-  const history = useHistory();
-  const [cart,setCart] = React.useState([])
+export default function Cart({setCartShow , children, history }) {
 
-    useEffect(()=>{
-      setCart(cartObject.allCart)
-    },[])
+ 
+  const [cart, setCart] = React.useState([])
+  const [total, setTotal] = React.useState(0)
+
+  useEffect(() => {
+    
+    setCart(cartObject.allCart)
+    let tempTotal = 0
+    cartObject.allCart.map(({price,plan})=>{
+      tempTotal = tempTotal + (price* plan)
+    })
+
+    setTotal(tempTotal)
+  }, [])
   return (
     <Main>
-      <div className="cart_bodydiv">
-        <div className="close_div">
-          {children}
-        </div>
-        <h1 className="each_itemh1">Added to your Cart</h1>
-        {cart && cart.map((item,i) => {
-          return (
-            <CartItem item={item} key={i} id={i} />
-          );
-        })}{" "}
-       
-        <div className="buttn_div">
-        <div className="text_div">
-          <h4>Total</h4>
-          <h4> ${89} </h4>
-        </div>
-          <button
-            onClick={() => {
-              history.push("/ordersummary");
-            }}
-          >
-            PROCEED TO CHECKOUT
-          </button>
-        </div>
+      <div className="main">
+           <div className="close_div">
+            {children}
+          </div>
+          <h1 className="each_itemh1">Added to your Cart</h1>
+          <div className="cart_list">
+            {cart && cart.map((item, i) => {
+              return (
+                <CartItem item={item} key={i} id={i} />
+              );
+            })}{" "}
+          </div>
+
+          <div className="buttn_div">
+            <div className="text_div">
+              <h4>Total</h4>
+              <h4> ${total} </h4>
+            </div>
+            <button
+              onClick={() => {
+  
+                history.push('ordersummary');
+                setCartShow(false)
+              }}
+            >
+              PROCEED TO CHECKOUT
+            </button>
+         </div>
       </div>
     </Main>
   );

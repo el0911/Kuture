@@ -228,7 +228,7 @@ const Main = styled.main`
   }
 `;
 
-export default function FavouriteRecipes({ name, image }) {
+export default function FavouriteRecipes({ favourites }) {
   return (
     <Main>
       <div className="how_div">
@@ -244,7 +244,7 @@ export default function FavouriteRecipes({ name, image }) {
           through the cites of the word in classical literature.
         </p>
         <div className="bothfav">
-          <Meal list={[{}, {}, {}, {}, {}]}>
+          <Meal list={favourites}>
           </Meal>
         </div>
       </div>

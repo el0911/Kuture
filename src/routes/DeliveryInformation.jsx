@@ -1,11 +1,24 @@
 import React from "react";
+import { useHistory } from "react-router-dom";
+import { toast } from "react-toastify";
 import styled from "styled-components";
-import BackM from "../assets/svg/delivery_new.svg";
-import RedButton from "./sharedComponents/redButton";
+import axiosCall from "../utils/axios";
+import RedButton from "../Components/sharedComponents/redButton";
+ 
 
 const Main = styled.main`
   font-family: "Sen", sans-serif;
+  margin-top:100px;
 
+  select{
+    width: 30%;
+    height: 50px;
+    border-radius: 10px;
+    padding: 1px 10px;
+    background: transparent;
+    border: 0;
+  }
+   
   @media  (max-width: 768px) {
 
     form div{
@@ -295,51 +308,81 @@ const Main = styled.main`
 `;
 
 export default function DeliveryInformation() {
+
+  const inputPhone = React.createRef();
+  const inputaddress = React.createRef();
+
+  const inputPostCode = React.createRef();
+  const inputState = React.createRef();
+
+  const history = new useHistory()
+
+  const handleChange  = (value) =>{
+    console.log(`selected ${value}`);
+  }
+
+  const saveAddress = async (e) => {
+
+    if (inputPhone.current.value.length === 0 ||
+      inputaddress.current.value.length === 0 ||
+      inputPostCode.current.value.length === 0 ||
+      inputState.current.value.length === 0) {
+      toast('Missing fields', {})
+      return
+    }
+    try {
+      const { data } = await axiosCall.post('orders/address', {
+        phone: inputPhone.current.value,
+        address: inputaddress.current.value,
+        code: inputPostCode.current.value,
+        state: inputState.current.value,
+      })
+
+
+      toast('Added Address', {})
+
+      history.push('ordersummary')
+
+
+      console.log(data)
+
+    } catch (error) {
+
+      toast('Error adding address', {})
+
+    }
+
+  }
   return (
+
     <Main>
       <div className="delivery_div">
         <div>
           <form>
             <h4 className="h4_">Delivery Information</h4>
-            <div className="first_inputs">
-              <input placeholder="Full Name" />
-              <input placeholder="Email Address" />
-            </div>
+            {/* <div className="first_inputs">
+              <input disabled placeholder="Full Name" />
+              <input disabled placeholder="Email Address" />
+            </div> */}
             <div className="second_inputs">
-              <input placeholder="Phone Number" />
-              <input placeholder="Address" />
+              <input ref={inputPhone} placeholder="Phone Number" />
+              <input ref={inputaddress} placeholder="Address" />
             </div>
             <div className="third_inputs">
-              <input placeholder="Postal Code" />
-              <input placeholder="State" />
+              <input ref={inputPostCode} placeholder="Postal Code" />
+              <select ref={inputState} onChange={e=>{
+                  console.log(inputState.current.value)
+              }} >
+              <option value="">Select State</option>
+              <option value="Tex">Texas</option>
+              <option value="Ge">Georgia</option>
+              </select>
             </div>
             <div className="btn_div">
-              <RedButton  title='PROCEED TO BILLING'/>
+              <RedButton onClick={saveAddress} title='SAVE ADDRESS' />
             </div>
           </form>
-          {/* <form>
-            <h4 className="h4_">Billing Information</h4>
-            <div className="first_input">
-              <label>Card Number</label>
-              <input />
-            </div>
-            <div className="first_inputs">
-              <div className="second_input">
-                <label>Expiration Date</label>
-                <input placeholder="" />
-              </div>
-              <div>
-                <div className="third_input">
-                  <label>CVV</label>
-                  <input placeholder="" />
-                </div>
-              </div>
-            </div>
 
-            <div className="btn_div">
-              <button>PROCEED TO CHECKOUT</button>
-            </div>
-          </form> */}
         </div>
       </div>
     </Main>

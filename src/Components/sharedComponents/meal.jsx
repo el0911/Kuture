@@ -4,7 +4,22 @@ import { useHistory } from "react-router-dom";
 import Modal from 'react-modal';
 import { Question } from "../../assets/svg";
 import CustomizedPlans from "../customizedPlans";
+import generalUttil from "../../utils/generalUtils";
+import MealPopup from "../mealPopUp";
 
+const customStyles = {
+    content: {
+        top: '50%',
+        left: '50%',
+        right: 'auto',
+        bottom: 'auto',
+        padding: 0,
+        background: 'transparent',
+        marginRight: '-50%',
+        transform: 'translate(-50%, -50%)',
+        border: 'none'
+    },
+};
 
 const Component = styled.main`
 justify-content: center;
@@ -33,6 +48,7 @@ width: -webkit-fill-available;
     display: flex;
     justify-content: space-between;
     padding: 3px 10px;
+    background:white;
   }
 
   .showbox .info button{
@@ -112,25 +128,12 @@ width: -webkit-fill-available;
 
 export default function Meal({ category, list }) {
     const history = useHistory();
-
-    const customStyles = {
-        content: {
-            top: '50%',
-            left: '50%',
-            right: 'auto',
-            bottom: 'auto',
-            padding: 0,
-            background: 'transparent',
-            marginRight: '-50%',
-            transform: 'translate(-50%, -50%)',
-            border:'none'
-        },
-    };
+ 
 
     const [modalIsOpen, setIsOpen] = React.useState(false);
 
-    function openModal() {
-        setIsOpen(true);
+    function openModal(component) {
+        setIsOpen(component);
     }
 
     function afterOpenModal() {
@@ -145,6 +148,9 @@ export default function Meal({ category, list }) {
 
     Modal.setAppElement('body');
 
+    console.log({ list })
+
+
     return (
 
         <Component id='meal' >
@@ -156,15 +162,16 @@ export default function Meal({ category, list }) {
                 {category.name}{" "}
             </button>}
             <div className='box_home'  >
-                {list.map(({ nonView }) => {
-                    return <div className="showbox">
-                        <img src={`${require('../../assets/images/southy.jpg').default}`} alt="" />
+                {list.map(({ servings, imageMain,  nonView, name, _id, recipeId = { timeTaken: 0 }, ...rest }) => {
+
+                     return <div className="showbox">
+                        <img src={imageMain} alt="" />
                         {!nonView && <div className="info">
                             <p>
-                                {'Igbocentric'}
+                                {name}
                             </p>
                             <button>
-                                view
+                                View More
                             </button>
                         </div>}
 
@@ -172,19 +179,29 @@ export default function Meal({ category, list }) {
                             nonView && <div className="product_info">
                                 <div className="text">
                                     <p className="name">
-                                        Abacha
+                                        {name}
                                     </p>
 
                                     <p>
-                                        1HR
+                                        {generalUttil.convertTimeLengthToString(recipeId.timeTaken)}
                                     </p>
+
+
 
                                 </div>
                                 <Question className='question' onClick={e => {
-                                    openModal()
+                                    openModal(<MealPopup recipeId={recipeId._id} recipeName={name} />
+                                    )
                                 }} />
 
-                                <button>
+                                <button onClick={e => {
+                                    openModal(<CustomizedPlans closeModal={ openModal } itemObject={{
+                                        _id,
+                                        name,
+                                        servings,
+                                        ...rest
+                                    }} servings={servings} />)
+                                }} >
                                     add to cart
                                 </button>
                             </div>
@@ -194,16 +211,14 @@ export default function Meal({ category, list }) {
             </div>
 
             <Modal
-                isOpen={modalIsOpen}
+                isOpen={!!modalIsOpen}
                 onAfterOpen={afterOpenModal}
                 onRequestClose={closeModal}
                 style={customStyles}
-                contentLabel="Example Modal"
-            >
+             >
 
-                {/* <MealPopup/> */}
+                {modalIsOpen}
 
-                <CustomizedPlans />
             </Modal>
         </Component>
     )

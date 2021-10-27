@@ -1,13 +1,12 @@
 import React from 'react'
 import styled from "styled-components";
 import { FamilyTable, SinglePerson, TwoPeople } from '../assets/svg';
+import cartObject from '../utils/cart';
+import RedButton from './sharedComponents/redButton';
 
-export default function CustomizedPlans() {
-    const [stage, setStage] = React.useState(0)
-
-    const ModalComponent = styled.div`
+const ModalComponent = styled.div`
             width: 90vw;
-            max-height: 70vh;
+            max-height: 90vh;
             background-size: cover;
             background:white;
             text-align: center;
@@ -26,6 +25,10 @@ export default function CustomizedPlans() {
 
             .meals{
                 padding: 20px 54px;
+            }
+
+            .counter {
+                padding-bottom: 60px;
             }
 
 
@@ -93,6 +96,15 @@ export default function CustomizedPlans() {
                 }
 
 `
+
+
+export default function CustomizedPlans({itemObject, servings = {},closeModal=((e)=>{})}) {
+    const [stage, setStage] = React.useState(0)
+    const [count, setCount] = React.useState(1)
+
+  
+
+    
     return (
         <ModalComponent>
 
@@ -109,40 +121,45 @@ export default function CustomizedPlans() {
 
             </div>
 
-            {stage === 0 && <div className="meals" onClick={() => {
-                setStage(1)
-            }} >
+            {stage === 0 && <div className="meals"  >
 
-                <div className="meal_plans">
+                {servings['4'] && <div onClick={() => {
+                    setStage('4')
+                }}
+                    className="meal_plans">
                     <FamilyTable />
 
                     <p>
                         4 da family - 4 Servings
                     </p>
-                </div>
+                </div>}
 
-                <div className="meal_plans">
+                {servings['2'] && <div onClick={() => {
+                    setStage('2')
+                }} className="meal_plans">
                     <TwoPeople />
 
                     <p>
                         The couple - 2 Servings
                     </p>
-                </div>
+                </div>}
 
 
-                <div className="meal_plans">
+                {servings['1'] && <div onClick={() => {
+                    setStage('1')
+                }} className="meal_plans">
                     <SinglePerson />
 
                     <p>
                         The Loner - 1 Serving
                     </p>
-                </div>
+                </div>}
             </div>}
 
 
-            { stage === 1 && <div className="second_part" style={{
-                position:'relative',
-                background:'white'
+            {stage   && <div className="second_part" style={{
+                position: 'relative',
+                background: 'white'
             }}  >
                 <div className="meals" onClick={() => {
                 }} >
@@ -159,24 +176,42 @@ export default function CustomizedPlans() {
                 </div>
 
                 <div className="counter">
-                    <svg width="50" height="73" viewBox="0 0 106 73" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <svg onClick={e=>{
+                        setCount(count+1)
+                    }} width="50" height="73" viewBox="0 0 106 73" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <rect x="0.5" y="0.5" width="105" height="72" rx="9.5" fill="white" stroke="#CCCCCC" />
                         <path fill-rule="evenodd" clip-rule="evenodd" d="M51.5272 31.8018C52.3408 31.3069 53.6599 31.3069 54.4735 31.8018L66.9735 39.406C67.7871 39.9009 67.7871 40.7034 66.9735 41.1983C66.1599 41.6932 64.8408 41.6932 64.0272 41.1983L53.0003 34.4903L41.9735 41.1983C41.1599 41.6932 39.8408 41.6932 39.0272 41.1983C38.2136 40.7034 38.2136 39.9009 39.0272 39.406L51.5272 31.8018Z" fill="black" />
                     </svg>
                     <div className="count"><p>
-                        10
+                    {count}
                     </p></div>
 
-                    <svg width="50" height="73" viewBox="0 0 106 73" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <svg onClick={e=>{
+                        setCount(count>1 ?count-1:1)
+                    }}  width="50" height="73" viewBox="0 0 106 73" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <rect x="105.5" y="72.5" width="105" height="72" rx="9.5" transform="rotate(-180 105.5 72.5)" fill="white" stroke="#CCCCCC" />
                         <path fill-rule="evenodd" clip-rule="evenodd" d="M54.4728 41.1983C53.6592 41.6932 52.3401 41.6932 51.5265 41.1983L39.0265 33.5941C38.2129 33.0992 38.2129 32.2967 39.0265 31.8018C39.8401 31.3068 41.1592 31.3068 41.9728 31.8018L52.9997 38.5098L64.0265 31.8018C64.8401 31.3068 66.1592 31.3068 66.9728 31.8018C67.7864 32.2967 67.7864 33.0992 66.9728 33.5941L54.4728 41.1983Z" fill="black" />
                     </svg>
 
 
                     <div className="total">
-                        $20
+                        ${servings[stage] * count}
                     </div>
+
+                   
+
                 </div>
+
+
+                <RedButton onClick={e=>{
+                    cartObject.saveAnIttemToCart(itemObject,stage,count)
+                    closeModal(false)
+                }} style={{
+                            width: '100%',
+                            // position: 'absolute',
+                            // bottom: '0',
+                            // right: '0'
+                    }} title='Add to cart'/>
             </div>
             }
 

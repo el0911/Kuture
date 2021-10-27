@@ -1,7 +1,10 @@
 import React from "react";
+import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 import RedButton from "../Components/sharedComponents/redButton";
- 
+import { useLoadrConttext } from "../providers/fullLoader.provider";
+import AuthUtil from "../utils/auth";
+
 const Main = styled.main`
   font-family: "Sen", sans-serif;
 
@@ -30,6 +33,14 @@ const Main = styled.main`
     width: 30%;
     padding-inline-start: 9px;
     margin-right: 1rem;
+
+  }
+
+
+  .next span{
+
+    text-decoration: underline;
+    color: #FF2400;
 
   }
   .h4_ {
@@ -76,32 +87,54 @@ const Main = styled.main`
 
 `;
 
- function Login() {
-    return (
-        <Main>
-          <div className="delivery_div">
-            <div styled={{
-                textAlign:'center'
-            }} >
-              <form>
-                <h4 className="h4_">Login to your account</h4>
-                <div className="first_inputs">
-                   <input type='email' placeholder="Email Address" />
-                   <input type='password' placeholder="Password" />
+function Login() {
+  const inputPassword = React.createRef();
+  const inputEmail = React.createRef();
+  const history = useHistory()
+  const loader = useLoadrConttext();
 
-                </div>
-                
-                <div className="btn_div">
-                  <RedButton  title='Login'/>
-                </div>
-              </form>
-             
+  return (
+    <Main>
+      <div className="delivery_div">
+        <div styled={{
+          textAlign: 'center'
+        }} >
+          <form>
+            <h4 className="h4_">Login to your account</h4>
+            <div className="first_inputs">
+              <input ref={inputEmail} type='email' placeholder="Email Address" />
+              <input ref={inputPassword} type='password' placeholder="Password" />
+
             </div>
-          </div>
-        </Main>
-      );
-    }
-    
+
+            <div className="btn_div">
+              <RedButton onClick={(e) => {
+                e.preventDefault();
+                AuthUtil.login({
+                  email: inputEmail.current.value,
+                  password: inputPassword.current.value
+                }, {
+                  preLoad: () => {
+                    loader.setLoader(true)
+                  }, afterLoad: () => {
+                    loader.setLoader(false)
+                  }
+                }
+                )
+              }} title='Login' />
+            </div>
+
+            <p className='next' >Dont have an account? <span onClick={e => {
+              history.push('signup')
+            }} > Signup</span></p>
+          </form>
+
+        </div>
+      </div>
+    </Main>
+  );
+}
+
 
 
 export default Login

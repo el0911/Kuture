@@ -1,0 +1,54 @@
+import React, { createContext, useContext } from "react";
+import styled from "styled-components";
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
+import Close from "../assets/svg/close(1).svg";
+import Cart from "../Components/Cart";
+import { useHistory } from "react-router-dom";
+
+const cartContext = createContext({ setCartShow: () => { } });
+
+const Component = styled.div`
+.loading{
+   height: 100vh;
+   width: 100vw;
+   background: white;
+   position: sticky;
+   z-index: 4;
+   text-align: center;
+   padding-top: 40vh;
+   top:0
+}
+
+`;
+
+
+const CartProvider = ({ children }) => {
+  const [showCart, setCartShow] = React.useState(false);
+  const history = console.useHistory 
+  
+ 
+  return (
+    <Component>
+      <cartContext.Provider value={{ setCartShow }}>
+        {showCart && <Cart setCartShow={setCartShow}  history={history} >
+            
+            <img
+              src={Close}
+              alt="menu"
+              className="menu"
+              onClick={() => {
+                setCartShow(false);
+              }}
+            />
+            
+            </Cart>}
+        {children}
+      </cartContext.Provider>
+    </Component>
+
+  );
+};
+
+export const CartContext = () => useContext(cartContext);
+
+export default CartProvider;

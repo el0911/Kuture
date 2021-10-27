@@ -1,5 +1,8 @@
 import React from "react";
+import { useHistory } from "react-router-dom";
+import { toast } from "react-toastify";
 import styled from "styled-components";
+import axiosCall from "../utils/axios";
 import AddressComponent from "./sharedComponents/addressComponent";
 
 import OrderSummaryComponent from "./sharedComponents/orderSummaryComponent";
@@ -9,11 +12,22 @@ const Main = styled.main`
  display:flex;
  width: -webkit-fill-available;
  justify-content: space-around;
+ padding:100px 0;
 
+
+ .address-holder{
+  width: 80vw;
+  margin: 30px auto;
+ }
 
  @media (max-width: 768px) {
-   display:block
+   display:block;
+   padding:100px 10px;
+
  }
+
+
+
 `;
 
 export default function OrderSummary({
@@ -26,33 +40,65 @@ export default function OrderSummary({
   tax,
   total,
 }) {
+
+  const history = useHistory()
+  const [data, setAddress] = React.useState([])
+  const [mark, setMark] = React.useState(false)
+  const loadAllAddresses = async () => {
+
+    try {
+      const { data } = await axiosCall.get('orders/address')
+ 
+      setAddress(data.payload.data)
+    } catch (error) {
+      toast('Cant load addresses reload page ')
+    }
+  }
+
+
+  React.useEffect(() => {
+    loadAllAddresses()
+  }, [])
   return (
-    <Main  >
 
-      <div >
-        <div className="addresses">
-          {[{}, {}, {}, {}].map(() => { return <AddressComponent /> })}
-        </div>
+    <div>
+      {data.length ? <Main  >
 
-        <RedButton style={{
-          width: '-webkit-fill-available'
-        }} title='Add an address' />
-      </div>
+       {!mark && <div className='address-holder' >
 
-      <OrderSummaryComponent data={{
-        name,
-        amt,
-        serving,
-        noofrecipes,
-        priceperserving,
-        shipping,
-        tax,
-        total,
-      }} />
+        <RedButton onClick={e => {
+            history.push('deliveryinfo')
+          }} style={{
+            width: '-webkit-fill-available'
+          }} title='Add an address' />
 
 
+          <div className="addresses">
+            {data.map((addressDetails, i) => { return <AddressComponent key={i} setMarked={setMark} marked={mark} details={addressDetails} /> })}
+          </div>
 
-    </Main>
+       
+        </div>}
+
+      {mark &&   <OrderSummaryComponent data={{
+          name,
+          amt,
+          serving,
+          setMark,
+          noofrecipes,
+          priceperserving,
+          shipping,
+          tax,
+          total,
+          mark
+        }} />}
+
+
+
+      </Main> : <p>No address</p>}
+
+    </div>
+
   );
 }
 

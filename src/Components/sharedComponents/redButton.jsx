@@ -17,8 +17,9 @@ export default function RedButton({title,onClick,style}) {
     border-radius: 5px;
 `
     return (
-        <Button style={{...style}} onClick ={()=>{
-            onClick()
+        <Button style={{...style}} onClick ={(e)=>{
+            e.preventDefault()
+            onClick(e)
         }} >
             {title}
         </Button>

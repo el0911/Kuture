@@ -9,11 +9,14 @@ import Cart from "./Cart";
 import WhyKulture from "../assets/svg/why.svg";
 import Navbar from "./Navbar";
 import { useHistory } from "react-router-dom";
+import AuthUtil from "../utils/auth";
+import { CartContext } from "../providers/cart.provider";
 
 const HeaderMain = styled.main`
   font-family: "Sen", sans-serif;
-      position: relative;
     z-index: 3;
+    width: -webkit-fill-available;
+    position: relative;
   a {
     text-decoration: none;
     cursor: pointer;
@@ -32,6 +35,12 @@ const HeaderMain = styled.main`
    padding:0;
    margin:0;
    top:0
+}
+
+
+.menu_div{
+  position: absolute;
+  right: 15px;
 }
 
  
@@ -65,12 +74,12 @@ const HeaderMain = styled.main`
       display: none;
     }
     header {
-      width: 80%;
+      width: 90%;
       margin: auto;
-      margin-top: -2em;
+      position: relative;
+      top: 19px;
       display: flex;
       justify-content: space-between;
-      padding-top: 4rem;
     }
     header h3 {
       font-family: "Sen", sans-serif;
@@ -79,6 +88,7 @@ const HeaderMain = styled.main`
       color: #013220;
       margin-top: 0;
       margin-bottom: 0;
+      position: absolute;
     }
     .menu_div {
     }
@@ -195,8 +205,7 @@ const HeaderMain = styled.main`
     header {
       width: 80%;
       margin: auto;
-      margin-top: 2em;
-      display: flex;
+       display: flex;
       justify-content: space-between;
     }
     header h3 {
@@ -308,15 +317,14 @@ const HeaderMain = styled.main`
       display: flex;
       width: 90%;
       margin: auto;
-      margin-top: 2em;
-      justify-content: space-between;
+       justify-content: space-between;
     }
     header h3 {
       font-family: "Sen", sans-serif;
       font-size: 32px;
       font-weight: 800;
       color: #013220;
-      margin-top: 0.5rem;
+      margin-top: 0;
       margin-bottom: 0;
     }
     .menu_div {
@@ -334,16 +342,16 @@ const HeaderMain = styled.main`
       display: block;
       width: 85%;
       margin: auto;
-      margin-top: 2em;
-      margin-left: 0;
+       margin-left: 0;
     }
     header h3 {
       font-family: "Sen", sans-serif;
       font-size: 32px;
       font-weight: 800;
+      margin-top: 30px;
       color: #013220;
-      margin-top: 0.5rem;
       margin-bottom: 0;
+      position: absolute;
     }
     .menu_div {
     }
@@ -361,8 +369,7 @@ const HeaderMain = styled.main`
       display: -ms-flexbox;
       display: flex;
       margin: auto;
-      padding-top: 1rem;
-      padding-left: 110px;
+       padding-left: 110px;
     }
     .nav_div {
       padding-top: 1rem;
@@ -378,7 +385,8 @@ export default function Header() {
   const [cart] = React.useState({});
   const [showcart, setShowCart] = React.useState(false);
   const history  = useHistory()
-
+  const {setCartShow} = CartContext()
+ 
  
 
   const viewCart = async () => {
@@ -386,7 +394,7 @@ export default function Header() {
     // setCart(response);
   };
   const handleClick = (state) => {
-    setShowCart( state || !showcart);
+    setCartShow(true)
   };
 
   React.useEffect(() => {
@@ -406,23 +414,8 @@ export default function Header() {
             <Navbar cart={cart} showcart={showcart} handleClick={handleClick} />
           </div>
 
-
-             <img onClick={()=>{
-               handleClick(false)
-             }} src={carticon} alt="cart" className="cart" />
-            {showcart && (
-              <Cart cart={cart} showcart={showcart}>
-                <img
-                  src={Close}
-                  alt="sidemenu"
-                  className="side_menuimg"
-                  onClick={() => {
-                    handleClick(false);
-                  }}
-                />
-              </Cart>
-            )}
-
+ 
+            
           <div className="menu_div">
             <img
               src={Menu}
@@ -455,7 +448,7 @@ export default function Header() {
               />
 
               <li className="why"  onClick={e=>{
-                history.push('/ourrecipes')
+                history.push('/allrecipes')
               }} >
                 <img src={WhyKulture} alt="why" />
                 <span className="why_span">Why kulturefresh</span>
@@ -468,19 +461,27 @@ export default function Header() {
                 <span className="why_span">Our Recepies</span>
               </li>
 
-              <li className="why cartt"  onClick={e=>{
-                 handleClick()
-              }} >
-                <img src={carticon} alt="login" />
-                <span className="why_span">Cart</span>
-              </li>
+          { AuthUtil.isLogedIn() && <li className="why cartt"  onClick={e=>{
+              handleClick()
+          }} >
+            <img src={carticon} alt="login" />
+            <span className="why_span">Cart</span>
+          </li>}
 
-              <li className="why"  onClick={e=>{
+          {!AuthUtil.isLogedIn()  && <li className="why"  onClick={e=>{
                 history.push('/login')
               }} >
                 <img src={Login} alt="login" />
                 <span className="why_span">Login</span>
-              </li>
+              </li>}
+
+
+              {AuthUtil.isLogedIn()  && <li className="why"  onClick={e=>{
+                AuthUtil.logout()
+              }} >
+                <img src={Login} alt="login" />
+                <span className="why_span">Logout</span>
+              </li>}
             </ul>
 
           </div>

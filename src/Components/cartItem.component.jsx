@@ -6,8 +6,7 @@ function CartItem({ item }) {
     const Main = styled.main`
     display: flex;
     margin-bottom: 20px;
-    width: 90%;
-    margin-left: auto;
+     margin-left: auto;
     margin-right: auto;
     border: 1px solid silver;
     border-radius: 5px;
