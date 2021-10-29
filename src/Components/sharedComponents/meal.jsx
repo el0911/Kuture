@@ -126,9 +126,68 @@ width: -webkit-fill-available;
 
 `
 
+
+const MealComponent = ({data}) => {
+    const { servings, imageMain, nonView, name, _id, recipeId = { timeTaken: 0 }, openModal, ...rest } = data
+    const convertToTTimeString = () => {
+        let result = ''
+        try {
+            result = generalUttil.convertTimeLengthToString(recipeId.timeTaken)
+        } catch (error) {
+            console.log(error)
+        }
+
+        return result
+    }
+
+    return <div className="showbox">
+        <img src={imageMain} alt="" />
+        {!nonView && <div className="info">
+            <p>
+                {name}
+            </p>
+            <button>
+                View More
+            </button>
+        </div>}
+
+        {
+            nonView && <div className="product_info">
+                <div className="text">
+                    <p className="name">
+                        {name}
+                    </p>
+
+                    <p>
+                        {convertToTTimeString()}
+                    </p>
+
+
+
+                </div>
+                <Question className='question' onClick={e => {
+                    openModal(<MealPopup recipeId={recipeId._id} recipeName={name} />
+                    )
+                }} />
+
+                <button onClick={e => {
+                    openModal(<CustomizedPlans closeModal={openModal} itemObject={{
+                        _id,
+                        name,
+                        servings,
+                        ...rest
+                    }} servings={servings} />)
+                }} >
+                    add to cart
+                </button>
+            </div>
+        }
+    </div>
+}
+
 export default function Meal({ category, list }) {
     const history = useHistory();
- 
+
 
     const [modalIsOpen, setIsOpen] = React.useState(false);
 
@@ -162,51 +221,9 @@ export default function Meal({ category, list }) {
                 {category.name}{" "}
             </button>}
             <div className='box_home'  >
-                {list.map(({ servings, imageMain,  nonView, name, _id, recipeId = { timeTaken: 0 }, ...rest }) => {
+                {list.map(({ ...data }) => {
 
-                     return <div className="showbox">
-                        <img src={imageMain} alt="" />
-                        {!nonView && <div className="info">
-                            <p>
-                                {name}
-                            </p>
-                            <button>
-                                View More
-                            </button>
-                        </div>}
-
-                        {
-                            nonView && <div className="product_info">
-                                <div className="text">
-                                    <p className="name">
-                                        {name}
-                                    </p>
-
-                                    <p>
-                                        {generalUttil.convertTimeLengthToString(recipeId.timeTaken)}
-                                    </p>
-
-
-
-                                </div>
-                                <Question className='question' onClick={e => {
-                                    openModal(<MealPopup recipeId={recipeId._id} recipeName={name} />
-                                    )
-                                }} />
-
-                                <button onClick={e => {
-                                    openModal(<CustomizedPlans closeModal={ openModal } itemObject={{
-                                        _id,
-                                        name,
-                                        servings,
-                                        ...rest
-                                    }} servings={servings} />)
-                                }} >
-                                    add to cart
-                                </button>
-                            </div>
-                        }
-                    </div>
+                    return <MealComponent data={{ ...data, openModal }} />
                 })}
             </div>
 
@@ -215,7 +232,7 @@ export default function Meal({ category, list }) {
                 onAfterOpen={afterOpenModal}
                 onRequestClose={closeModal}
                 style={customStyles}
-             >
+            >
 
                 {modalIsOpen}
 

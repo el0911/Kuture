@@ -448,15 +448,17 @@ export default function Header() {
               />
 
               <li className="why"  onClick={e=>{
-                history.push('/allrecipes')
+                setClose(false);
+                history.push('/whykulturefresh')
               }} >
                 <img src={WhyKulture} alt="why" />
                 <span className="why_span">Why kulturefresh</span>
               </li>
 
               <li className="why" onClick={e=>{
-                history.push('/whykulturefresh')
-              }} >
+                  setClose(false);
+                  history.push('allrecipes')
+                }} >
                 <img src={List} alt="why" />
                 <span className="why_span">Our Recepies</span>
               </li>
@@ -469,6 +471,8 @@ export default function Header() {
           </li>}
 
           {!AuthUtil.isLogedIn()  && <li className="why"  onClick={e=>{
+                setClose(false);
+
                 history.push('/login')
               }} >
                 <img src={Login} alt="login" />
