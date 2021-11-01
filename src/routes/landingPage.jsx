@@ -13,6 +13,8 @@ import { useLoadrConttext } from "../providers/fullLoader.provider";
 
 const Main = styled.main`
   font-family: "Sen", sans-serif;
+  position: relative;
+    top: -93px;
  
   .rightside{
     background-image:url("${Top}")

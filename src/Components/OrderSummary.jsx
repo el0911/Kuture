@@ -45,6 +45,7 @@ export default function OrderSummary({
   const [data, setAddress] = React.useState([])
   const [mark, setMark] = React.useState(false)
   const loadAllAddresses = async () => {
+ 
 
     try {
       const { data } = await axiosCall.get('orders/address')
@@ -62,20 +63,20 @@ export default function OrderSummary({
   return (
 
     <div>
-      {data.length ? <Main  >
+      {1 ? <Main  >
 
-       {!mark && <div className='address-holder' >
+       { <div className='address-holder' >
 
-        <RedButton onClick={e => {
+        {<RedButton onClick={e => {
             history.push('deliveryinfo')
           }} style={{
             width: '-webkit-fill-available'
-          }} title='Add an address' />
+          }} title='Add an address' />}
 
 
-          <div className="addresses">
+         {!mark &&  <div className="addresses">
             {data.map((addressDetails, i) => { return <AddressComponent key={i} setMarked={setMark} marked={mark} details={addressDetails} /> })}
-          </div>
+          </div>}
 
        
         </div>}

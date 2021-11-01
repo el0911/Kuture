@@ -13,7 +13,6 @@ export default function Whyus() {
     }
 
     .words{
-        position: absolute;
         right: 50px;
         max-width: 540px;
         margin-left: 30vw;
@@ -27,7 +26,6 @@ export default function Whyus() {
         font-weight: bold;
         font-size: 35px;
         line-height: 42px;
-
         color: #AA614D;
     }
 
@@ -37,7 +35,6 @@ export default function Whyus() {
         font-weight: normal;
         font-size: 15px;
         line-height: 30px;
-        
         color: #AA614D;  
     }
 
@@ -46,9 +43,12 @@ export default function Whyus() {
             position :relative;
             right: 0;
             max-width: 540px;
-            margin:auto;
-            margin-top: 64px;
+            margin: auto;
             padding:0 20px;
+        }
+
+        .words .title{
+            margin:0
         }
 
         svg{
@@ -60,7 +60,6 @@ export default function Whyus() {
 
     return (
         <Component>
-            <LeftDecoration />
             <div className="words">
                 <p className="title">why kulturefresh</p>
                 <p className="content">

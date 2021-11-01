@@ -35,7 +35,7 @@ width: -webkit-fill-available;
   .box_home{
     display: grid;
    
-    grid-template-columns: repeat(auto-fill, minmax(248px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(348px, 1fr));
   }
  
 

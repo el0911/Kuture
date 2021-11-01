@@ -4,8 +4,8 @@ import styled from "styled-components";
 import Header from './Header';
 
 const Component = styled.div`
- background:#fafaef;
  min-height: 100vh;
+ display: flex;
 
 
  .content{
@@ -13,6 +13,11 @@ const Component = styled.div`
      // margin: 20px auto;
      position: relative;
      z-index: 2;
+ }
+
+
+ .website{
+    width: 100vw;
  }
 
 `
@@ -23,18 +28,20 @@ export default function Layout({ children }) {
 
     return (
         <Component>
+
+            <div className='website' >   
             <Header />
-            <div className="content">
-            {children}
-            </div>
-            <div style={{
-                background: `url(${require('../assets/svg/background.svg').default})`,
-                width: '100vw',
-                height: '50vh',
-                position: 'fixed',
-                bottom: '0',
-                backgroundSize: 'contain'
-            }} ></div>
+                <div className="content">
+                    {children}
+                </div>
+                <div style={{
+                    background: `url(${require('../assets/svg/background.svg').default})`,
+                    width: '100vw',
+                    height: '50vh',
+                    position: 'fixed',
+                    bottom: '0',
+                    backgroundSize: 'contain'
+                }} ></div>  </div>
         </Component>
     )
 }

@@ -17,6 +17,7 @@ const HeaderMain = styled.main`
     z-index: 3;
     width: -webkit-fill-available;
     position: relative;
+    height: 90px;
   a {
     text-decoration: none;
     cursor: pointer;

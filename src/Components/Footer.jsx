@@ -5,7 +5,7 @@ import Twitter from "../assets/svg/twitter.svg";
 import Instagram from "../assets/svg/instagram.svg";
 import Copyright from "../assets/svg/kulture_copy.svg";
 
-const FooterDiv = styled.div`
+const FooterDiv = styled.footer`
   background: #3f3d56;
   margin-top: 3rem;
   color: #fff;
@@ -129,8 +129,8 @@ const FooterDiv = styled.div`
 export default function Footer() {
   return (
     <FooterDiv>
-      <footer>
-        <div className="body_footer">
+     
+        {/* <div className="body_footer">
         
           <div className="second_div">
             <h6>Follow us on social media</h6>
@@ -145,8 +145,7 @@ export default function Footer() {
             </a>
           </div>
         </div>
-        <img src={Copyright} alt="copyright" className="copyright" />
-      </footer>
-    </FooterDiv>
+        <img src={Copyright} alt="copyright" className="copyright" /> */}
+     </FooterDiv>
   );
 }

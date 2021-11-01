@@ -188,27 +188,27 @@ export default function Navbar({ cart, showcart, handleClick }) {
       <ul style={{
         marginRight: '20px'
       }} >
-        <Li className="recipes">
-          <Link onClick={e => {
+        <Li  onClick={e => {
             history.push('allrecipes')
-          }} > Our recipes</Link>
+          }}  className="recipes">
+          <Link  > Our recipes</Link>
         </Li>
-        <Li className="whykulture">
-          <Link onClick={e => {
+        <Li  onClick={e => {
             history.push('whykulturefresh')
-          }}   >Why kulturefresh</Link>
+          }}  className="whykulture">
+          <Link   >Why kulturefresh</Link>
         </Li>
-        {!AuthUtil.isLogedIn() && <Li className="login">
-          <Link onClick={e => {
+        {!AuthUtil.isLogedIn() && <Li  onClick={e => {
             history.push('login')
-          }}    >Login</Link>
+          }}   className="login">
+          <Link  >Login</Link>
         </Li>}
 
 
-        {AuthUtil.isLogedIn() && <Li className="login">
-          <Link onClick={e => {
+        {AuthUtil.isLogedIn() && <Li onClick={e => {
             AuthUtil.logout()
-          }} >Logout</Link>
+          }}  className="login">
+          <Link  >Logout</Link>
         </Li>}
 
         {AuthUtil.isLogedIn() && <Li className="cart" onClick={handleClick}>
