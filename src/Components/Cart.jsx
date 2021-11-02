@@ -19,9 +19,7 @@ top: 0;
   .main{
     width: 340px;
     position: absolute;
-    height: 100%;
-    overflow-y: scroll
-    -webkit-overflow-scrolling: touch
+    height: 100vh;
     padding: 0 15px;
     right: 0;
     background: white;
@@ -85,6 +83,13 @@ top: 0;
    .main{
     width: calc(100vw - 30px);
     min-width: -webkit-fill-available;
+   }
+
+
+   .buttn_div{
+    position: fixed;
+    bottom: 0;
+    z-index: 10;
    }
   }
 
