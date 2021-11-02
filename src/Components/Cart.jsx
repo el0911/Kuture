@@ -16,6 +16,11 @@ width: -webkit-fill-available;
 top: 0;
 
 
+main:last-child {
+  margin-bottom: 300px;
+}
+
+
   .main{
     width: 340px;
     position: absolute;

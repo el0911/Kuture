@@ -12,6 +12,7 @@ function CartItem({ item }) {
     border-radius: 5px;
     padding: 5px;
 
+    
     img{
         width: 90.53px;
         height: 70px;
