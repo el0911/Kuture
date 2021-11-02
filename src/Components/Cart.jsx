@@ -36,7 +36,7 @@ top: 0;
   }
 
   .cart_list{
-    max-height: calc(80vh - 131px);
+    max-height: calc(80vh - 170px);
     overflow: scroll
   }
 
@@ -90,6 +90,9 @@ top: 0;
     position: fixed;
     bottom: 0;
     z-index: 10;
+    width: calc(-30px + 100vw);
+    background: white;
+    padding-bottom: 10px;
    }
   }
 
