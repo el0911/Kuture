@@ -1,4 +1,4 @@
-import React, { createContext, useContext } from "react";
+import React, {useEffect, createContext, useContext } from "react";
 import styled from "styled-components";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import Close from "../assets/svg/close(1).svg";
@@ -20,12 +20,21 @@ const Component = styled.div`
 }
 
 `;
-
+ 
 
 const CartProvider = ({ children }) => {
   const [showCart, setCartShow] = React.useState(false);
   const history = console.useHistory 
   
+  useEffect(()=>{
+    const body = document.getElementsByTagName('body')[0];
+
+    if (showCart) {
+      ///stop scroll
+      body.style.overflow = 'hidden'
+    }else      { body.style.overflow = 'scroll'}
+
+  },[showCart])
  
   return (
     <Component>

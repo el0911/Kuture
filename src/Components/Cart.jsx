@@ -97,7 +97,7 @@ top: 0;
   }
 
 `;
-
+ 
 export default function Cart({setCartShow , children, history }) {
 
  
@@ -112,11 +112,17 @@ export default function Cart({setCartShow , children, history }) {
       tempTotal = tempTotal + (price* plan)
     })
 
+
+  
+ 
+
     setTotal(tempTotal)
   }, [])
+
+ 
   return (
     <Main>
-      <div className="main">
+      <div className="main"  id='mainp'>
            <div className="close_div">
             {children}
           </div>
