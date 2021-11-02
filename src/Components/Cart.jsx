@@ -19,7 +19,9 @@ top: 0;
   .main{
     width: 340px;
     position: absolute;
-    height: 100vh;
+    height: 100%;
+    overflow-y: scroll
+    -webkit-overflow-scrolling: touch
     padding: 0 15px;
     right: 0;
     background: white;

@@ -312,7 +312,7 @@ function OrderSummaryComponent({
             </div>
 
             <div className="shipping_div">
-              <h5>Shipping</h5>
+              <h5>Shipping and handling</h5>
               <h5>${summary.shipping}</h5>
             </div>
             <div className="tax_div">

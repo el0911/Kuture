@@ -45,11 +45,11 @@ export default function OrderSummary({
   const [data, setAddress] = React.useState([])
   const [mark, setMark] = React.useState(false)
   const loadAllAddresses = async () => {
- 
+
 
     try {
       const { data } = await axiosCall.get('orders/address')
- 
+
       setAddress(data.payload.data)
     } catch (error) {
       toast('Cant load addresses reload page ')
@@ -63,25 +63,25 @@ export default function OrderSummary({
   return (
 
     <div>
-      {1 ? <Main  >
+      <Main  >
 
-       { <div className='address-holder' >
+        {  !mark && <div className='address-holder' >
 
-        {<RedButton onClick={e => {
+          {  <RedButton onClick={e => {
             history.push('deliveryinfo')
           }} style={{
             width: '-webkit-fill-available'
           }} title='Add an address' />}
 
 
-         {!mark &&  <div className="addresses">
+          {!mark && <div className="addresses">
             {data.map((addressDetails, i) => { return <AddressComponent key={i} setMarked={setMark} marked={mark} details={addressDetails} /> })}
           </div>}
 
-       
+
         </div>}
 
-      {mark &&   <OrderSummaryComponent data={{
+        {mark && <OrderSummaryComponent data={{
           name,
           amt,
           serving,
@@ -96,7 +96,7 @@ export default function OrderSummary({
 
 
 
-      </Main> : <p>No address</p>}
+      </Main>
 
     </div>
 
