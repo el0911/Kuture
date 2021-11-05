@@ -6,6 +6,7 @@ import { Question } from "../../assets/svg";
 import CustomizedPlans from "../customizedPlans";
 import generalUttil from "../../utils/generalUtils";
 import MealPopup from "../mealPopUp";
+import cartObject from '../../utils/cart';
 
 const customStyles = {
     content: {
@@ -171,14 +172,25 @@ const MealComponent = ({data}) => {
                 }} />
 
                 <button onClick={e => {
-                    openModal(<CustomizedPlans closeModal={openModal} itemObject={{
-                        _id,
-                        name,
-                        servings,
-                        ...rest
-                    }} servings={servings} />)
+                     if (cartObject.doIHavaABox()  ) {
+                        cartObject.addItemToBox({
+                            _id,
+                            name,
+                            servings,
+                            ...rest
+                        })
+                    }
+                    else{
+                        openModal(<CustomizedPlans closeModal={openModal} itemObject={{
+                            _id,
+                            name,
+                            servings,
+                            ...rest
+                        }
+                    } servings={servings} />)
+                    }
                 }} >
-                    add to cart
+                    add to Box
                 </button>
             </div>
         }

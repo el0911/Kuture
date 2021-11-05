@@ -15,8 +15,11 @@ height: 100vh;
 width: -webkit-fill-available;     
 top: 0;
 
+.box  {
+  margin-bottom: 30px;
+}
 
-main:last-child {
+.box:last-child {
   margin-bottom: 300px;
 }
 
@@ -102,59 +105,100 @@ main:last-child {
   }
 
 `;
- 
-export default function Cart({setCartShow , children, history }) {
 
- 
+const Box = styled.div`
+
+  .box-name{
+    color:silver;
+    margin: 0;
+  }
+
+  .line{
+    border-bottom:1px solid silver;
+    width:100%;
+    height:1px;
+  }
+
+  .box-title{
+    margin-bottom:20px
+  }
+
+  .box-items{
+    width: 90%;
+    margin-left: auto;
+  }
+
+
+`
+
+export default function Cart({ setCartShow, children, history }) {
+
+
   const [cart, setCart] = React.useState([])
   const [total, setTotal] = React.useState(0)
 
   useEffect(() => {
-    
+    cartObject.passUpdateFunction(setCart)
     setCart(cartObject.allCart)
     let tempTotal = 0
-    cartObject.allCart.map(({price,plan})=>{
-      tempTotal = tempTotal + (price* plan)
-    })
+    // cartObject.allCart.map(({price,plan})=>{
+    //   tempTotal = tempTotal + (price* plan)
+    // })
 
 
-  
- 
+
+
 
     setTotal(tempTotal)
   }, [])
 
- 
+
   return (
     <Main>
-      <div className="main"  id='mainp'>
-           <div className="close_div">
-            {children}
-          </div>
-          <h1 className="each_itemh1">Added to your Cart</h1>
-          <div className="cart_list">
-            {cart && cart.map((item, i) => {
-              return (
-                <CartItem item={item} key={i} id={i} />
-              );
-            })}{" "}
-          </div>
+      <div className="main" id='mainp'>
+        <div className="close_div">
+          {children}
+        </div>
+        <h1 className="each_itemh1">Added to your Cart</h1>
+        <div className="cart_list">
+          {cart && Object.keys(cart).map((box, i) => {
+            return (<Box  className='box' key={i}>
 
-          <div className="buttn_div">
-            <div className="text_div">
-              <h4>Total</h4>
-              <h4> ${total} </h4>
-            </div>
-            <button
-              onClick={() => {
-  
-                history.push('ordersummary');
-                setCartShow(false)
-              }}
-            >
-              PROCEED TO CHECKOUT
-            </button>
-         </div>
+              <div className="box-title">
+                <p className='box-name' >
+                  {box}
+                </p>
+                <div className="line">
+
+                </div>
+              </div>
+              <div className="box-items">
+                {cart[box].map((item, i) => {
+                  return (
+                    <CartItem item={item} key={i} id={i} />
+                  );
+                })}
+              </div>
+
+            </Box>)
+          })}{" "}
+        </div>
+
+        <div className="buttn_div">
+          <div className="text_div">
+            <h4>Total</h4>
+            <h4> ${total} </h4>
+          </div>
+          <button
+            onClick={() => {
+
+              history.push('ordersummary');
+              setCartShow(false)
+            }}
+          >
+            PROCEED TO CHECKOUT
+          </button>
+        </div>
       </div>
     </Main>
   );
