@@ -128,7 +128,7 @@ width: -webkit-fill-available;
 `
 
 
-const MealComponent = ({data}) => {
+const MealComponent = ({data,history}) => {
     const { servings, imageMain, nonView, name, _id, recipeId = { timeTaken: 0 }, openModal, ...rest } = data
     const convertToTTimeString = () => {
         let result = ''
@@ -147,7 +147,9 @@ const MealComponent = ({data}) => {
             <p>
                 {name}
             </p>
-            <button>
+            <button   onClick={() => {
+                    history.push("/allrecipes");
+                }} >
                 View More
             </button>
         </div>}
@@ -177,6 +179,8 @@ const MealComponent = ({data}) => {
                             _id,
                             name,
                             servings,
+                            plan:1,
+                            imageMain,
                             ...rest
                         })
                     }
@@ -185,6 +189,8 @@ const MealComponent = ({data}) => {
                             _id,
                             name,
                             servings,
+                            plan:1,////change the wordings for this quick it can confuse someone
+                            imageMain,
                             ...rest
                         }
                     } servings={servings} />)
@@ -235,7 +241,7 @@ export default function Meal({ category, list }) {
             <div className='box_home'  >
                 {list.map(({ ...data }) => {
 
-                    return <MealComponent data={{ ...data, openModal }} />
+                    return <MealComponent history={history} data={{ ...data, openModal }} />
                 })}
             </div>
 

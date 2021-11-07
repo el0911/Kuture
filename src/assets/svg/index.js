@@ -6,6 +6,7 @@ import {ReactComponent as Question} from "./question.svg";
 import {ReactComponent as FamilyTable} from "./familytable.svg";
 import {ReactComponent as TwoPeople} from "./twoPeaple.svg";
 import {ReactComponent as SinglePerson} from "./singleTable.svg";
+import {ReactComponent as TrashSvg} from "./trash.svg";
   
 export {
     RightSide,
@@ -16,4 +17,5 @@ export {
     TwoPeople,
     FamilyTable,
     SinglePerson,
+    TrashSvg
 }

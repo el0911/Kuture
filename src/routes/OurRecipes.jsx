@@ -120,12 +120,7 @@ export default function OurRecipes() {
   const [categories, setCategories] = React.useState([]);
   const [type, setType] = React.useState(false);
 
-  const options = [
-    { value: '0', label: 'IGBOCENTRIC' },
-    { value: '1', label: 'HAUSACENTRIC' },
-    { value: '2', label: 'YUROBACANTRIC' },
-  ];
-
+ 
 
   const data = {
     '0': {
@@ -260,9 +255,7 @@ export default function OurRecipes() {
       </div>
 
       <div className="all_products">
-        <p className="time">
-          Menu for 20th Feb. - 26th Feb. 2021
-        </p>
+     
 
         <div className="products">
           <Meal list={products}>
