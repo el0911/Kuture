@@ -4,21 +4,21 @@ import axiosCall from './axios'
 
 
 
-const groupby =(data,columns)=>{
+const groupby = (data, columns) => {
     const result = {}
-    data.forEach((item)=>{
+    data.forEach((item) => {
         const key = item[columns]
         if (result[key]) {
             result[key].push(item)
         }
-        else{
+        else {
             result[key] = [
                 item
             ]
         }
     })
     return result
-}   
+}
 
 /**
  * @description this class handles functions that involve the cart
@@ -36,8 +36,8 @@ class Cart {
      * @description update function to rerender cart componnet
      * @param {*} func 
      */
-    passUpdateFunction(func){
-        this.update =  func
+    passUpdateFunction(func) {
+        this.update = func
     }
 
 
@@ -47,16 +47,18 @@ class Cart {
      * @param itemObject the item am about to add to the box
      * @param mealSize the meal plan size
      */
-    async createABox(sizeOfBOX, mealSize,itemObject) {
-        console.log({sizeOfBOX,mealSize})
+    async createABox(sizeOfBOX, mealSize, itemObject) {
+        console.log({ sizeOfBOX, mealSize })
         try {
             this.boxID = 'pending'
+            this.mealSize =mealSize;
             const { data } = await axiosCall.get('/cart/box/create?size=' + sizeOfBOX + '&&mealSize=' + mealSize)
             const { boxID, shortKey, size } = data.payload.data;
             this.boxID = boxID;
             this.shortKey = shortKey
             ////just pass the item to the cart no need to wait for it
             this.addItemToBox(itemObject)
+            itemObject.price =itemObject.servings[mealSize]
             itemObject.boxShort = shortKey
             ///add the box to objecct
             this.boxes.push({
@@ -64,8 +66,9 @@ class Cart {
                 items: [
                     itemObject
                 ],
-                size:sizeOfBOX,
-                boxHash: shortKey
+                size: sizeOfBOX,
+                boxHash: shortKey,
+                 
             })
 
             console.log({ box: this.boxes })
@@ -93,45 +96,48 @@ class Cart {
         try {
 
             console.log({
-                box:this.boxes
+                itemObject
             })
 
-            const {boxID,shortKey} = this
+            const { boxID, shortKey,mealSize } = this
 
             let boxFull = false
+            
             ///add the data to the boxes list
             this.boxes.forEach(function (box) {
                 if (box._id === boxID) {
 
-                    if (box.size - 1 === box.items.length  ) {
+                    if (box.size - 1 === box.items.length) {
                         ///check if i am about to fill the box
                         boxFull = true
                     }
                     else if (box.size <= box.items.length) {
                         ///check if box is full then initiate a new box
-                         
+
                         throw 'Break';
                     }
-                    itemObject.boxShort = boxID
+                    itemObject.boxShort = shortKey
+                    itemObject.price = itemObject.servings[mealSize]
+
 
                     box.items.push({ itemObject })
-                     
+
                     return
                 }
             })
 
             this.allCartRaw.push(itemObject)
 
-           
 
-         try {
-            this.allCart = groupby(this.allCartRaw,'boxShort')
-         } catch (error) {
-             console.log(error)
-         }
+
+            try {
+                this.allCart = groupby(this.allCartRaw, 'boxShort')
+            } catch (error) {
+                console.log(error)
+            }
 
             console.log({
-                kkkk:this.allCart
+                kkkk: this.allCart
             })
 
             const { data } = await axiosCall.post('cart', {
@@ -139,7 +145,7 @@ class Cart {
                 boxId: this.boxID
             })
 
-            console.log({data})
+            console.log({ data })
 
             toast("Added item to Box", {
                 position: "top-right",
@@ -155,11 +161,11 @@ class Cart {
             if (boxFull) {
                 ///clear current box
                 throw 'Break';
-             }
+            }
         } catch (error) {
             if (error === 'Break') {
                 this.boxID = false;
- 
+
                 toast("Box Full", {
                     position: "top-right",
                     autoClose: 5000,
@@ -196,8 +202,35 @@ class Cart {
             }
             const { data } = await axiosCall.get('cart')
             this.allCartRaw = data.payload.data
-            this.allCart = groupby(data.payload.data,'boxShort')
-          } catch (error) {
+            this.allCart = groupby(data.payload.data, 'boxShort')
+        } catch (error) {
+            console.log(error)
+            toast("Failed to load cart", {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: false,
+                draggable: false,
+                progress: undefined,
+            })
+        }
+    }
+
+
+    /**
+     * @description load cart items into the app on load
+     */
+    async deleteBox(shortKey) {
+        try {
+            ///delete from the list
+            const newList = this.allCartRaw.filter((item) => item.boxShort !== shortKey)
+            this.allCart = groupby(newList, 'boxShort')
+            this.allCartRaw = newList
+            this.allCart = groupby(this.allCartRaw, 'boxShort')
+            this.update('dd'+Math.random())
+            await axiosCall.delete('cart/box?box=' + shortKey)
+        } catch (error) {
             console.log(error)
             toast("Failed to load cart", {
                 position: "top-right",
@@ -217,10 +250,10 @@ class Cart {
   * @param {*} servingSize 
   */
     getServingName(servingSize) {
-        if (servingSize == 1) {
+        if (servingSize === 1) {
             return 'Loner'
         }
-        else if (servingSize == 2) {
+        else if (servingSize === 2) {
             return 'The Couple'
         }
         else return 'Family'

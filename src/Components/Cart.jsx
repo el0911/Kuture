@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { useHistory } from "react-router-dom";
 import CartItem from "./cartItem.component";
 import cartObject from "../utils/cart";
+import { TrashSvg } from "../assets/svg";
 
 const Main = styled.main`
 
@@ -111,6 +112,16 @@ const Box = styled.div`
   .box-name{
     color:silver;
     margin: 0;
+    width: -webkit-fill-available;
+  }
+
+  .title-content svg{
+    cursor: pointer;
+    fill:silver
+  }
+
+  .title-content svg:hover{
+     fill:#EE4E2F
   }
 
   .line{
@@ -129,6 +140,13 @@ const Box = styled.div`
   }
 
 
+  .title-content{
+    display: flex;
+    width: 100%;
+    align-items: self-end;
+  }
+
+
 `
 
 export default function Cart({ setCartShow, children, history }) {
@@ -136,21 +154,19 @@ export default function Cart({ setCartShow, children, history }) {
 
   const [cart, setCart] = React.useState([])
   const [total, setTotal] = React.useState(0)
+  const [togle, setToggle] = React.useState(0)
 
   useEffect(() => {
-    cartObject.passUpdateFunction(setCart)
+    
+    cartObject.passUpdateFunction(setToggle)
     setCart(cartObject.allCart)
     let tempTotal = 0
-    // cartObject.allCart.map(({price,plan})=>{
-    //   tempTotal = tempTotal + (price* plan)
-    // })
-
-
-
-
+    cartObject.allCartRaw.map(({ price, plan }) => {
+      tempTotal = tempTotal + (price * plan)
+    })
 
     setTotal(tempTotal)
-  }, [])
+  }, [togle])
 
 
   return (
@@ -161,13 +177,20 @@ export default function Cart({ setCartShow, children, history }) {
         </div>
         <h1 className="each_itemh1">Added to your Cart</h1>
         <div className="cart_list">
-          {cart && Object.keys(cart).map((box, i) => {
-            return (<Box  className='box' key={i}>
+          {cart && Object.keys(cart).map((box, j) => {
+            return (<Box className='box' key={j}>
 
               <div className="box-title">
-                <p className='box-name' >
-                  {box}
-                </p>
+                <div className="title-content">
+                  <p className='box-name' >
+                    {box}
+                  </p>
+
+                  <TrashSvg onClick={e=>{
+                    cartObject.deleteBox(box)
+                  }} />
+                </div>
+
                 <div className="line">
 
                 </div>

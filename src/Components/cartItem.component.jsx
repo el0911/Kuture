@@ -102,7 +102,7 @@ function CartItem({ item }) {
   
     return (
         <Main>
-            <img src={item.media} alt="each" />
+            <img src={item.media||item.imageMain} alt="each" />
             <div className="text_div">
                 <div className="left_info">
                      <p className='name' >{item.name} </p>
