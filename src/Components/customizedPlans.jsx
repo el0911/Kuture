@@ -110,7 +110,7 @@ export default function CustomizedPlans({itemObject, servings = {},closeModal=((
 
             <div className="top">
                 <p>
-                    {stage === 0 ? ' Choose your customised plan' : 'No of recipes per week'}
+                    {stage === 0 ? 'Choose your customised plan' : 'How big do you want the box'}
                 </p>
 
                 <svg width="40" height="49" viewBox="0 0 40 49" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -194,9 +194,9 @@ export default function CustomizedPlans({itemObject, servings = {},closeModal=((
                     </svg>
 
 
-                    <div className="total">
+                    {/* <div className="total">
                         ${servings[stage] * count}
-                    </div>
+                    </div> */}
 
                    
 
@@ -204,14 +204,15 @@ export default function CustomizedPlans({itemObject, servings = {},closeModal=((
 
 
                 <RedButton onClick={e=>{
-                    cartObject.saveAnIttemToCart(itemObject,stage,count)
+                    // cartObject.saveAnIttemToCart(itemObject,stage,count)
+                    cartObject.createABox(count,stage,itemObject)
                     closeModal(false)
                 }} style={{
                             width: '100%',
                             // position: 'absolute',
                             // bottom: '0',
                             // right: '0'
-                    }} title='Add to cart'/>
+                    }} title='Create a Box'/>
             </div>
             }
 
