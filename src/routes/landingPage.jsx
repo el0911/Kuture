@@ -531,7 +531,7 @@ export default function LandingPage() {
       <Categories categories={categories} />
       <HowWeOperate />
       <FavouriteRecipes favourites={favourites}/>
-      <Footer />
+ 
     </Main>
   );
 }

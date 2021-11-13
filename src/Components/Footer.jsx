@@ -9,6 +9,8 @@ const FooterDiv = styled.footer`
   background: #3f3d56;
   margin-top: 3rem;
   color: #fff;
+  position: absolute;
+  width: 100%;
   @media (min-width: 300px) and (max-width: 600px) {
     .body_footer {
       display: flex;
@@ -130,7 +132,7 @@ export default function Footer() {
   return (
     <FooterDiv>
      
-        {/* <div className="body_footer">
+        <div className="body_footer">
         
           <div className="second_div">
             <h6>Follow us on social media</h6>
@@ -145,7 +147,7 @@ export default function Footer() {
             </a>
           </div>
         </div>
-        <img src={Copyright} alt="copyright" className="copyright" /> */}
+        <img src={Copyright} alt="copyright" className="copyright" />
      </FooterDiv>
   );
 }
