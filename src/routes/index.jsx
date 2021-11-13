@@ -11,8 +11,8 @@ import DeliveryInformation from "./DeliveryInformation";
 import Whyus from "./whyus";
 import Layout from "../Components/layout";
 import Login from "./login";
-import Signup from "./signup";
 import Footer from "../Components/Footer";
+import Subscribe from "./subscribe";
 export default function Routes() {
   return (
 
@@ -22,13 +22,14 @@ export default function Routes() {
           <Route exact path="/" component={LandingPage} />
           <Route exact path="/allrecipes" component={OurRecipes} />
           <Route exact path="/customise" component={CustomiseMenu} />
-          <Route exact path="/login" component={Login} />
+          <Route exact path="/login" component={Subscribe} />
           <Route exact path="/signup" component={LandingPage} />
           <Route path="/recipe/:productId" component={EachRecipe} />
           <Route exact path="/deliveryinfo" component={DeliveryInformation} />
           <Route exact path="/ordersummary" component={OrderSummary} />
           <Route exact path="/completed" component={CompletedOrder} />
           <Route exact path="/whykulturefresh" component={Whyus} />
+          <Route exact path="/sub" component={Subscribe} />
         </Layout>
       </Switch>
       <Footer />
