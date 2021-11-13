@@ -23,15 +23,15 @@ export default function Routes() {
           <Route exact path="/" component={LandingPage} />
           <Route exact path="/allrecipes" component={OurRecipes} />
           <Route exact path="/customise" component={CustomiseMenu} />
-          <Route exact path="/login" component={Login} />
-          <Route exact path="/signup" component={LandingPage} />
+          <Route exact path="/login" component={Subscribe} />
+          <Route exact path="/signup" component={Subscribe} />
           <Route path="/recipe/:productId" component={EachRecipe} />
           <Route exact path="/deliveryinfo" component={DeliveryInformation} />
           <Route exact path="/ordersummary" component={OrderSummary} />
           <Route exact path="/completed" component={CompletedOrder} />
-          <Route exact path="/whykulturefresh" component={Whyus} />
+          <Route exact path="/whykulturefresh" component={Subscribe} />
           <Route exact path="/sub" component={Subscribe} />
-          <Route exact path="/history" component={HistoryPage} />
+          <Route exact path="/history" component={Subscribe} />
         </Layout>
       </Switch>
       <Footer />
