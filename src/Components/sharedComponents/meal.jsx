@@ -28,16 +28,17 @@ margin-bottom: 20px;
 margin: 30px;
 width: -webkit-fill-available;
 .showbox{
-    width: 247px;
-    margin: 10px auto;
-    display: inherit;
+    height: 340px
   }
 
   .box_home{
     display: grid;
-   
-    grid-template-columns: repeat(auto-fill, minmax(348px, 1fr));
+    width: 80VW;
+    margin: auto;
+    gap:24px;
+    grid-template-columns: repeat(auto-fit, minmax(307px, 1fr));
   }
+
  
 
 .showbox img{
@@ -142,8 +143,15 @@ const MealComponent = ({data,history}) => {
     }
 
     return <div className="showbox">
-        <img src={imageMain} alt="" />
-        {!nonView && <div className="info">
+          <div  style={{
+              background:'black',
+              height:nonView? '220px':'280px' ,
+              backgroundImage:`url(${imageMain})`,
+              backgroundSize:'cover',
+              backgroundPosition:'center',
+              backgroundRepeat:'no-repeat'
+          }} ></div>
+       {!nonView && <div className="info">
             <p>
                 {name}
             </p>

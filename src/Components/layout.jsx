@@ -1,6 +1,7 @@
 import React from 'react'
 import { useHistory } from 'react-router-dom';
 import styled from "styled-components";
+import Footer from './Footer';
 import Header from './Header';
 
 const Component = styled.div`
@@ -42,6 +43,8 @@ export default function Layout({ children }) {
                     bottom: '0',
                     backgroundSize: 'contain'
                 }} ></div>  </div>
+
+ 
         </Component>
     )
 }
