@@ -736,21 +736,22 @@ export default function HowWeOperate() {
         <img src={BannerL} alt="banner_mobile" className="bannerL banner" />
         <h2 className="title">HOW WE OPERATE</h2>
         <p className="sub_title">
-          Lorem Ipsum has been the industry's standard dummy text ever since the
-          1500s, when an unknown printer took a galley of type and scrambled it
-          to make a type specimen book.
+        Our mission is to deliver  to your homes wholesome delicacies that either take you back home  or  let you experience foods from other cultures you might be curious of. Our meal kits have been specially prepared to take the struggle and time out of cooking. Follow the steps below to  begin an experience
+
         </p>
         <div className="operate_div">
           <div className="choose_div">
             <img src={Choose} alt="choose" className="choose" />
             <div className="choose_text">
-              <h5>Choose your recipes.</h5>
+              <h5>Choose your Meals.</h5>
               <p>
-                Lorem Ipsum has been the industry's standard dummy text ever
-                since the 1500s, when an unknown printer took a galley of type
-                and scrambled it to make a type specimen book. It has survived
-                not only five centuries, but also the leap into electronic
-                typesetting, remaining essentially unchanged.
+              After Login in Head over to Our All Meals  Page, 
+               Filter All the meals by the culture you want to try,
+                 When you select the first meal  You will get prompt to Create a box. 
+                 Create a box depending on the number of meals and Persons per meal you want. 
+                 Fill the Box with the  amount of meals chosen earlier.
+                 Fill out Shipping details and Payment details and create your order
+
               </p>
             </div>
           </div>
@@ -761,13 +762,10 @@ export default function HowWeOperate() {
               <img src={Deliver} alt="choose" className="deliverM" />
             </div>
             <div className="deliver_text">
-              <h5>Deliver your recipes.</h5>
+              <h5>Deliver your Meals.</h5>
               <p>
-                Lorem Ipsum has been the industry's standard dummy text ever
-                since the 1500s, when an unknown printer took a galley of type
-                and scrambled it to make a type specimen book. It has survived
-                not only five centuries, but also the leap into electronic
-                typesetting, remaining essentially unchanged.
+              Kulturefresh will package all the ingredients needed
+               for each meal into a specially insulated box to protect.
               </p>
             </div>
             <div className="deliver_img">
@@ -781,13 +779,10 @@ export default function HowWeOperate() {
           <div className="enjoy_div">
             <img src={Enjoy} alt="choose" className="enjoy" />
             <div className="enjoy_text">
-              <h5>Enjoy your recipes.</h5>
+              <h5>Enjoy your Meals.</h5>
               <p>
-                Lorem Ipsum has been the industry's standard dummy text ever
-                since the 1500s, when an unknown printer took a galley of type
-                and scrambled it to make a type specimen book. It has survived
-                not only five centuries, but also the leap into electronic
-                typesetting, remaining essentially unchanged.
+              Your Kulturefresh box will be delivered to your door step and you can begin to enjoy your meals.                                                                                                                                             
+
               </p>
             </div>
           </div>

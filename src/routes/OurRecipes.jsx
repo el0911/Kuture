@@ -263,7 +263,6 @@ export default function OurRecipes() {
         </div>
       </div>
 
-      <Footer />
     </Main>
   );
 }

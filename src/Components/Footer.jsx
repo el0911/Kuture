@@ -6,11 +6,13 @@ import Instagram from "../assets/svg/instagram.svg";
 import Copyright from "../assets/svg/kulture_copy.svg";
 
 const FooterDiv = styled.footer`
-  background: #3f3d56;
-  margin-top: 3rem;
-  color: #fff;
-  position: absolute;
-  width: 100%;
+background: #3f3d56;
+margin-top: 3 rem ;
+color: #fff;
+position: absolute;
+width: 100%;
+display: flex;
+padding-bottom: 10px;
   @media (min-width: 300px) and (max-width: 600px) {
     .body_footer {
       display: flex;

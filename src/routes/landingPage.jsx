@@ -10,6 +10,7 @@ import Footer from "../Components/Footer";
 import { commerce } from "../lib/Commerce";
 import axiosCall from "../utils/axios";
 import { useLoadrConttext } from "../providers/fullLoader.provider";
+import { useHistory } from "react-router-dom";
 
 const Main = styled.main`
   font-family: "Sen", sans-serif;
@@ -21,6 +22,13 @@ const Main = styled.main`
     
   }
 
+
+  .pointer{
+    padding: 10px ;
+    border: 1px solid;
+    border-radius: 5px ;
+    cursor: pointer;
+  }
 
   @media (min-width: 960px) and (max-width: 1024px) {
      .background_ipad {
@@ -444,7 +452,7 @@ export default function LandingPage() {
   const [categories, setCategories] = React.useState([]);
   const [favourites, setFavour] = React.useState([]);
   const { setLoader } = useLoadrConttext()
-
+  const history =  useHistory()
   const fetchCategories = async () => {
  
     try {
@@ -512,12 +520,18 @@ export default function LandingPage() {
         <div className="leftside">
           <div className="overlay">
             <p className="header">
-              We are bringing <br />
-              your roots to you.
+              Bringing your roots  <br />
+              to your doorstep.
             </p>
 
             <p className="text">
-              Lorem Ipsum has been the industry's <br /> standard dummy text ever since the 1500s, <br />when an unknown printer took a galley of <br /> type.
+              Experience different cultures <br /> all in one box. <br /> <br /> <br /> 
+                <span className='pointer'  onClick={e=>{
+                  history.push('/sub')
+                }} >
+                Join the Kulture
+                </span>
+               <br />  
             </p>
           </div>
         </div>

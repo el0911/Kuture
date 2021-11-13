@@ -89,6 +89,7 @@ const Main = styled.main`
 
 function Subscribe() { 
   const inputEmail = React.createRef(); 
+  const inputName = React.createRef(); 
 
   return (
     <Main>
@@ -99,8 +100,10 @@ function Subscribe() {
           <form>
             <h4 className="h4_">Hear about us when we come out!!!</h4>
             <div className="first_inputs">
-              <input ref={inputEmail} type='email' placeholder="Email Address" />
- 
+
+            <input ref={inputName} type='text' placeholder="Name" />
+            <input ref={inputEmail} type='email' placeholder="Email Address" />
+
             </div>
 
             <div className="btn_div">
@@ -109,6 +112,7 @@ function Subscribe() {
                   await db.ref("emails").push({
                     email: inputEmail.current.value,
                     timestamp: Date.now(),
+                    name:inputName.current.value
                   });
                    alert('saved')
                 } catch (error) {
