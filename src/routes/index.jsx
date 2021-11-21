@@ -31,7 +31,7 @@ export default function Routes() {
           <Route exact path="/completed" component={CompletedOrder} />
           <Route exact path="/whykulturefresh" component={Whyus} />
           <Route exact path="/sub" component={Subscribe} />
-          <Route exact path="/history" component={HistoryPage} />
+          <Route exact path="/historybook" component={HistoryPage} />
         </Layout>
       </Switch>
       <Footer />
