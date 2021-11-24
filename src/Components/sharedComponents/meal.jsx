@@ -176,10 +176,10 @@ const MealComponent = ({data,history}) => {
 
 
                 </div>
-                {/* <Question className='question' onClick={e => {
+                <Question className='question' onClick={e => {
                     openModal(<MealPopup recipeId={recipeId._id} recipeName={name} />
                     )
-                }} /> */}
+                }} />
 
                 <button onClick={e => {
                      if (cartObject.doIHavaABox()  ) {
