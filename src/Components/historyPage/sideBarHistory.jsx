@@ -46,7 +46,7 @@ border-radius: 10px;
 
 
 export default function SideBarHistory(props) {
-    const { index } = props;
+
     return (
         <Component className={``}>
 
