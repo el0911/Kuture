@@ -63,7 +63,7 @@ const Main = styled.main`
   gap: 40px;
   
 }
- 
+  
 `;
 
 export default function HistoryPage() {
