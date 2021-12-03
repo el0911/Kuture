@@ -103,13 +103,17 @@ hr{
     text-transform: capitalize;
 }
 
-
+.recipe-item img{
+    margin: auto;
+    width: 400px;
+    border-radius: 10px;
+}
 
 `
 
-export default function MealPopup({ recipeId,recipeName }) {
+export default function MealPopup({ recipeId, recipeName }) {
 
-    const [info, setInfo] = React.useState({ ingredients:[],steps:[] })
+    const [info, setInfo] = React.useState({ ingredients: [], steps: [] })
 
 
     React.useEffect(() => {
@@ -148,13 +152,13 @@ export default function MealPopup({ recipeId,recipeName }) {
     return (
         <ModalComponent>
             <div className="background" style={{
-                    backgroundImage:'url('+info.recipeImg+")"
+                backgroundImage: 'url(' + info.recipeImg + ")"
 
             }}  ></div>
 
             <div className="info">
                 <p className="title">
-                   {recipeName}
+                    {recipeName}
                 </p>
 
                 <p className="recipe_title">
@@ -174,16 +178,19 @@ export default function MealPopup({ recipeId,recipeName }) {
                         })}.
                     </p>
 
-                 
+
 
 
                     <div className="steps">
                         <p className="recipe_title">
                             Recipe Steps
                             <ul className="list">
-                                {info.steps.map(({ text }, index) => {
+                                {info.steps.map(({ text, image }, index) => {
                                     return <li>
-                                         <p className="number">{index + 1}</p> <p className="text">{text}</p>
+                                        <div className="recipe-item">
+                                            <p className="number">{index + 1}</p> <p className="text">{text}</p>
+                                            {image && <img src={image} ></img>}
+                                        </div>
                                     </li>
                                 })}
                             </ul>
