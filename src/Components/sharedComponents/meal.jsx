@@ -139,7 +139,7 @@ const MealComponent = ({data,history}) => {
             console.log(error)
         }
 
-        return result
+        return '30mins'
     }
 
     return <div className="showbox">

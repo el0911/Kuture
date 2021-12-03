@@ -9,6 +9,7 @@ import CompletedOrder from "../Components/CompletedOrder";
 import EachRecipe from "../Components/EachRecipe";
 import DeliveryInformation from "./DeliveryInformation";
 import Whyus from "./whyus";
+import Signup from './signup'
 import Layout from "../Components/layout";
 import Login from "./login";
 import Signup from "./signup";
@@ -31,8 +32,9 @@ export default function Routes() {
           <Route exact path="/ordersummary" component={OrderSummary} />
           <Route exact path="/completed" component={CompletedOrder} />
           <Route exact path="/whykulturefresh" component={Whyus} />
-          <Route exact path="/sub" component={Subscribe} />
-          <Route exact path="/historybook" component={HistoryPage} />
+  
+          {/* <Route exact path="/sub" component={Subscribe} /> */}
+          {/* <Route exact path="/history" component={Subscribe} /> */}
         </Layout>
       </Switch>
       <Footer />
