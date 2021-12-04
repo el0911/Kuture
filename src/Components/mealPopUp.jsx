@@ -12,8 +12,10 @@ background:white;
 
 
 .background{
-     height:200px;
-    width:100%
+    height:200px;
+    width:100%;
+    background-position: center;
+    background-size: cover;
 }
 
 img{
