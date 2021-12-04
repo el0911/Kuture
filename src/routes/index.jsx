@@ -12,10 +12,9 @@ import Whyus from "./whyus";
 import Signup from './signup'
 import Layout from "../Components/layout";
 import Login from "./login";
-import Signup from "./signup";
-import Footer from "../Components/Footer";
-import Subscribe from "./subscribe";
-import HistoryPage from "./history";
+ import Footer from "../Components/Footer";
+// import Subscribe from "./subscribe";
+// import HistoryPage from "./history";
 export default function Routes() {
   return (
 
