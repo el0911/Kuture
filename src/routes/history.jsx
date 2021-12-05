@@ -1,9 +1,11 @@
 import React from "react";
+import { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { toast } from "react-toastify";
 import styled from "styled-components";
 import BoxHistory from "../Components/historyPage/boxHistory";
 import SideBarHistory from "../Components/historyPage/sideBarHistory";
+import { useLoadrConttext } from "../providers/fullLoader.provider";
 import axiosCall from "../utils/axios";
 
 
@@ -63,25 +65,70 @@ const Main = styled.main`
   gap: 40px;
   
 }
+
+.side-history{
+  display:block
+  }
+
+@media only screen and (max-width: 768px) {
+  /* For mobile phones: */
+  .side-history{
+      display:none;
+  }
+
+  .history-page-content{
+    grid-template-columns: 1fr;
+  }
+  
+}
+
   
 `;
 
 export default function HistoryPage() {
 
   const times = [
-    {
-      'title': 'All Time'
-    },
-    {
-      'title': 'This week'
-    },
-    {
-      'title': 'Last week'
-    },
-    {
-      'title': 'Last Month'
-    }
+    // {
+    //   'title': 'All Time'
+    // },
+    // {
+    //   'title': 'This week'
+    // },
+    // {
+    //   'title': 'Last week'
+    // },
+    // {
+    //   'title': 'Last Month'
+    // }
   ]
+
+  const { setLoader } = useLoadrConttext()
+
+  const [historyByBoxes, setHistory] = useState([]);
+
+  const [moreItemsList, setItemList] = useState(false);
+
+
+  const geetHistoryByBoxes = async () => {
+
+    try {
+      setLoader(true)
+      const { data } = await axiosCall.get('/orders/history')
+
+      console.log(data)
+      setHistory( data.payload.data );
+
+      setLoader(false)
+    } catch (error) {
+      console.log(error)
+      setLoader(false)
+    }
+  };
+
+
+  React.useEffect(() => { 
+    geetHistoryByBoxes()
+  }, [])
 
 
   return (
@@ -105,14 +152,13 @@ export default function HistoryPage() {
 
         <div className="history-page-content">
           <div className="box-container">
-            {[{}, {}, {}, {}, {}, {}, {}, {}, {}].map((data, index) => {
-              return <BoxHistory index={(index % 5) + 1} />
-            })}
-          </div>
-
-
-            <SideBarHistory/>
-
+            {
+              historyByBoxes.map((data, index) => {
+                return <BoxHistory  {...data}  setMoreFunct={ setItemList }  />
+              })
+            }
+         </div>
+          {moreItemsList && <SideBarHistory  className='side-history' itemlist ={moreItemsList} />}
         </div>
 
 

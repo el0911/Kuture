@@ -480,8 +480,6 @@ export default function LandingPage() {
       setLoader(false)
     } catch (error) {
       console.log(error)
-      // setLoader(false)
-
     }
   };
 
@@ -494,10 +492,8 @@ export default function LandingPage() {
       const { data } = await axiosCall.get('/meals/poromoted/10')
       // setCategories( data );
       const info = data.payload
-
-    
-
-       setFavour(info.data)
+  
+      setFavour(info.data)
       setLoader(false)
     } catch (error) {
       console.log(error)
@@ -527,7 +523,7 @@ export default function LandingPage() {
             <p className="text">
               Experience different cultures <br /> all in one box. <br /> <br /> <br /> 
                 <span className='pointer'  onClick={e=>{
-                  history.push('/sub')
+                  history.push('/login')
                 }} >
                 Join the Kulture
                 </span>

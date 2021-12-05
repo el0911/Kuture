@@ -14,7 +14,7 @@ import Layout from "../Components/layout";
 import Login from "./login";
  import Footer from "../Components/Footer";
 // import Subscribe from "./subscribe";
-// import HistoryPage from "./history";
+import HistoryPage from "./history";
 export default function Routes() {
   return (
 
@@ -33,7 +33,7 @@ export default function Routes() {
           <Route exact path="/whykulturefresh" component={Whyus} />
   
           {/* <Route exact path="/sub" component={Subscribe} /> */}
-          {/* <Route exact path="/history" component={Subscribe} /> */}
+          <Route exact path="/history" component={HistoryPage} />
         </Layout>
       </Switch>
       <Footer />

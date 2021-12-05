@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from "styled-components";
 import RedButton from '../sharedComponents/redButton';
+import SideBarHistory from './sideBarHistory';
 
 
 
@@ -9,14 +10,16 @@ const Component = styled.main`
   font-family: "Sen", sans-serif;
   background:white;
   height:269px;
-  padding:20px;
   background: #FFFFFF;
   border-radius: 14px;
   display: grid;
   grid-template-rows: 1fr 132px;
     
   .order{
-  
+    background-size: cover;
+    background-position: center;
+    padding:20px;
+
   }
 
   .order p {
@@ -31,6 +34,8 @@ const Component = styled.main`
   }
 
   .down{
+    padding:10px 20px;
+
     display: grid;
     height: -webkit-fill-available;
     grid-template-rows: 1fr 70px;
@@ -51,33 +56,57 @@ const Component = styled.main`
     text-align: left;
     color: #000000;
   }
+
+  .more{
+    display:none
+    }
+
+  @media only screen and (max-width: 768px) {
+    /* For mobile phones: */
+    .more{
+        display:block
+    }
+  }
  
 `;
  
 
-export default function BoxHistory(props) {
-    const { index } = props;
-    return (
-        <Component className={`item level-${index}`}>
+export default function BoxHistory({allMeals , boxSize ,mealSize, shortKey , setMoreFunct}) {
+    const firstMeal = allMeals[0]
 
-            <div className="order">
-                <p>{`Box ${351}`}</p>
+
+    const [show,setShow] = React.useState(false)
+    return (
+        <Component >
+
+            <div className="order" style={{
+                backgroundImage:`url(${firstMeal.imageMain})`
+            }} >
+                <p>{`Box ${shortKey}`}</p>
             </div>
 
             <div className="down">
                 <p className="title">
-                    Beef dumpling in hot and sour soup
+                   {firstMeal.name}
                 </p>
 
                 <div className="lower">
                     <p className="price">
-                        {`$${250.00}`}
+                        {`$${firstMeal.servings[mealSize]}`}
                     </p>
 
-                    <RedButton title="View More" />
+                    <RedButton onClick = {
+                        ()=>{
+                            setMoreFunct(show ? false : {allMeals,mealSize,shortKey})
+                            setShow(!show)
+                        }
+                    } title= {show ?'Hide Details':'View More'} />
                 </div>
             </div>
 
+            {show && <div className="more">
+                <SideBarHistory  itemlist ={{allMeals , boxSize ,mealSize, shortKey }} />
+            </div>}
         </Component>
     )
 }

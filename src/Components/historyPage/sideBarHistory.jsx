@@ -42,28 +42,38 @@ border-radius: 10px;
 }
 `;
 
- 
 
 
-export default function SideBarHistory(props) {
+
+export default function SideBarHistory({ itemlist,className }) {
+
+    let [price , setPrice] = React.useState(0)
+    React.useEffect(()=>{
+        itemlist.allMeals.map((data)=>{
+            price  = price + data.servings[itemlist.mealSize]
+        })
+
+        setPrice(price)
+    },[])
 
     return (
-        <Component className={``}>
+        <Component className={className}>
 
             <div className="order">
-                <p>{`#Box ${351} Content`}</p>
+                <p>{`#Box ${itemlist.shortKey} Content`}</p>
             </div>
 
             <div className="menu-history-content">
-                {[{},{},{},{},{},{}].map(()=>{
-                    return <SideBarHistoryContent/>
+                {itemlist.allMeals.map((data) => {
+                    data.mealSize = itemlist.mealSize
+                    return <SideBarHistoryContent   {...data} />
                 })}
             </div>
 
-                <div className="bottom-content-history-age">
-                    <p>Total</p>
-                    <p>${1500}</p>
-                </div>
+            <div className="bottom-content-history-age">
+                <p>Total</p>
+                <p>${price}</p>
+            </div>
 
 
         </Component>

@@ -53,39 +53,47 @@ p{
         width: 60px;
         height: 60px;
         
+        background-size: cover;
+        background-position: center;
 
         background: #AAAAAA;
         border-radius: 12px;
     }
 
+ 
+
    
 
 `;
 
- 
+
 
 
 export default function SideBarHistoryContent(props) {
-    const { index } = props;
+    const { name, imageMain, servings, mealSize,className } = props;
     return (
         <Component className={''}>
 
-            <div className="image"><img src="" alt="" /></div>
+            <div className="image"><img style={{
+                backgroundImage: `url(${imageMain})`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center'
+            }} alt="" /></div>
             <div className="info">
                 <p>
-                Spicy rice ball with seafood noodles
+                    {name}
                 </p>
             </div>
             <div className="price">
                 <p className="price">
-                    {`$${5000}`}
+                    {`$${servings[mealSize]}`}
                 </p>
 
                 <p className="sub">
-                    Couple
+                    {mealSize === 2 ? 'Couple' : mealSize === 4 ? 'Group' : 'Single'}
                 </p>
             </div>
-             
+
 
         </Component>
     )
