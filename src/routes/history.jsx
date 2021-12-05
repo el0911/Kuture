@@ -19,7 +19,7 @@ const Main = styled.main`
 
 .box-container{
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(255px, 1fr));
+  grid-template-columns: repeat(auto-fit,minmax(255px,380px));
   gap:24px;
 }
 

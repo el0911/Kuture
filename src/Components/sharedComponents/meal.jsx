@@ -36,8 +36,8 @@ width: -webkit-fill-available;
     width: 80VW;
     margin: auto;
     gap:24px;
-    grid-template-columns: repeat(auto-fit, minmax(307px, 1fr));
-  }
+    grid-template-columns: repeat(auto-fit, minmax(255px, 1fr));
+}
 
  
 

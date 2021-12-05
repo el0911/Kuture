@@ -385,10 +385,10 @@ export default function Header() {
   const [close, setClose] = React.useState(false);
   const [cart] = React.useState({});
   const [showcart, setShowCart] = React.useState(false);
-  const history  = useHistory()
-  const {setCartShow} = CartContext()
- 
- 
+  const history = useHistory()
+  const { setCartShow } = CartContext()
+
+
 
   const viewCart = async () => {
     // const response = await commerce.cart.retrieve();
@@ -415,8 +415,8 @@ export default function Header() {
             <Navbar cart={cart} showcart={showcart} handleClick={handleClick} />
           </div>
 
- 
-            
+
+
           <div className="menu_div">
             <img
               src={Menu}
@@ -448,7 +448,7 @@ export default function Header() {
                 }}
               />
 
-              <li className="why"  onClick={e=>{
+              <li className="why" onClick={e => {
                 setClose(false);
                 history.push('/whykulturefresh')
               }} >
@@ -456,22 +456,30 @@ export default function Header() {
                 <span className="why_span">Why kulturefresh</span>
               </li>
 
-              <li className="why" onClick={e=>{
-                  setClose(false);
-                  history.push('allrecipes')
-                }} >
+              <li className="why" onClick={e => {
+                setClose(false);
+                history.push('/history')
+              }} >
+                 
+                <span className="why_span">History</span>
+              </li>
+
+              <li className="why" onClick={e => {
+                setClose(false);
+                history.push('allrecipes')
+              }} >
                 <img src={List} alt="why" />
                 <span className="why_span">Our Recepies</span>
               </li>
 
-          { AuthUtil.isLogedIn() && <li className="why cartt"  onClick={e=>{
-              handleClick()
-          }} >
-            <img src={carticon} alt="login" />
-            <span className="why_span">Cart</span>
-          </li>}
+              {AuthUtil.isLogedIn() && <li className="why cartt" onClick={e => {
+                handleClick()
+              }} >
+                <img src={carticon} alt="login" />
+                <span className="why_span">Cart</span>
+              </li>}
 
-          {!AuthUtil.isLogedIn()  && <li className="why"  onClick={e=>{
+              {!AuthUtil.isLogedIn() && <li className="why" onClick={e => {
                 setClose(false);
 
                 history.push('/login')
@@ -481,7 +489,7 @@ export default function Header() {
               </li>}
 
 
-              {AuthUtil.isLogedIn()  && <li className="why"  onClick={e=>{
+              {AuthUtil.isLogedIn() && <li className="why" onClick={e => {
                 AuthUtil.logout()
               }} >
                 <img src={Login} alt="login" />

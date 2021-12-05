@@ -198,6 +198,13 @@ export default function Navbar({ cart, showcart, handleClick }) {
           }}  className="whykulture">
           <Link   >Why kulturefresh</Link>
         </Li>
+
+        <Li  onClick={e => {
+            history.push('history')
+          }}  className="whykulture">
+          <Link   >History</Link>
+        </Li>
+
         {!AuthUtil.isLogedIn() && <Li  onClick={e => {
             history.push('login')
           }}   className="login">
