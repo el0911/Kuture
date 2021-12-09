@@ -3,8 +3,7 @@
  */
 
 import axiosCall from "./axios";
-import {  toast } from 'react-toastify';
-
+ 
 
 class Auth {
     constructor() {
@@ -44,16 +43,7 @@ class Auth {
             afterLoad()
         } catch (error) {
             
-            const meesage =  error.message
-             toast(meesage, {
-                position: "top-right",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: false,
-                draggable: false,
-                progress: undefined,
-                })
+             
 
             afterLoad()
         }
@@ -77,17 +67,8 @@ class Auth {
             afterLoad();
             
         } catch (error) {
-            const meesage = error.message
-
-            toast(meesage, {
-                position: "top-right",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: false,
-                draggable: false,
-                progress: undefined,
-                })
+ 
+           
             afterLoad()
         }
     }

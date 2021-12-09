@@ -59,11 +59,6 @@ p{
         background: #AAAAAA;
         border-radius: 12px;
     }
-
- 
-
-   
-
 `;
 
 

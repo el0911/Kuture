@@ -1,5 +1,4 @@
 import React from "react";
-import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 import RedButton from "../Components/sharedComponents/redButton";
 import { useLoadrConttext } from "../providers/fullLoader.provider";

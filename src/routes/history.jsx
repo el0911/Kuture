@@ -1,7 +1,6 @@
 import React from "react";
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
-import { toast } from "react-toastify";
 import styled from "styled-components";
 import BoxHistory from "../Components/historyPage/boxHistory";
 import SideBarHistory from "../Components/historyPage/sideBarHistory";
