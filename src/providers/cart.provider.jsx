@@ -22,8 +22,9 @@ const Component = styled.div`
 `;
  
 
-const CartProvider = ({ children }) => {
+const CartProvider = ({ children,readyCart }) => {
   const [showCart, setCartShow] = React.useState(false);
+  const [isCartReady, toggleCartReady] = React.useState(false);
   const history = console.useHistory 
   
   useEffect(()=>{
@@ -33,12 +34,20 @@ const CartProvider = ({ children }) => {
       ///stop scroll
       body.style.overflow = 'hidden'
     }else      { body.style.overflow = 'scroll'}
-
-  },[showCart])
  
+  },[showCart,readyCart])
+ 
+
+  
+  useEffect(()=>{
+    toggleCartReady(readyCart)
+  },[readyCart])
+ 
+
+
   return (
     <Component>
-      <cartContext.Provider value={{ setCartShow }}>
+      <cartContext.Provider value={{ setCartShow,toggleCartReady, isCartReady }}>
         {showCart && <Cart setCartShow={setCartShow}  history={history} >
             
             <img

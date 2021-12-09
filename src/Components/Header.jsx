@@ -464,13 +464,15 @@ export default function Header() {
                 <span className="why_span">History</span>
               </li>
 
-              <li className="why" onClick={e => {
+         
+
+              {AuthUtil.isLogedIn() &&       <li className="why" onClick={e => {
                 setClose(false);
                 history.push('allrecipes')
               }} >
                 <img src={List} alt="why" />
                 <span className="why_span">Our Recepies</span>
-              </li>
+              </li>}
 
               {AuthUtil.isLogedIn() && <li className="why cartt" onClick={e => {
                 handleClick()

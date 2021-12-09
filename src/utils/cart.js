@@ -88,6 +88,14 @@ class Cart {
 
 
     /**
+     * @description gett all cart itemsCount
+     */
+    getAllCartItemCount(){
+        return this.allCartRaw.length
+    }
+
+
+    /**
      * @description adds an item to the a box
      * @param itemObject
      * @param boxId
@@ -214,6 +222,7 @@ class Cart {
                 draggable: false,
                 progress: undefined,
             })
+            throw new Error('Failed to load')
         }
     }
 

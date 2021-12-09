@@ -183,7 +183,7 @@ export default function Cart({ setCartShow, children, history }) {
               <div className="box-title">
                 <div className="title-content">
                   <p className='box-name' >
-                    {box}
+                    {`Box ${j+1}`}
                   </p>
 
                   <TrashSvg onClick={e=>{

@@ -53,6 +53,11 @@ width: -webkit-fill-available;
     background:white;
   }
 
+  .showbox .info p{
+    font-weight: bold;
+    text-transform: capitalize;
+  }
+
   .showbox .info button{
     width: 95px;
     height: 38px;

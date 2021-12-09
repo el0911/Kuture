@@ -138,13 +138,13 @@ export default function Footer() {
         
           <div className="second_div">
             <h6>Follow us on social media</h6>
-            <a href="facebook.com/kulturefresh">
+            {/* <a href="facebook.com/kulturefresh">
               <img src={Facebook} alt="facebook" />
             </a>
             <a href="twitter.com/kulturefresh">
               <img src={Twitter} alt="twitter" />
-            </a>
-            <a href="instagram.com">
+            </a> */}
+            <a href="https://www.instagram.com/kulturefresh/">
               <img src={Instagram} alt="instagram" />
             </a>
           </div>

@@ -5,6 +5,8 @@ import Cart from "./Cart";
 import Close from "../assets/svg/close(1).svg";
 import AuthUtil from "../utils/auth";
 import { useHistory } from "react-router-dom";
+import cartObject from "../utils/cart";
+import { CartContext } from "../providers/cart.provider";
 
 const Li = styled.li`
   .whykulture {
@@ -60,7 +62,33 @@ const Link = styled.a`
 
 const Nav = styled.nav`
   font-family: "Sen", sans-serif;
+
+  .cart-home{
+    display: flex;
+    position: relative;
+  }
   
+.cart-home .text{
+  position: absolute;
+  height: 30px;
+  width: 30px;
+  background: white;
+  border-radius: 50%;
+  font-size: 18px;
+  color: black;
+  right: -25px;
+  top: 13px;
+}
+
+.cart-home .text p{
+  padding: 0;
+  margin: 0;
+  margin-top: 5px;
+} 
+
+
+ 
+
   @media (min-width: 300px) and (max-width: 960px) {
     ul {
       display: none;
@@ -179,49 +207,70 @@ const Nav = styled.nav`
   }
 `;
 
-export default function Navbar({ cart, showcart, handleClick }) {
+export default function Navbar({ cart, handleClick }) {
 
   const history = useHistory()
+  const { isCartReady } = CartContext()
 
   return (
     <Nav>
       <ul style={{
         marginRight: '20px'
       }} >
-        <Li  onClick={e => {
-            history.push('allrecipes')
-          }}  className="recipes">
+        <Li onClick={e => {
+          history.push('allrecipes')
+        }} className="recipes">
           <Link  > Our recipes</Link>
         </Li>
-        <Li  onClick={e => {
-            history.push('whykulturefresh')
-          }}  className="whykulture">
+        <Li onClick={e => {
+          history.push('whykulturefresh')
+        }} className="whykulture">
           <Link   >Why kulturefresh</Link>
         </Li>
 
-        <Li  onClick={e => {
-            history.push('history')
-          }}  className="whykulture">
-          <Link   >History</Link>
-        </Li>
 
-        {!AuthUtil.isLogedIn() && <Li  onClick={e => {
-            history.push('login')
-          }}   className="login">
+        {!AuthUtil.isLogedIn() && <Li onClick={e => {
+          history.push('login')
+        }} className="login">
           <Link  >Login</Link>
         </Li>}
 
 
         {AuthUtil.isLogedIn() && <Li onClick={e => {
-            AuthUtil.logout()
-          }}  className="login">
+          history.push('history')
+        }} className="whykulture">
+          <Link   >History</Link>
+        </Li>
+        }
+
+
+
+        {AuthUtil.isLogedIn() && <Li onClick={e => {
+          AuthUtil.logout()
+        }} className="login">
           <Link  >Logout</Link>
         </Li>}
 
+
+ 
+
         {AuthUtil.isLogedIn() && <Li className="cart" onClick={handleClick}>
-          <img src={carticon} style={{
-            width: '30px'
-          }} alt="cart" />
+
+          <div className='cart-home' >
+            <img src={carticon} style={{
+              width: '30px'
+            }} alt="cart" />
+
+
+            {isCartReady && <div className="text">
+              <p>
+                {cartObject.getAllCartItemCount()}
+              </p>
+            </div>}
+
+
+
+          </div>
 
         </Li>}
 

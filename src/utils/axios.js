@@ -12,9 +12,9 @@ function manageErrorConnection(err) {
        try {
         if (   err.response){
             
-            if (err.response.status === 401)  {
-                AuthUtil.logout()
-            }
+            // if (err.response.status === 401)  {
+            //     AuthUtil.logout()
+            // }
     
             const { data } = err.response;
             const error = data.errors ? `${data.errors[0].message} ${data.errors[0].cause ? data.errors[0].cause : ''}` : data.payload.message
