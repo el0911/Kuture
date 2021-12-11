@@ -239,7 +239,7 @@ export default function Navbar({ cart, handleClick }) {
         {AuthUtil.isLogedIn() && <Li onClick={e => {
           history.push('history')
         }} className="whykulture">
-          <Link   >History</Link>
+          <Link   >Order Hisory</Link>
         </Li>
         }
 

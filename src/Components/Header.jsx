@@ -460,13 +460,13 @@ export default function Header() {
                 setClose(false);
                 history.push('/history')
               }} >
-                 
-                <span className="why_span">History</span>
+                 {/* tthis is dev */}
+                <span className="why_span">Order History</span>
               </li>
 
          
 
-              {AuthUtil.isLogedIn() &&       <li className="why" onClick={e => {
+              {AuthUtil.isLogedIn() &&  <li className="why" onClick={e => {
                 setClose(false);
                 history.push('allrecipes')
               }} >
