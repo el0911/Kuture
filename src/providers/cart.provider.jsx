@@ -3,8 +3,7 @@ import styled from "styled-components";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import Close from "../assets/svg/close(1).svg";
 import Cart from "../Components/Cart";
-import { useHistory } from "react-router-dom";
-
+ 
 const cartContext = createContext({ setCartShow: () => { } });
 
 const Component = styled.div`

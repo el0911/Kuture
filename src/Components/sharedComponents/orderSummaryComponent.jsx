@@ -25,9 +25,8 @@ const customStyles = {
 
 
 
-const PUBLIC_KEY = "pk_test_TYooMQauvdEDq54NiTphI7jx";
 
-const stripeTestPromise = loadStripe(PUBLIC_KEY);
+const stripeTestPromise = loadStripe(process.env.REACT_APP_STRIPE);
 const Main = styled.main`
 
     .background {
