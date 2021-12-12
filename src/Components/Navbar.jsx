@@ -264,7 +264,7 @@ export default function Navbar({ cart, handleClick }) {
 
             {isCartReady && <div className="text">
               <p>
-                {cartObject.getAllCartItemCount()}
+                {cartObject.gettAllBoxCount()}
               </p>
             </div>}
 

@@ -158,9 +158,12 @@ export default function Cart({ setCartShow, children, history }) {
 
   useEffect(() => {
     
+    console.log('Gotten cart ',cartObject.allCart)
+
     cartObject.passUpdateFunction(setToggle)
-    setCart(cartObject.allCart)
+    setCart(cartObject.getAllBoxes())
     let tempTotal = 0
+
     cartObject.allCartRaw.map(({ price, plan }) => {
       tempTotal = tempTotal + (price * plan)
     })

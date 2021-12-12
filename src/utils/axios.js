@@ -11,10 +11,15 @@ function manageErrorConnection(err) {
     if (err.response && err.response.status >= 400 && err.response.status <= 500) {
        try {
         if (   err.response){
-            
-            // if (err.response.status === 401)  {
-            //     AuthUtil.logout()
-            // }
+           
+            if (err.response.status === 401 &&
+                  ( 
+                      !err.config.url.includes('signin') &&
+                      !err.config.url.includes('signup') ) 
+                )  {
+
+                 AuthUtil.logout()
+            }
     
             const { data } = err.response;
             const error = data.errors ? `${data.errors[0].message} ${data.errors[0].cause ? data.errors[0].cause : ''}` : data.payload.message

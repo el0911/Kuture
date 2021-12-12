@@ -29,6 +29,17 @@ class Cart {
     constructor() {
         this.allCart = []
         this.boxes = []
+        this.hackFunctions = {}
+    }
+
+
+    /**
+     * @description this is a hack do not consider itt as coding sttandard it is a smart hack i agree
+     * but nott industtry code please dontt judge me but i wantt to sttore functions that can force the Ui to re-render
+    * @param functionInfo 
+    */
+    setFunctionsIneed(functionInfo) {
+        this.hack = { ...this.hack, ...functionInfo }
     }
 
 
@@ -51,14 +62,14 @@ class Cart {
         console.log({ sizeOfBOX, mealSize })
         try {
             this.boxID = 'pending'
-            this.mealSize =mealSize;
+            this.mealSize = mealSize;
             const { data } = await axiosCall.get('/cart/box/create?size=' + sizeOfBOX + '&&mealSize=' + mealSize)
             const { boxID, shortKey, size } = data.payload.data;
             this.boxID = boxID;
             this.shortKey = shortKey
             ////just pass the item to the cart no need to wait for it
             this.addItemToBox(itemObject)
-            itemObject.price =itemObject.servings[mealSize]
+            itemObject.price = itemObject.servings[mealSize]
             itemObject.boxShort = shortKey
             ///add the box to objecct
             this.boxes.push({
@@ -68,7 +79,7 @@ class Cart {
                 ],
                 size: sizeOfBOX,
                 boxHash: shortKey,
-                 
+
             })
 
             console.log({ box: this.boxes })
@@ -88,10 +99,28 @@ class Cart {
 
 
     /**
+     * @description get all boxes
+     * @returns 
+     */
+    getAllBoxes(){
+        console.log(this.allCartRaw, groupby(this.allCartRaw, 'boxShort'))
+        return groupby(this.allCartRaw, 'boxShort')
+    }
+
+
+    /**
      * @description gett all cart itemsCount
      */
-    getAllCartItemCount(){
+    getAllCartItemCount() {
         return this.allCartRaw.length
+    }
+
+    /**
+     * @description get teh total number of boxes available
+     */
+    gettAllBoxCount() {
+        console.log(this.allCartRaw, groupby(this.allCartRaw, 'boxShort'))
+        return Object.keys(groupby(this.allCartRaw, 'boxShort')).length
     }
 
 
@@ -107,10 +136,10 @@ class Cart {
                 itemObject
             })
 
-            const { boxID, shortKey,mealSize } = this
+            const { boxID, shortKey, mealSize } = this
 
             let boxFull = false
-            
+
             ///add the data to the boxes list
             this.boxes.forEach(function (box) {
                 if (box._id === boxID) {
@@ -196,6 +225,10 @@ class Cart {
                 progress: undefined,
             })
         }
+
+
+        ///updatee cartt ui
+        this.hack['toggleCartReady'](Math.random()) ////adding a random data 
     }
 
     /**
@@ -227,21 +260,44 @@ class Cart {
     }
 
 
+    geeetIdFromShortKey(shortKey){
+        console.log({
+            box: this.boxes
+        })
+        for (let i = 0; i < this.boxes.length; i++) {
+            console.log({shortKey,box:this.boxes[i].boxHash})
+             if (shortKey === this.boxes[i].boxHash ) {
+                    return this.boxes[i]._id
+            }
+        }
+    }
+
     /**
      * @description load cart items into the app on load
      */
-    async deleteBox(shortKey) {
+    async deleteBox(shortKey) {///change this from short key to ID later
         try {
             ///delete from the list
             const newList = this.allCartRaw.filter((item) => item.boxShort !== shortKey)
             this.allCart = groupby(newList, 'boxShort')
             this.allCartRaw = newList
             this.allCart = groupby(this.allCartRaw, 'boxShort')
-            this.update('dd'+Math.random())
+            this.update('dd' + Math.random())
             await axiosCall.delete('cart/box?box=' + shortKey)
+
+
+            ///ok now deleted tthe box now check if box i deleted is what am working on if it is them reset it
+            const ID =  this.geeetIdFromShortKey(shortKey)
+            console.log({
+                ID, g:this.boxID
+            })
+            if (ID ===  this.boxID) {
+                this.boxID = false;
+                console.log('set to false')
+            }
         } catch (error) {
             console.log(error)
-            toast("Failed to load cart", {
+            toast("Failed to delete Box", {
                 position: "top-right",
                 autoClose: 5000,
                 hideProgressBar: false,
