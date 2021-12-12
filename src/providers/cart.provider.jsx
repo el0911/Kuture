@@ -3,6 +3,7 @@ import styled from "styled-components";
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import Close from "../assets/svg/close(1).svg";
 import Cart from "../Components/Cart";
+import CartObject from  '../utils/cart'
  
 const cartContext = createContext({ setCartShow: () => { } });
 
@@ -28,7 +29,9 @@ const CartProvider = ({ children,readyCart }) => {
   
   useEffect(()=>{
     const body = document.getElementsByTagName('body')[0];
-
+    CartObject.setFunctionsIneed({
+      toggleCartReady
+    })
     if (showCart) {
       ///stop scroll
       body.style.overflow = 'hidden'
