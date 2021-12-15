@@ -261,9 +261,7 @@ class Cart {
 
 
     geeetIdFromShortKey(shortKey){
-        console.log({
-            box: this.boxes
-        })
+        
         for (let i = 0; i < this.boxes.length; i++) {
             console.log({shortKey,box:this.boxes[i].boxHash})
              if (shortKey === this.boxes[i].boxHash ) {

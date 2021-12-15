@@ -16,7 +16,19 @@ import Footer from "../Components/Footer";
 // import Subscribe from "./subscribe";
 import HistoryPage from "./history";
 import AuthUtil from "../utils/auth";
+
+const DoesNotExist = () =>{
+  return <p>
+    No page found...........
+  </p>
+} 
+
+
 export default function Routes() {
+
+
+ 
+
   return (
 
     <Router>
@@ -38,7 +50,7 @@ export default function Routes() {
           {/* <Route exact path="/sub" component={Subscribe} /> */}
 
 
-          <Redirect from="*" to="./" />
+          <Route exact path="*" component={DoesNotExist} />
 
 
 
