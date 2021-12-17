@@ -26,7 +26,7 @@ function manageErrorConnection(err) {
             const { data } = err.response;
             const error = data.errors ? `${data.errors[0].message} ${data.errors[0].cause ? data.errors[0].cause : ''}` : data.payload.message
             console.log('::::::::::',error)
-            // toast(error)
+            toast(error)
             return Promise.reject(new Error(error))
     
        
