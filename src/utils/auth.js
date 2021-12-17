@@ -88,7 +88,7 @@ class Auth {
      */
     logout() {
         localStorage.clear()
-        window.location.href = "/"
+        window.location.href = "/login"
 
     }
 }

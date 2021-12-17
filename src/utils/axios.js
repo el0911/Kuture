@@ -18,9 +18,8 @@ function manageErrorConnection(err) {
                       !err.config.url.includes('signup') ) 
                 )  {
 
-                //  AuthUtil.logout()
-                window.location =  '/login'
-                return 
+                 AuthUtil.logout()
+                 return 
 
             }
     
