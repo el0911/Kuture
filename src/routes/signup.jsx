@@ -93,7 +93,7 @@ const Main = styled.main`
                 textAlign:'center'
             }} >
               <form>
-                <h4 className="h4_">Login to your account</h4>
+                <h4 className="h4_">Sign Up to create an account</h4>
                 <div className="first_inputs">
                    <input  ref={inputEmail}type='email' placeholder="Email Address" />
                    <input  ref={inputPassword}type='password' placeholder="Password" />
