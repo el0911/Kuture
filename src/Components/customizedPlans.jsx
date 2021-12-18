@@ -157,27 +157,53 @@ export default function CustomizedPlans({ itemObject, servings = {}, closeModal 
             </div>}
 
 
-            {stage && <div className="second_part" style={{
+            {!!stage && <div className="second_part" style={{
                 position: 'relative',
                 background: 'white'
             }}  >
                 <div className="meals" onClick={() => {
                 }} >
 
-                    <div className="meal_plans">
+                    {/* <div className="meal_plans">
                         <FamilyTable />
 
                         <p>
                             4 da family - 4 Servings
                         </p>
-                    </div>
+                    </div> */}
+
+                    {stage === '4' && <div
+                        className="meal_plans">
+                        <FamilyTable />
+
+                        <p>
+                            4 da family - 4 Servings
+                        </p>
+                    </div>}
+
+                    {stage === '2' && <div className="meal_plans">
+                        <TwoPeople />
+
+                        <p>
+                            The couple - 2 Servings
+                        </p>
+                    </div>}
+
+
+                    {stage === '1' && <div className="meal_plans">
+                        <SinglePerson />
+
+                        <p>
+                            The Loner - 1 Serving
+                        </p>
+                    </div>}
 
 
                 </div>
 
                 <div className="counter">
                     <svg onClick={e => {
-                        setCount(count + 1)
+                        setCount(count + 1 <= 4 ? count + 1 : count)
                     }} width="50" height="73" viewBox="0 0 106 73" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <rect x="0.5" y="0.5" width="105" height="72" rx="9.5" fill="white" stroke="#CCCCCC" />
                         <path fill-rule="evenodd" clip-rule="evenodd" d="M51.5272 31.8018C52.3408 31.3069 53.6599 31.3069 54.4735 31.8018L66.9735 39.406C67.7871 39.9009 67.7871 40.7034 66.9735 41.1983C66.1599 41.6932 64.8408 41.6932 64.0272 41.1983L53.0003 34.4903L41.9735 41.1983C41.1599 41.6932 39.8408 41.6932 39.0272 41.1983C38.2136 40.7034 38.2136 39.9009 39.0272 39.406L51.5272 31.8018Z" fill="black" />
