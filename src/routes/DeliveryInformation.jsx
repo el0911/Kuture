@@ -4,7 +4,8 @@ import { toast } from "react-toastify";
 import styled from "styled-components";
 import axiosCall from "../utils/axios";
 import RedButton from "../Components/sharedComponents/redButton";
- 
+import Loader from "react-loader-spinner";
+
 
 const Main = styled.main`
   font-family: "Sen", sans-serif;
@@ -315,11 +316,11 @@ export default function DeliveryInformation() {
   const inputPostCode = React.createRef();
   const inputState = React.createRef();
 
+  const [hideeBox, setBox] = React.useState(false)
+
   const history = new useHistory()
 
-  const handleChange  = (value) =>{
-    console.log(`selected ${value}`);
-  }
+
 
   const saveAddress = async (e) => {
 
@@ -331,6 +332,8 @@ export default function DeliveryInformation() {
       return
     }
     try {
+
+      setBox(true)
       const { data } = await axiosCall.post('orders/address', {
         phone: inputPhone.current.value,
         address: inputaddress.current.value,
@@ -352,6 +355,9 @@ export default function DeliveryInformation() {
 
     }
 
+    setBox(false)
+
+
   }
   return (
 
@@ -370,18 +376,30 @@ export default function DeliveryInformation() {
             </div>
             <div className="third_inputs">
               <input ref={inputPostCode} placeholder="Postal Code" />
-              <select ref={inputState} onChange={e=>{
-                  console.log(inputState.current.value)
+              <select ref={inputState} onChange={e => {
+                console.log(inputState.current.value)
               }} >
-              <option value="">Select State</option>
-              <option value="Tex">Texas</option>
-              <option value="Ge">Georgia</option>
+                <option value="">Select State</option>
+                <option value="Tex">Texas</option>
+                <option value="Ge">Georgia</option>
               </select>
             </div>
             <div className="btn_div">
-              <RedButton onClick={saveAddress} title='SAVE ADDRESS' />
+              {!hideeBox && <RedButton onClick={saveAddress} title='SAVE ADDRESS' />}
             </div>
           </form>
+
+
+          <div style={{
+            textAlign: 'center'
+          }}>
+            {hideeBox && <Loader
+              type="ThreeDots"
+              color="#FFC850"
+              height={100}
+              width={100}
+            />}
+          </div>
 
         </div>
       </div>

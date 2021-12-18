@@ -6,6 +6,7 @@ import axiosCall from '../utils/axios';
 import { toast } from 'react-toastify';
 import Loader from 'react-loader-spinner';
 import { useHistory } from 'react-router-dom';
+import cartObject from '../utils/cart';
 
 const Component = styled.main`
  
@@ -135,6 +136,7 @@ function CardPayments({ addressId }) {
 
                 const { success } = data.payload.data;
                 if (success) {
+                  cartObject.clearCart()
                     toast('Order Created!!!!!!!!!!!!!😊😊😊')
                     history.push('/')
                 }

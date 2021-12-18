@@ -6,6 +6,7 @@ import { commerce } from "../lib/Commerce";
 import Select from 'react-select';
 import Meal from "../Components/sharedComponents/meal";
 import axiosCall from "../utils/axios";
+import Loader from "react-loader-spinner";
 
 const Main = styled.main`
   font-family: "Sen", sans-serif;
@@ -119,19 +120,8 @@ export default function OurRecipes() {
   const [products, setProducts] = React.useState([]);
   const [categories, setCategories] = React.useState([]);
   const [type, setType] = React.useState(false);
-
- 
-
-  const data = {
-    '0': {
-      cuture: 'igbo'
-    }, '1': {
-      cuture: 'yuruba'
-    }, '2': {
-      cuture: 'hausa'
-    },
-  }
-
+  const [loadinMeals, setLoadingMeals] = React.useState(false);
+  
 
   const customStyles = {
     option: (provided, state) => ({
@@ -192,6 +182,7 @@ export default function OurRecipes() {
    */
   const getAllMealsForCategory = async (categoryId) =>{
     try {
+      setLoadingMeals(true)
       const { data } = await axiosCall.get('/meals/category/'+categoryId)
        const allMeals = []
        data.payload.data.map(( meal )=>{
@@ -204,8 +195,9 @@ export default function OurRecipes() {
        setProducts(allMeals)
     } catch (error) {
       console.log(error)
-      return error;
-    }
+     }
+    setLoadingMeals(false)
+
   }
  
 
@@ -228,7 +220,7 @@ export default function OurRecipes() {
           </div>
 
           <Select styles={customStyles}
-            placeholder="SELECT CATEGORY"
+            placeholder= {categories.length? "SELECT CATEGORY":"Loading Categories..."}
             onChange={e => {
               console.log({d:e.value})
               getAllMealsForCategory(e.value.id)
@@ -256,8 +248,19 @@ export default function OurRecipes() {
 
       <div className="all_products">
      
+     
 
         <div className="products">
+        <div style={{
+            textAlign: 'center'
+          }}>
+            {loadinMeals && <Loader
+              type="ThreeDots"
+              color="#FFC850"
+              height={100}
+              width={100}
+            />}
+          </div>
           <Meal list={products}>
           </Meal>
         </div>

@@ -1,4 +1,5 @@
 import React from "react";
+import Loader from "react-loader-spinner";
 import { useHistory } from "react-router-dom";
 import { toast } from "react-toastify";
 import styled from "styled-components";
@@ -65,7 +66,9 @@ export default function OrderSummary({
     <div>
       <Main  >
 
-        {  !mark && <div className='address-holder' >
+        {  
+        
+          !mark && <div className='address-holder' >
 
           {  <RedButton onClick={e => {
             history.push('deliveryinfo')
@@ -74,9 +77,23 @@ export default function OrderSummary({
           }} title='Add an address' />}
 
 
-          {!mark && <div className="addresses">
+          {
+            
+          !mark && <div className="addresses">
+            <div  style={{
+                textAlign:'center'
+            }}>
+            {!data.length &&  <Loader
+                type="ThreeDots"
+                color="#FFC850"
+                height={100}
+                width={100}
+            />}
+            </div>
             {data.map((addressDetails, i) => { return <AddressComponent key={i} setMarked={setMark} marked={mark} details={addressDetails} /> })}
-          </div>}
+          </div>
+
+          }
 
 
         </div>}

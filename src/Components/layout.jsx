@@ -35,14 +35,15 @@ export default function Layout({ children }) {
                 <div className="content">
                     {children}
                 </div>
-                <div style={{
+                {/* <div style={{
                     background: `url(${require('../assets/svg/background.svg').default})`,
                     width: '100vw',
                     height: '50vh',
                     position: 'fixed',
                     bottom: '0',
                     backgroundSize: 'contain'
-                }} ></div>  </div>
+                }} ></div>  */}
+                 </div>
 
  
         </Component>
