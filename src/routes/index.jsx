@@ -46,12 +46,12 @@ export default function Routes() {
             <Route exact path="/deliveryinfo" component={DeliveryInformation} />
             <Route path="/recipe/:productId" component={EachRecipe} />
             <Route exact path="/ordersummary" component={OrderSummary} />
+            {/* <Route  path="*" component={DoesNotExist} /> */}
           </div>}
           {/* <Route exact path="/sub" component={Subscribe} /> */}
 
 
-          <Route exact path="*" component={DoesNotExist} />
-
+ 
 
 
 

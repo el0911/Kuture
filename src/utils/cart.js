@@ -125,6 +125,19 @@ class Cart {
 
 
     /**
+     * 
+     * @description clear the cart
+     * @returns 
+     */
+    async clearCart(){
+        this.allCart = []
+        this.boxes = []
+        this.allCartRaw = []
+        this.hack['toggleCartReady'](Math.random()) ////adding a random data 
+    }
+
+
+    /**
      * @description adds an item to the a box
      * @param itemObject
      * @param boxId
@@ -132,9 +145,7 @@ class Cart {
     async addItemToBox(itemObject) {
         try {
 
-            console.log({
-                itemObject
-            })
+         
 
             const { boxID, shortKey, mealSize } = this
 
@@ -182,7 +193,6 @@ class Cart {
                 boxId: this.boxID
             })
 
-            console.log({ data })
 
             toast("Added item to Box", {
                 position: "top-right",
