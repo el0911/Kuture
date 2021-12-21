@@ -62,16 +62,20 @@ hr{
 }
 
 .info ul{
-    width: 90%;
-    margin: auto;
+    list-style: none;
+    padding:0
 }
 
 .info li{
     padding: 0 10px;
-     /* font-family: Sen; */
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    /* font-family: Sen; */
     font-style: normal;
-    font-size: 16px;
-    font-weight: bold;
+    font-weight: normal;
+    font-size: 12px;
 }
 
 .info li .number{
@@ -185,8 +189,8 @@ export default function MealPopup({ recipeId, recipeName }) {
                             <ul className="list">
                                 {info.steps.map(({ text, image }, index) => {
                                     return <li>
-                                        <div>
-                                        <p className="text">{text}</p>
+                                        <div className="recipe-item">
+                                            <p className="number">{index + 1}</p> <p className="text">{text}</p>
                                             {image && <img src={image} ></img>}
                                         </div>
                                     </li>
