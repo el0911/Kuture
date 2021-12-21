@@ -198,11 +198,11 @@ export default function MealPopup({ recipeId, recipeName }) {
 
 
             </div>
-            <div className="footer">
+            {/* <div className="footer">
                 <button>
                     Add Recipe
                 </button>
-            </div>
+            </div> */}
         </ModalComponent>
     )
 }
