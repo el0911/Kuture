@@ -9,44 +9,7 @@ import cartObject from "../utils/cart";
 import { CartContext } from "../providers/cart.provider";
 
 const Li = styled.li`
-  .whykulture {
-    background: rgba(230, 230, 230, 0.5);
-    border: 2px solid #10145f;
-    border-radius: 11px;
-    width: 183px;
-    height: 35px;
-    font-weight: bold;
-    font-size: 20px;
-    color: #ee4e2f;
-    text-align: center;
-    padding-top: 0.81rem;
-    margin-right: 1rem;
-  }
-  .recipes {
-    background: rgba(230, 230, 230, 0.5);
-    border: 2px solid #10145f;
-    border-radius: 11px;
-    width: 143px;
-    height: 35px;
-    font-weight: bold;
-    font-size: 20px;
-    color: #ee4e2f;
-    text-align: center;
-    padding-top: 0.81rem;
-    margin-right: 1rem;
-  }
-  .login {
-    background: rgba(230, 230, 230, 0.5);
-    border: 2px solid #10145f;
-    border-radius: 11px;
-    width: 116px;
-    height: 35px;
-    font-weight: bold;
-    font-size: 20px;
-    color: #ee4e2f;
-    text-align: center;
-    padding-top: 0.81rem;
-  }
+ 
 `;
 const Link = styled.a`
   text-decoration: none;
@@ -98,44 +61,7 @@ const Nav = styled.nav`
       list-style: none;
       display: flex;
     }
-    .whykulture {
-      background: rgba(230, 230, 230, 0.5);
-      border: 2px solid #10145f;
-      border-radius: 11px;
-      width: 183px;
-      height: 35px;
-      font-weight: bold;
-      font-size: 20px;
-      color: #ee4e2f;
-      text-align: center;
-      padding-top: 0.81rem;
-      margin-right: 1rem;
-    }
-    .recipes {
-      background: rgba(230, 230, 230, 0.5);
-      border: 2px solid #10145f;
-      border-radius: 11px;
-      width: 143px;
-      height: 35px;
-      font-weight: bold;
-      font-size: 20px;
-      color: #ee4e2f;
-      text-align: center;
-      padding-top: 0.81rem;
-      margin-right: 1rem;
-    }
-    .login {
-      background: rgba(230, 230, 230, 0.5);
-      border: 2px solid #10145f;
-      border-radius: 11px;
-      width: 116px;
-      height: 35px;
-      font-weight: bold;
-      font-size: 20px;
-      color: #ee4e2f;
-      text-align: center;
-      padding-top: 0.81rem;
-    }
+  
     a {
       text-decoration: none;
       cursor: pointer;
@@ -146,55 +72,9 @@ const Nav = styled.nav`
       list-style: none;
       display: flex;
     }
-    .whykulture {
-      background: rgba(230, 230, 230, 0.5);
-      border: 2px solid #10145f;
-      border-radius: 11px;
-      width: 173px;
-      height: 35px;
-      font-weight: bold;
-      font-size: 16px;
-      color: #ee4e2f;
-      text-align: center;
-      padding-top: 0.81rem;
-      margin-right: 1rem;
-    }
-    .recipes {
-      background: rgba(230, 230, 230, 0.5);
-      border: 2px solid #10145f;
-      border-radius: 11px;
-      width: 135px;
-      height: 35px;
-      font-weight: bold;
-      font-size: 16px;
-      color: #ee4e2f;
-      text-align: center;
-      padding-top: 0.81rem;
-      margin-right: 1rem;
-    }
-    .login {
-      background: rgba(230, 230, 230, 0.5);
-      border: 2px solid #10145f;
-      border-radius: 11px;
-      width: 110px;
-      height: 35px;
-      font-weight: bold;
-      font-size: 16px;
-      color: #ee4e2f;
-      text-align: center;
-      padding-top: 0.81rem;
-    }
-    .cart {
-      width: 30px;
-      padding-right: 8px;
-      height: 35px;
-      color: #ee4e2f;
-      text-align: center;
-      padding-top: 0.81rem;
-      margin-right: 1rem;
-      margin-left: 1rem;
-      cursor: pointer;
-    }
+     
+   
+   
     a {
       text-decoration: none;
       cursor: pointer;
@@ -234,25 +114,6 @@ export default function Navbar({ cart, handleClick }) {
         }} className="login">
           <Link  >Login</Link>
         </Li>}
-
-
-        {AuthUtil.isLogedIn() && <Li onClick={e => {
-          history.push('history')
-        }} className="whykulture">
-          <Link   >Order Hisory</Link>
-        </Li>
-        }
-
-
-
-        {AuthUtil.isLogedIn() && <Li onClick={e => {
-          AuthUtil.logout()
-        }} className="login">
-          <Link  >Logout</Link>
-        </Li>}
-
-
- 
 
         {AuthUtil.isLogedIn() && <Li className="cart" onClick={handleClick}>
 

@@ -7,6 +7,9 @@ import {ReactComponent as FamilyTable} from "./familytable.svg";
 import {ReactComponent as TwoPeople} from "./twoPeaple.svg";
 import {ReactComponent as SinglePerson} from "./singleTable.svg";
 import {ReactComponent as TrashSvg} from "./trash.svg";
+import {ReactComponent as LogoSVG} from "./logo.svg";
+import {ReactComponent as CartSvg} from "./cartNew.svg";
+import {ReactComponent as DropDownSvg} from "./dropDownArrow.svg";
   
 export {
     RightSide,
@@ -17,5 +20,8 @@ export {
     TwoPeople,
     FamilyTable,
     SinglePerson,
-    TrashSvg
+    TrashSvg,
+    LogoSVG,
+    CartSvg,
+    DropDownSvg
 }
