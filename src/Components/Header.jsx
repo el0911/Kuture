@@ -1,17 +1,13 @@
 import React from "react";
 import styled from "styled-components";
-import Menu from "../assets/svg/menu.svg";
-import Close from "../assets/svg/close(1).svg";
-import Login from "../assets/svg/user1.svg";
-import List from "../assets/svg/list.svg";
-import carticon from "../assets/svg/cartWhite.svg";
+
 import Cart from "./Cart";
-import WhyKulture from "../assets/svg/why.svg";
-import Navbar from "./Navbar";
+
 import { useHistory } from "react-router-dom";
 import AuthUtil from "../utils/auth";
 import { CartContext } from "../providers/cart.provider";
 import { CartSvg, DropDownSvg, LogoSVG } from "../assets/svg";
+import cartObject from "../utils/cart";
 
 const HeaderMain = styled.main`
   width: calc(100% - 80px);
@@ -27,11 +23,31 @@ const HeaderMain = styled.main`
     text-align: right;
     display: grid;
     display: grid;
-    grid-template-columns: 1fr 110px 152px 142px;
-    grid-gap: 25px;
+    grid-gap: 15px;
     align-content: unset;
     align-items: center;
   }
+  
+
+  .user-specific-actions .text{
+    position: absolute;
+    height: 30px;
+    width: 30px;
+    background: white;
+    border-radius: 50%;
+    font-size: 18px;
+    color: black;
+    right: -17px;
+    top: 21px;
+    z-index: 2;
+    text-align: center;
+  }
+  
+  .user-specific-actions .text p{
+    padding: 0;
+    margin: 0;
+    margin-top: 5px;
+  } 
   
 
   .end-of-navbar button{
@@ -54,7 +70,7 @@ const HeaderMain = styled.main`
 
   .user-specific-actions{
     display: inline-grid;
-    grid-template-columns: 30px 50px;
+    grid-template-columns: 30px 80px;
     grid-gap: 10px;
     justify-items: center;
     grid-column-gap: 18px;
@@ -91,6 +107,7 @@ const HeaderMain = styled.main`
       min-width: max-content;
       top: 59px;
       left: -10px;
+      z-index:10;
   }
 
   .drop-down-list li{
@@ -113,18 +130,16 @@ export default function Header() {
   const [cart] = React.useState({});
   const [showcart, setShowCart] = React.useState(false);
   const history = useHistory()
-  const { setCartShow } = CartContext()
-  let timeOut = false
+  const { setCartShow, isCartReady } = CartContext()
 
   const handleOpen = () => {
     setDrop(true)
   }
 
   const handleClose = () => {
-    timeOut = setTimeout(() => {
+    setTimeout(() => {
       ///if am not inside the dropDown then hide
       if (!stillIn) {
-
         setDrop(false)
       }
 
@@ -135,7 +150,7 @@ export default function Header() {
     // const response = await commerce.cart.retrieve();
     // setCart(response);
   };
-  const handleClick = (state) => {
+  const handleCartClick = (state) => {
     setCartShow(true)
   };
 
@@ -146,22 +161,37 @@ export default function Header() {
   return (
     <HeaderMain>
       <LogoSVG />
-      <div className="end-of-navbar">
+      <div className="end-of-navbar" style={!!AuthUtil.isLogedIn() ? {
+        'grid-template-columns': '1fr 110px 152px 142px'
+      }
+        : {
+          'grid-template-columns': '1fr 110px 152px 50px'
+        }} >
         <div></div>
         <button onClick={e => {
-                  history.push('./allrecipes')
-                }} >
+          history.push('./allrecipes')
+        }} >
           Our Recipes
         </button>
 
         <button onClick={e => {
-                  history.push('./whykulturefresh')
-                }} >
+          history.push('./whykulturefresh')
+        }}>
           Why KultureFresh?
         </button>
 
-        <div className="user-specific-actions">
-          <CartSvg />
+        {!!AuthUtil.isLogedIn() ? <div className="user-specific-actions">
+          <div style={{
+            display: 'grid',
+            position: 'relative'
+          }} onClick={handleCartClick} >
+            <CartSvg />
+            {isCartReady && <div className="text">
+              <p>
+                {cartObject.gettAllBoxCount()}
+              </p>
+            </div>}
+          </div>
           <div
             onMouseEnter={handleOpen}
             onMouseLeave={handleClose}
@@ -199,7 +229,12 @@ export default function Header() {
             </div>}
           </div>
 
-        </div>
+        </div> : <button onClick={e => {
+          history.push('./login')
+        }} >
+          Login
+        </button>}
+
       </div>
     </HeaderMain>
   );

@@ -4,7 +4,7 @@ import axiosCall from './axios'
 
 
 
-const groupby = (data, columns) => {
+const groupby = (data = [], columns) => {
     const result = {}
     data.forEach((item) => {
         const key = item[columns]
@@ -30,6 +30,7 @@ class Cart {
         this.allCart = []
         this.boxes = []
         this.hackFunctions = {}
+        this.allCartRaw = []
     }
 
 
