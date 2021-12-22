@@ -12,8 +12,7 @@ import Whyus from "./whyus";
 import Signup from './signup'
 import Layout from "../Components/layout";
 import Login from "./login";
-import Footer from "../Components/Footer";
-// import Subscribe from "./subscribe";
+ // import Subscribe from "./subscribe";
 import HistoryPage from "./history";
 import AuthUtil from "../utils/auth";
 
@@ -57,8 +56,7 @@ export default function Routes() {
 
         </Layout>
       </Switch>
-      <Footer />
-    </Router>
+     </Router>
 
   );
 }

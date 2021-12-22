@@ -8,7 +8,6 @@ import AuthUtil from "../utils/auth";
 import { CartContext } from "../providers/cart.provider";
 import { CartSvg, DropDownSvg, LogoSVG } from "../assets/svg";
 import cartObject from "../utils/cart";
-
 const HeaderMain = styled.main`
   width: calc(100% - 80px);
   margin: 20px 40px;
@@ -158,6 +157,7 @@ export default function Header() {
     viewCart();
   }, []);
 
+ 
   return (
     <HeaderMain>
       <LogoSVG />
@@ -216,6 +216,12 @@ export default function Header() {
                   history.push('./history')
                 }}>
                   Order History
+                </li>
+
+                 <li onClick={e => {
+                  history.push('./history')
+                }}>
+                  Favourites
                 </li>
 
                 <li onClick={e => {
