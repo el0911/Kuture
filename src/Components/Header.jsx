@@ -231,11 +231,11 @@ export default function Header() {
                   Order History
                 </li>
 
-                 <li onClick={e => {
+                 {/* <li onClick={e => {
                   history.push('./history')
                 }}>
                   Favourites
-                </li>
+                </li> */}
 
                 <li onClick={e => {
                   AuthUtil.logout()
