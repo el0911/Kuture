@@ -10,8 +10,7 @@ import Loader from "react-loader-spinner";
 
 const Main = styled.main`
   font-family: "Sen", sans-serif;
-  position: relative;
-  top: -95px;
+
   option {
     font-family: "Sen", sans-serif;
     font-weight: 800;

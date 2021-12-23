@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import Overlay from "../assets/svg/plan_back.svg";
 import Header from "./Header";
-import Navbar from "./Navbar";
+// import Navbar from "./Navbar";
 import FavRec from "../assets/images/favrecipe1.jpg";
 import Trash from "../assets/svg/trash.svg";
 import Footer from "./Footer";
@@ -751,7 +751,7 @@ export default function CompletedOrder({ name, address, pnumber, cardno }) {
     <Main>
       <div className="head_div">
         <Header />
-        <Navbar />
+        {/* <Navbar /> */}
       </div>
       <h4>YOUR ORDER</h4>
       <div className="modal_div">

@@ -11,7 +11,7 @@ import { commerce } from "../lib/Commerce";
 import axiosCall from "../utils/axios";
 import { useLoadrConttext } from "../providers/fullLoader.provider";
 import { useHistory } from "react-router-dom";
-
+ 
 const Main = styled.main`
   font-family: "Sen", sans-serif;
   position: relative;
@@ -541,6 +541,7 @@ export default function LandingPage() {
       <Categories categories={categories} />
       <HowWeOperate />
       <FavouriteRecipes favourites={favourites}/>
+      <Footer />
  
     </Main>
   );
