@@ -110,7 +110,7 @@ export default function CustomizedPlans({ itemObject, servings = {}, closeModal 
 
             <div className="top">
                 <p>
-                    {stage === 0 ? 'Choose your customised plan' : 'How big do you want the box'}
+                    {stage === 0 ? 'Choose your customised plan' : 'How many different meals do you want'}
                 </p>
 
                 <svg width="40" height="49" viewBox="0 0 40 49" fill="none" xmlns="http://www.w3.org/2000/svg">
