@@ -6,12 +6,13 @@ import Cart from "./Cart";
 import { useHistory } from "react-router-dom";
 import AuthUtil from "../utils/auth";
 import { CartContext } from "../providers/cart.provider";
-import { CartSvg, DropDownSvg, LogoSVG } from "../assets/svg";
+import { CartSvg, DropDownSvg, LogoSVG, UserSVG } from "../assets/svg";
 import cartObject from "../utils/cart";
 const HeaderMain = styled.main`
   width: calc(100% - 80px);
   margin: 20px 40px;
   display: grid;
+  align-items: center;
   grid-template-columns: 200px 1fr;
 
   .user-specific-actions{
@@ -27,6 +28,10 @@ const HeaderMain = styled.main`
     align-items: center;
   }
   
+
+  .image{
+    display: grid;
+  }
 
   .user-specific-actions .text{
     position: absolute;
@@ -160,7 +165,15 @@ export default function Header() {
  
   return (
     <HeaderMain>
-      <LogoSVG />
+     <div style={{
+        display: 'grid',
+        position: 'relative'
+        }} onClick={()=>{
+          history.push('./')
+        }} >
+              <LogoSVG />
+      </div>
+    
       <div className="end-of-navbar" style={!!AuthUtil.isLogedIn() ? {
         'grid-template-columns': '1fr 110px 152px 142px'
       }
@@ -197,7 +210,7 @@ export default function Header() {
             onMouseLeave={handleClose}
             className="drop-down">
             <div className="image">
-
+              <UserSVG/>
             </div>
             <DropDownSvg />
 

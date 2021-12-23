@@ -10,6 +10,11 @@ import {ReactComponent as TrashSvg} from "./trash.svg";
 import {ReactComponent as LogoSVG} from "./logo.svg";
 import {ReactComponent as CartSvg} from "./cartNew.svg";
 import {ReactComponent as DropDownSvg} from "./dropDownArrow.svg";
+import {ReactComponent as HistorySvg} from "./history.svg";
+import {ReactComponent as AllRecipeSVG} from "./allrecipe.svg";
+import {ReactComponent as UserSVG} from "./user.svg";
+import {ReactComponent as QuestionSVG} from "./questioon.svg";
+import {ReactComponent as LogoutSVG} from "./logout.svg";
   
 export {
     RightSide,
@@ -23,5 +28,10 @@ export {
     TrashSvg,
     LogoSVG,
     CartSvg,
-    DropDownSvg
+    DropDownSvg,
+    HistorySvg,
+    AllRecipeSVG,
+    UserSVG,
+    LogoutSVG,
+    QuestionSVG
 }
