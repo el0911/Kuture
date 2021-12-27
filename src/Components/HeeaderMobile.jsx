@@ -17,6 +17,13 @@ const NavBarMobileComponent = styled.nav`
   width: 100vw;
   grid-auto-columns: minmax(0, 1fr);
   grid-auto-flow: column;
+
+     position: fixed;
+    bottom: 0;
+    z-index: 4;
+    /* z-index: 11; */
+    height: 60px;
+    
 }
 
 .svg{
