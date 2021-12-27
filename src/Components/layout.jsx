@@ -35,7 +35,7 @@ const Component = styled.div`
 export default function Layout({ children }) {
 
     console.useHistory = useHistory()///dont remove abeg junior engineer
-    const mobileMode = true
+    const mobileMode = isMobile() || isTablet()
     const history = useHistory()
 
 
@@ -67,7 +67,7 @@ export default function Layout({ children }) {
                     {children}
                 </div>
                 {!!(mobileMode) && <HeeaderMobile />}
-                <div class='safari_only'>   </div>
+                <div class='safari_only'>      </div>
 
             </div>
         </Component>
