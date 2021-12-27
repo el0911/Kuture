@@ -64,6 +64,7 @@ const HeaderMain = styled.main`
     cursor:pointer;
     line-height: 18px;
     height: 30px;
+    width: max-content;
   }
 
   .end-of-navbar button:hover{
