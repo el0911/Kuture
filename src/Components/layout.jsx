@@ -24,12 +24,18 @@ const Component = styled.div`
      display: grid;
  }
 
+ @media screen and (max-width: 767px) {
+    _::-webkit-full-page-media, _:future, :root .safari_only {
+        padding-bottom: 65px; //resize 
+    }
+}
+
 `
 
 export default function Layout({ children }) {
 
     console.useHistory = useHistory()///dont remove abeg junior engineer
-    const mobileMode = isMobile() || isTablet()
+    const mobileMode = true
     const history = useHistory()
 
 
@@ -61,6 +67,8 @@ export default function Layout({ children }) {
                     {children}
                 </div>
                 {!!(mobileMode) && <HeeaderMobile />}
+                <div class='safari_only'>   </div>
+
             </div>
         </Component>
     )
