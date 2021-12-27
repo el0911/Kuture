@@ -8,27 +8,27 @@ import { isMobile, isTablet } from 'react-mobile-app'
 import { LogoSVG } from '../assets/svg';
 
 const Component = styled.div`
- min-height: 100vh;
- display: flex;
+    min-height: 100vh;
+    display: flex;
 
 
- .content{
-    position: relative;
-    z-index: 2;
-    overflow: overlay;
- }
-
-
- .website{
-    width: 100vw;
-     display: grid;
- }
-
- @media screen and (max-width: 767px) {
-    _::-webkit-full-page-media, _:future, :root .safari_only {
-        padding-bottom: 65px; //resize 
+    .content{
+        position: relative;
+        z-index: 2;
+        overflow: overlay;
     }
-}
+
+
+    .website{
+        width: 100vw;
+        display: grid;
+    }
+
+    @media screen and (max-width: 767px) {
+        _::-webkit-full-page-media, _:future, :root .safari_only {
+            padding-bottom: 65px; //resize 
+        }
+    }
 
 `
 
@@ -44,13 +44,13 @@ export default function Layout({ children }) {
 
             <div className='website' style={{
                 gridTemplateRows: mobileMode ? '1fr 60px' : '90px 1fr',
+                maxHeight: '100vh'
 
             }} >
 
                 {!(mobileMode) && <Header />}
                 <div className="content" style={{
-                    maxHeight: mobileMode ? 'calc(100vh - 60px)' : 'calc(100vh - 90px)'
-
+                    maxHeight: mobileMode ? 'calc(100vh - 60px)' : 'calc(100vh - 90px)',
                 }} >
                     {!!(mobileMode) && <div style={{
                         textAlign:'center',
