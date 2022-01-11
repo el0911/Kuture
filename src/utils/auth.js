@@ -3,7 +3,7 @@
  */
 
 import axiosCall from "./axios";
- 
+
 
 class Auth {
     constructor() {
@@ -15,17 +15,17 @@ class Auth {
      * Stores the user data
      * @param {Object} param0 
      */
-    registerUser({ accessToken, refreshToken },init) {
-         if ((accessToken   ===    localStorage.getItem('accessToken'))) {
+    registerUser({ accessToken, refreshToken }, init) {
+        if ((accessToken === localStorage.getItem('accessToken'))) {
             return
         }
 
         if (init) {
             localStorage.setItem('refreshToken', refreshToken)
-             window.location.href = "/"
+            window.location.href = "/"
         }
-         localStorage.setItem('accessToken', accessToken)
-         
+        localStorage.setItem('accessToken', accessToken)
+
     }
 
 
@@ -39,11 +39,44 @@ class Auth {
 
             const { accessToken, refreshToken } = data.payload;
 
-            this.registerUser({ accessToken, refreshToken },true)
+            this.registerUser({ accessToken, refreshToken }, true)
             afterLoad()
         } catch (error) {
-            
-             
+
+
+
+            afterLoad()
+        }
+    }
+
+    /**
+   * request for  users password to be reset
+   */
+    async resetRequest({ email }, { preLoad = () => { }, afterLoad = () => { } }) {
+        try {
+            preLoad()
+            await axiosCall.post('/reset-password', { email });
+            afterLoad()
+        } catch (error) {
+
+
+
+            afterLoad()
+        }
+    }
+
+
+    /**
+* resets  users password  
+*/
+    async reset({ password, token }, { preLoad = () => { }, afterLoad = () => { } }) {
+        try {
+            preLoad()
+            await axiosCall.post('/reset-password/' + token, { password });
+            afterLoad(true)
+        } catch (error) {
+
+
 
             afterLoad()
         }
@@ -62,13 +95,13 @@ class Auth {
 
             const { accessToken, refreshToken } = data.payload;
 
-            this.registerUser({ accessToken, refreshToken },true)
+            this.registerUser({ accessToken, refreshToken }, true)
 
             afterLoad();
-            
+
         } catch (error) {
- 
-           
+
+
             afterLoad()
         }
     }

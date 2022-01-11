@@ -1,9 +1,11 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
+import { toast } from "react-toastify";
 import styled from "styled-components";
 import RedButton from "../Components/sharedComponents/redButton";
 import { useLoadrConttext } from "../providers/fullLoader.provider";
 import AuthUtil from "../utils/auth";
+import {db} from "../utils/config";
 
 const Main = styled.main`
   font-family: "Sen", sans-serif;
@@ -85,17 +87,10 @@ const Main = styled.main`
       }
   }
 
-  .loweer_text_conteent{
-    justify-content: space-between;
-    display: flex !important;
-  }
-
 `;
 
-function Login() {
-  const inputPassword = React.createRef();
-  const inputEmail = React.createRef();
-  const history = useHistory()
+function Subscribe() { 
+  const inputEmail = React.createRef(); 
   const loader = useLoadrConttext();
 
   return (
@@ -105,45 +100,34 @@ function Login() {
           textAlign: 'center'
         }} >
           <form>
-            <h4 className="h4_">Login to your account</h4>
+            <h4 className="h4_">Request Password Reeset Link</h4>
             <div className="first_inputs">
-              <input ref={inputEmail} type='email' placeholder="Email Address" />
-              <input ref={inputPassword} type='password' placeholder="Password" />
+
+             <input ref={inputEmail} type='email' placeholder="Email Address" />
 
             </div>
 
             <div className="btn_div">
-              <RedButton onClick={(e) => {
-                e.preventDefault();
-                AuthUtil.login({
-                  email: inputEmail.current.value,
-                  password: inputPassword.current.value
-                }, {
-                  preLoad: () => {
-                    loader.setLoader(true)
-                  }, afterLoad: () => {
-                    loader.setLoader(false)
-                  }
+              <RedButton onClick={async (e) => {
+                  try {
+                    AuthUtil.resetRequest({
+                      email: inputEmail.current.value,
+                     }, {
+                      preLoad: () => {
+                        loader.setLoader(true)
+                      }, afterLoad: () => {
+                        loader.setLoader(false)
+                        toast('Sent Reset Email')
+                       }
+                    }
+                    )
+                } catch (error) {
+                  toast('Failed to Send Reset Email')                
                 }
-                )
-              }} title='Login' />
+              }} title='Reequest Reset ' />
             </div>
 
-            <div className="loweer_text_conteent" >
-              <p className="next">
-                <span onClick={e => {
-                  history.push('reset-password')
-                }}  >
-                  Forgot Password?</span></p>
-
-              <p className="next">
-                Or
-              </p>
-
-              <p className='next' >Dont have an account? <span onClick={e => {
-                history.push('signup')
-              }} > Signup</span></p>
-            </div>
+            
           </form>
 
         </div>
@@ -154,4 +138,4 @@ function Login() {
 
 
 
-export default Login
+export default Subscribe

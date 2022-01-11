@@ -13,7 +13,9 @@ import Signup from './signup'
 import Layout from "../Components/layout";
 import Login from "./login";
  // import Subscribe from "./subscribe";
-import HistoryPage from "./history";
+ import ResetRequest from "./resetPassword";
+ import Reset from "./resetPasswordPage";
+ import HistoryPage from "./history";
 import AuthUtil from "../utils/auth";
 
 const DoesNotExist = () =>{
@@ -39,6 +41,8 @@ export default function Routes() {
           <Route exact path="/login" component={Login} />
           <Route exact path="/signup" component={Signup} />
           <Route exact path="/whykulturefresh" component={Whyus} />
+          <Route exact path="/reset-password" component={ResetRequest} />
+          <Route exact path="/reset-password/:token" component={Reset} />
           {AuthUtil.isLogedIn() && <div>
             <Route exact path="/history" component={HistoryPage} />
             <Route exact path="/completed" component={CompletedOrder} />

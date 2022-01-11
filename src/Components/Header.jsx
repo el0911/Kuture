@@ -1,8 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-import Cart from "./Cart";
-
+ 
 import { useHistory } from "react-router-dom";
 import AuthUtil from "../utils/auth";
 import { CartContext } from "../providers/cart.provider";
