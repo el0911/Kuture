@@ -5,7 +5,7 @@ export default function RedButton({title,onClick,style}) {
 
     const Button = styled.button`
     height: 60px;
-    font-family: Sen;
+    
     font-style: normal;
     font-weight: bold;
     font-size: 14px;

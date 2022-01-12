@@ -25,7 +25,7 @@ p{
 
 
 .name{
-    font-family: Sen;
+    
     font-style: normal;
     font-weight: bold;
     font-size: 13px;
@@ -36,7 +36,7 @@ p{
 
 
 .type{
-    font-family: Sen;
+    
     font-style: normal;
     font-weight: bold;
     font-size: 20px;
@@ -47,7 +47,7 @@ p{
 
 
 .price{
-    font-family: Sen;
+    
     font-style: normal;
     font-weight: bold;
     font-size: 13px;
@@ -70,7 +70,7 @@ p{
 .servings{
     position: absolute;
     bottom: 10px;
-    font-family: Sen;
+    
     font-style: normal;
     font-weight: bold;
     font-size: 13px;

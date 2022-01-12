@@ -9,7 +9,7 @@ import Footer from "./Footer";
 
 const Main = styled.main`
   background: fafaef;
-  font-family: "Sen", sans-serif;
+  
 
   @media (min-width: 300px) and (max-width: 600px) {
     .modal_div {

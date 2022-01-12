@@ -7,6 +7,7 @@ import CustomizedPlans from "../customizedPlans";
 import generalUttil from "../../utils/generalUtils";
 import MealPopup from "../mealPopUp";
 import cartObject from '../../utils/cart';
+import CustomDropDown from './customDropDown'
 
 const customStyles = {
     content: {
@@ -28,7 +29,8 @@ margin-bottom: 20px;
 margin: 30px;
 width: -webkit-fill-available;
 .showbox{
-    height: 340px
+    height: 400px3
+    border-radius: 20px;
   }
 
   .box_home{
@@ -39,7 +41,9 @@ width: -webkit-fill-available;
     grid-template-columns: repeat(auto-fit, minmax(255px, 1fr));
 }
 
- 
+ .showbox{
+     border-radius:15px
+ }
 
 .showbox img{
     width: inherit;
@@ -65,7 +69,7 @@ width: -webkit-fill-available;
     border-radius: 5px;
     border:0;
     color :white;
-    font-family: Sen;
+    
     font-style: normal;
     font-weight: normal;
     font-size: 15px;
@@ -79,16 +83,25 @@ width: -webkit-fill-available;
         margin: 0 20px;
     }
 
+    .name{
+        font-family: Ubuntu;
+font-style: normal;
+font-weight: bold;
+font-size: 17.2972px;
+line-height: 21px;
+/* identical to box height, or 123% */
+
+padding:0;
+
+color: #333333;
+
+    }
 
     .product_info p {
-        font-family: Sen;
         font-style: normal;
-        font-weight: bold;
-        padding: 6px;v 
-        font-size: 14px;
+        padding: 6px;
         line-height: 22px;
         /* identical to box height */
-        color: #10145F;
         margin:0 !important;
     }
 
@@ -98,7 +111,7 @@ width: -webkit-fill-available;
         border-radius: 5px;
         border: 0;
         color: white;
-        font-family: Sen;
+        
         font-style: normal;
         font-weight: normal;
         font-size: 15px;
@@ -129,6 +142,40 @@ width: -webkit-fill-available;
     
     .product_info{
         position: relative;
+        background: #fff;
+        border-bottom-left-radius: 20px;
+        border-bottom-right-radius: 20px;
+    }
+
+    .details{
+        color:#A7A7A7;
+        font-family: Ubuntu;
+        font-style: normal;
+        font-weight: 100;
+        font-size: 11px;
+        text-overflow: ellipsis;
+        font-style: normal;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        width: 100%;
+    }
+
+    .bar{
+        width: -webkit-fill-available;
+        border: 1px solid #EDEDED;
+    }
+
+    .price{
+        font-size: 18.6278px;
+        line-height: 20px;
+        color: #E89528;
+    }
+
+    .info_section{
+        width: 95%;
+        padding: 7px;
+        padding-bottom: 15px;
     }
 
 `
@@ -150,7 +197,9 @@ const MealComponent = ({data,history}) => {
     return <div className="showbox">
           <div  style={{
               background:'black',
-              height:nonView? '220px':'280px' ,
+              borderTopRightRadius: '20px',
+              borderTopLeftRadius: '20px',
+              height:nonView? '141px':'280px' ,
               backgroundImage:`url(${imageMain})`,
               backgroundSize:'cover',
               backgroundPosition:'center',
@@ -169,24 +218,22 @@ const MealComponent = ({data,history}) => {
 
         {
             nonView && <div className="product_info">
+                <div className="info_section" >
                 <div className="text">
                     <p className="name">
                         {name}
                     </p>
 
-                    <p>
-                        {convertToTTimeString()}
+                    <p className="price">
+                        ${servings[2]}
                     </p>
-
-
-
                 </div>
-                <Question className='question' onClick={e => {
+                {/* <Question className='question' onClick={e => {
                     openModal(<MealPopup recipeId={recipeId._id} recipeName={name} />
                     )
-                }} />
+                }} /> */}
 
-                <button onClick={e => {
+                {/* <button onClick={e => {
                      if (cartObject.doIHavaABox()  ) {
                         cartObject.addItemToBox({
                             _id,
@@ -209,8 +256,37 @@ const MealComponent = ({data,history}) => {
                     } servings={servings} />)
                     }
                 }} >
-                    add to Box
-                </button>
+                    Add
+                </button> */}
+
+                <div className="bar"></div>
+                <p className="details">
+                    {recipeId.textDetails}
+                </p>
+                <CustomDropDown   onClick={e => {
+                     if (cartObject.doIHavaABox()  ) {
+                        cartObject.addItemToBox({
+                            _id,
+                            name,
+                            servings,
+                            plan:1,
+                            imageMain,
+                            ...rest
+                        })
+                    }
+                    else{
+                        openModal(<CustomizedPlans closeModal={openModal} itemObject={{
+                            _id,
+                            name,
+                            servings,
+                            plan:1,////change the wordings for this quick it can confuse someone
+                            imageMain,
+                            ...rest
+                        }
+                    } servings={servings} />)
+                    }
+                }} />
+                </div>
             </div>
         }
     </div>

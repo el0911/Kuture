@@ -52,7 +52,7 @@ display:flex;
 
 
 .info{
-    font-family: Sen;
+    
     font-style: normal;
     font-weight: normal;
     font-size: 15px;

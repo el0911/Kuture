@@ -50,7 +50,7 @@ const Main = styled.main`
       padding-left: 10px;
       padding-right: 10px;
       color: #aa614d;
-      font-family: Sen;
+      
     }
     
     h4 {

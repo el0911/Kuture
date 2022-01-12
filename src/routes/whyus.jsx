@@ -21,7 +21,7 @@ export default function Whyus() {
     }
 
     .words .title{
-        font-family: Sen;
+        
         font-style: normal;
         font-weight: bold;
         font-size: 35px;
@@ -30,7 +30,7 @@ export default function Whyus() {
     }
 
     .words .content{
-        font-family: Sen;
+        
         font-style: normal;
         font-weight: normal;
         font-size: 15px;

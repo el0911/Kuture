@@ -8,7 +8,7 @@ import AuthUtil from "../utils/auth";
 import {db} from "../utils/config";
 
 const Main = styled.main`
-  font-family: "Sen", sans-serif;
+  
 
   form div{
     display:grid !important;

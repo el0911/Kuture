@@ -9,10 +9,10 @@ import axiosCall from "../utils/axios";
 import Loader from "react-loader-spinner";
 
 const Main = styled.main`
-  font-family: "Sen", sans-serif;
+  
 
   option {
-    font-family: "Sen", sans-serif;
+    
     font-weight: 800;
     font-size: 15px;
   }
@@ -23,27 +23,20 @@ const Main = styled.main`
     text-decoration: none;
   }
  
-  .background_div{
-    // background-image: url(${AllRecipesBackI});
-    position:relative;
-    min-height:80vh
-  }
+    d
 
   .wavesvg{
-    position: absolute;
-    bottom: 0;
+     bottom: 0;
     fill:#fafaef
   }
 
   .info_{
-    margin-top: 200px;
-    position: absolute;
-    width: 100vw;
+     width: 100vw;
     text-align: center;
   }
 
   .info_ p{
-    font-family: Sen;
+    
     font-style: normal;
     font-weight: bold;
     font-size: 40px;
@@ -57,7 +50,7 @@ const Main = styled.main`
   }
   
   .text .title{
-    font-family: Sen;
+    
     font-style: normal;
     font-weight: normal;
     font-size: 23px;
@@ -67,7 +60,7 @@ const Main = styled.main`
   }
 
   .text .alltext{
-    font-family: Sen;
+    
     font-style: normal;
     font-weight: normal;
     font-size: 16px;
@@ -92,7 +85,7 @@ const Main = styled.main`
   }
 
   .all_products .time{
-    font-family: Sen;
+    
     font-style: normal;
     font-weight: bold;
     font-size: 15px;
@@ -212,12 +205,7 @@ export default function OurRecipes() {
 
 
         <div className="info_">
-          <div className="title">
-            <p>
-              ALL RECIPES
-            </p>
-          </div>
-
+          
           <Select styles={customStyles}
             placeholder= {categories.length? "SELECT CATEGORY":"Loading Categories..."}
             onChange={e => {
@@ -229,16 +217,7 @@ export default function OurRecipes() {
             className="select" options={categories} />
 
 
-          {type && <div className="text select">
-            <p className='title' >
-              Everything you need for your {type.name} meals
-            </p>
-
-            <p className="alltext">
-             {type.shortText}
-            </p>
-          </div>}
-
+         
 
 
 

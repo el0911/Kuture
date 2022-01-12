@@ -3,7 +3,7 @@ import styled from "styled-components";
 import Meal from "./sharedComponents/meal";
 
 const Main = styled.main`
-  font-family: "Sen", sans-serif;
+  
 
   @media (min-width: 300px) and (max-width: 600px) {
     .title {

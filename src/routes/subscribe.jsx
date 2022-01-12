@@ -6,7 +6,7 @@ import { useLoadrConttext } from "../providers/fullLoader.provider";
 import {db} from "../utils/config";
 
 const Main = styled.main`
-  font-family: "Sen", sans-serif;
+  
 
   form div{
     display:grid !important;

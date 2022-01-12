@@ -29,7 +29,7 @@ img{
 }
 
 .info .title{
-        font-family: Sen;
+        
         font-style: normal;
         font-weight: bold;
         font-size: 20px;
@@ -39,7 +39,7 @@ img{
 
 .info .recipe_title{
 
-font-family: Sen;
+
 font-style: normal;
 font-weight: normal;
 font-size: 15px;
@@ -49,7 +49,7 @@ line-height: 36px;
 
 .info .reciiope_text{
 
-font-family: Sen;
+
 font-style: normal;
 font-weight: normal;
 font-size: 12.5px;
@@ -68,7 +68,7 @@ hr{
 
 .info li{
     padding: 0 10px;
-     /* font-family: Sen; */
+     /*  */
     font-style: normal;
     font-size: 16px;
     font-weight: bold;
@@ -94,7 +94,7 @@ hr{
     color: white;
     height: 39px;
     border-radius: 5px;
-    font-family: Sen;
+    
     font-style: normal;
     font-weight: bold;
     font-size: 20px;

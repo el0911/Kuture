@@ -7,7 +7,7 @@ import SideBarHistory from './sideBarHistory';
 
 
 const Component = styled.main`
-  font-family: "Sen", sans-serif;
+  
   background:white;
   height:269px;
   background: #FFFFFF;

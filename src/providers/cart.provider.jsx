@@ -8,6 +8,7 @@ import CartObject from  '../utils/cart'
 const cartContext = createContext({ setCartShow: () => { } });
 
 const Component = styled.div`
+font-family: "Sen", sans-serif;
 .loading{
    height: 100vh;
    width: 100vw;
