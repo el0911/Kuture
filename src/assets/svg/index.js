@@ -16,6 +16,8 @@ import {ReactComponent as UserSVG} from "./user.svg";
 import {ReactComponent as QuestionSVG} from "./questioon.svg";
 import {ReactComponent as LogoutSVG} from "./logout.svg";
 import {ReactComponent as ArrowDown} from "./arrowdownWhite.svg";
+import {ReactComponent as ClockSvg} from "./clock.svg";
+import {ReactComponent as SearchSVG} from "./search.svg";
   
 export {
     RightSide,
@@ -35,5 +37,7 @@ export {
     UserSVG,
     LogoutSVG,
     QuestionSVG,
-    ArrowDown
+    ArrowDown,
+    ClockSvg,
+    SearchSVG
 }

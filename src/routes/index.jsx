@@ -17,6 +17,7 @@ import Login from "./login";
  import Reset from "./resetPasswordPage";
  import HistoryPage from "./history";
 import AuthUtil from "../utils/auth";
+import Recipes from "./recipes";
 
 const DoesNotExist = () =>{
   return <p>
@@ -36,7 +37,7 @@ export default function Routes() {
       <Switch>
         <Layout>
           <Route exact path="/" component={LandingPage} />
-          <Route exact path="/allrecipes" component={OurRecipes} />
+          <Route exact path="/allrecipes" component={Recipes} />
           {/* <Route exact path="/customise" component={CustomiseMenu} /> */}
           <Route exact path="/login" component={Login} />
           <Route exact path="/signup" component={Signup} />

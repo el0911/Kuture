@@ -54,7 +54,7 @@ export default function CustomDropDown({onClick}) {
 
     React.useEffect(()=>{
         ///////
-        setIndex(cartObject.mealSize)
+        setIndex(cartObject.mealSize || '1')
     },[cartObject.mealSize])
 
     const [index, setIndex] = React.useState('1')

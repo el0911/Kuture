@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { useHistory } from "react-router-dom";
 import Modal from 'react-modal';
-import { Question } from "../../assets/svg";
+import { ClockSvg, Question } from "../../assets/svg";
 import CustomizedPlans from "../customizedPlans";
 import generalUttil from "../../utils/generalUtils";
 import MealPopup from "../mealPopUp";
@@ -26,17 +26,15 @@ const customStyles = {
 const Component = styled.main`
 justify-content: center;
 margin-bottom: 20px;
-margin: 30px;
+margin-top: 20px;
 width: -webkit-fill-available;
 .showbox{
-    height: 400px3
-    border-radius: 20px;
+        box-shadow: 0px 0px 10px 6px rgba(98, 98, 98, 0.1);
+border-radius: 13.3056px;
   }
 
   .box_home{
     display: grid;
-    width: 80VW;
-    margin: auto;
     gap:24px;
     grid-template-columns: repeat(auto-fit, minmax(255px, 1fr));
 }
@@ -178,10 +176,29 @@ color: #333333;
         padding-bottom: 15px;
     }
 
+    .timer{
+        display: grid;
+        grid-template-columns: 20px 1fr;
+        align-items: center;
+        width: 80px;
+        background: white;
+        padding: 5px 3px;
+        text-align: center;
+        border-radius: 12px;
+        top: 100px;
+        right: -7px;
+        font-size: 12px;
+        position: relative;
+    }
+
+    .timer p{
+        margin:0
+    }
+
 `
 
 
-const MealComponent = ({data,history}) => {
+const MealComponent = ({ data, history }) => {
     const { servings, imageMain, nonView, name, _id, recipeId = { timeTaken: 0 }, openModal, ...rest } = data
     const convertToTTimeString = () => {
         let result = ''
@@ -191,27 +208,36 @@ const MealComponent = ({data,history}) => {
             console.log(error)
         }
 
-        return '30mins'
+        return '30 mins'
     }
 
+    React.useEffect(() => {
+        ///////
+        setIndex(cartObject.mealSize || '1')
+    }, [cartObject.mealSize])
+
+    const [index, setIndex] = React.useState('1')
+
     return <div className="showbox">
-          <div  style={{
-              background:'black',
-              borderTopRightRadius: '20px',
-              borderTopLeftRadius: '20px',
-              height:nonView? '141px':'280px' ,
-              backgroundImage:`url(${imageMain})`,
-              backgroundSize:'cover',
-              backgroundPosition:'center',
-              backgroundRepeat:'no-repeat'
-          }} ></div>
-       {!nonView && <div className="info">
+        <div style={{
+            background: 'black',
+            borderTopRightRadius: '20px',
+            borderTopLeftRadius: '20px',
+            height: nonView ? '141px' : '280px',
+            backgroundImage: `url(${imageMain})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat'
+        }} >    <div className="timer">
+                <ClockSvg />  <p>{convertToTTimeString(recipeId.timeTaken)}</p>
+            </div> </div>
+        {!nonView && <div className="info">
             <p>
                 {name}
             </p>
-            <button   onClick={() => {
-                    history.push("/allrecipes");
-                }} >
+            <button onClick={() => {
+                history.push("/allrecipes");
+            }} >
                 View More
             </button>
         </div>}
@@ -219,73 +245,49 @@ const MealComponent = ({data,history}) => {
         {
             nonView && <div className="product_info">
                 <div className="info_section" >
-                <div className="text">
-                    <p className="name">
-                        {name}
-                    </p>
+                    <div className="text">
+                        <p className="name">
+                            {name}
+                        </p>
 
-                    <p className="price">
-                        ${servings[2]}
-                    </p>
-                </div>
-                {/* <Question className='question' onClick={e => {
+                        <p className="price">
+                            ${servings[index]}
+                        </p>
+                    </div>
+                    {/* <Question className='question' onClick={e => {
                     openModal(<MealPopup recipeId={recipeId._id} recipeName={name} />
                     )
                 }} /> */}
 
-                {/* <button onClick={e => {
-                     if (cartObject.doIHavaABox()  ) {
-                        cartObject.addItemToBox({
-                            _id,
-                            name,
-                            servings,
-                            plan:1,
-                            imageMain,
-                            ...rest
-                        })
-                    }
-                    else{
-                        openModal(<CustomizedPlans closeModal={openModal} itemObject={{
-                            _id,
-                            name,
-                            servings,
-                            plan:1,////change the wordings for this quick it can confuse someone
-                            imageMain,
-                            ...rest
-                        }
-                    } servings={servings} />)
-                    }
-                }} >
-                    Add
-                </button> */}
 
-                <div className="bar"></div>
-                <p className="details">
-                    {recipeId.textDetails}
-                </p>
-                <CustomDropDown   onClick={e => {
-                     if (cartObject.doIHavaABox()  ) {
-                        cartObject.addItemToBox({
-                            _id,
-                            name,
-                            servings,
-                            plan:1,
-                            imageMain,
-                            ...rest
-                        })
-                    }
-                    else{
-                        openModal(<CustomizedPlans closeModal={openModal} itemObject={{
-                            _id,
-                            name,
-                            servings,
-                            plan:1,////change the wordings for this quick it can confuse someone
-                            imageMain,
-                            ...rest
+
+                    <div className="bar"></div>
+                    <p className="details">
+                        {recipeId.textDetails}
+                    </p>
+                    <CustomDropDown onClick={e => {
+                        if (cartObject.doIHavaABox()) {
+                            cartObject.addItemToBox({
+                                _id,
+                                name,
+                                servings,
+                                plan: 1,
+                                imageMain,
+                                ...rest
+                            })
                         }
-                    } servings={servings} />)
-                    }
-                }} />
+                        else {
+                            openModal(<CustomizedPlans closeModal={openModal} itemObject={{
+                                _id,
+                                name,
+                                servings,
+                                plan: 1,////change the wordings for this quick it can confuse someone
+                                imageMain,
+                                ...rest
+                            }
+                            } servings={servings} />)
+                        }
+                    }} />
                 </div>
             </div>
         }
