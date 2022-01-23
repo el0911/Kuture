@@ -16,7 +16,7 @@ const MainComponent = styled.main`
   
 
 width:${mobileMode ? '90vw' : '80vw'};
-margin:40px ${mobileMode ? '' : 'auto'};
+margin:80px ${mobileMode ? '5vw' : 'auto'};
 margin-right: ${mobileMode ? '0' : ''};
 
 option {
@@ -52,9 +52,11 @@ option {
   fill:#fafaef
 }
 
-.info_{
+
+.header-containier{
   display: grid;
   grid-template-columns:  ${mobileMode ? '' : '1fr 250px'}; 
+  align-items: center;
 }
 
 .info_ header{
@@ -136,7 +138,15 @@ option {
 
 .row_categories{
   display: grid;
-  ${!mobileMode ? 'grid-template-columns: repeat(3, 170px);' : ""}
+  grid-template-columns: repeat(auto-fit, minmax(170px, 170px));
+  margin: ${mobileMode?'0':'30px 0 90px 0'};
+  row-gap: 15px;
+}
+
+.mobileheader .row_categories{
+  display: -webkit-box;
+  gap: 20px;
+  overflow: scroll;
 }
 
 .all_products .time{
@@ -162,10 +172,12 @@ option {
 
 .mobileheader{
   display: grid;
-  grid-template-columns: 108px 1fr;
+  grid-template-columns: 1fr;
   align-items: center;
   margin-top: 30px;
+  row-gap: 20px;
 }
+
 
 
 .mobileheader .header{
@@ -222,7 +234,10 @@ function Recipes() {
 
     menu: () => ({
       width: '250px',
-      backgroundColor: 'white'
+      backgroundColor: 'white',
+      position:'absolute',
+      top:'65px'
+
     }),
 
     placeholder: styles => ({
@@ -237,7 +252,7 @@ function Recipes() {
       marginTop: "5%",
       height: '50px',
       width: '250px', backgroundColor: 'white',
-      borderColor: '#FFC850'
+      borderColor: '#FFC850',
     })
   }
 
@@ -252,9 +267,11 @@ function Recipes() {
       // setCategories( data );
       const holdCat = []
       data.payload.data.map((data) => {
-        holdCat.push({
-          value: { id: data._id, shortText: data.shortText, name: data.name }, label: data.name
-        })
+        
+           holdCat.push({
+            value: { id: data._id, shortText: data.shortText, name: data.name }, label: data.name
+          })
+
       })
       console.log({
         holdCat
@@ -274,7 +291,7 @@ function Recipes() {
    * @description gets meals by categories
    * @param {*} categoryId 
    */
-   const getAllMealsForCategory = async (categoryId) => {
+  const getAllMealsForCategory = async (categoryId) => {
     try {
       setLoadingMeals(true)
       const { data } = await axiosCall.get('/meals/category/' + categoryId)
@@ -293,31 +310,30 @@ function Recipes() {
     setLoadingMeals(false)
   }
 
-    /**
-   * @description search text
-   * @param {*} categoryId 
-   */
-     const searchText = async (text) => {
-       if (text.length<3) {
-         return
-       }
-      try {
-        setLoadingMeals(true)
-        const { data } = await axiosCall.get('/meals/search/' + text)
-        const allMeals = []
-        data.payload.data.map((meal) => {
-          allMeals.push({
-            ...meal,
-            nonView: true
-          })
-        })
-        setProducts(allMeals)
-  
-      } catch (error) {
-        console.log(error)
-      }
-      setLoadingMeals(false)
+  /**
+ * @description search text
+ * @param {*} categoryId 
+ */
+  const searchText = async (text) => {
+    if (text.length < 3) {
+      return
     }
+    try {
+      setLoadingMeals(true)
+      const { data } = await axiosCall.get('/meals/search/' + text)
+      const allMeals = []
+      data.payload.data.map((meal) => {
+        allMeals.push({
+          ...meal,
+          nonView: true
+        })
+      })
+      setProducts(allMeals)
+    } catch (error) {
+      console.log(error)
+    }
+    setLoadingMeals(false)
+  }
 
 
   React.useEffect(() => {
@@ -343,19 +359,31 @@ function Recipes() {
           <div className="search">
             <SearchSVG />
 
-            <input onChange={e=>{
-                const {value} = e.target
-                searchText(value)
-            }}  placeholder="Search for a recipe" type="text" />
+            <input onChange={e => {
+              const { value } = e.target
+              searchText(value)
+            }} placeholder="Search for a recipe" type="text" />
           </div>
 
           <div className="info_">
 
             <div className={mobileMode ? 'mobileheader' : ""} >
-              <p className="header">
-                Popular Cuisines
-              </p>
+              <div className="header-containier" >
+                <p className="header">
+                  Popular Categories
+                </p>
 
+                {!mobileMode && <Select styles={customStyles}
+                  placeholder={categories.length ? "SELECT CATEGORY" : "Loading Categories..."}
+                  onChange={e => {
+                    console.log({ d: e.value })
+                    getAllMealsForCategory(e.value.id)
+                    setType(e.value)
+                  }}
+                  value={type.name}
+                  className="select" options={categories} />}
+
+              </div>
               <div className="row_categories">
                 {popular.map(({ label, value }) => {
                   return <div className="category" onClick={e => {
@@ -367,15 +395,7 @@ function Recipes() {
               </div>
             </div>
 
-            {!mobileMode && <Select styles={customStyles}
-              placeholder={categories.length ? "SELECT CATEGORY" : "Loading Categories..."}
-              onChange={e => {
-                console.log({ d: e.value })
-                getAllMealsForCategory(e.value.id)
-                setType(e.value)
-              }}
-              value={type.name}
-              className="select" options={categories} />}
+
 
           </div>
         </div>
@@ -387,7 +407,7 @@ function Recipes() {
           borderRadius: '40px',
           position: 'absolute',
           left: '-10vw',
-          margin: '10vw 0',
+          margin: `10vw ${mobileMode ? '5vw' : ''}`,
           minHeight: '100vh',
           borderTopLeftRadius: '40px',
           height: 'auto'
