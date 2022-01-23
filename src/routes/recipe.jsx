@@ -132,6 +132,14 @@ const Main = styled.main`
         overflow: scroll;
         max-width: 90vw;`:''}  
     }
+
+    .backdrop{
+        position: absolute;
+        width: 100vw;
+        height: 50px;
+        background: white;
+        opacity: 0.6;
+    }
 `;
 
 
@@ -142,6 +150,9 @@ function RecipeItem() {
 
     return (
         <Main>
+            {mobileMode && <div className="backdrop">
+                 
+            </div>}
             <div className="background" style={{
                 background: `url(${`https://cdn.shopify.com/s/files/1/0070/7032/files/food_photography_hero.jpg?v=1504106067`})`,
                 height: '356px',
