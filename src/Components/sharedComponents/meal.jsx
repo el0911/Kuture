@@ -31,6 +31,7 @@ width: -webkit-fill-available;
 .showbox{
         box-shadow: 0px 0px 10px 6px rgba(98, 98, 98, 0.1);
 border-radius: 13.3056px;
+cursor:pointer;
   }
 
   .box_home{
@@ -208,7 +209,7 @@ const MealComponent = ({ data, history }) => {
             console.log(error)
         }
 
-        return '30 mins'
+        return '1hr'
     }
 
     React.useEffect(() => {
@@ -218,13 +219,16 @@ const MealComponent = ({ data, history }) => {
 
     const [index, setIndex] = React.useState('1')
 
-    return <div className="showbox">
+    return <div className="showbox" onClick={e => {
+        ///
+        history.push(`/recipe/${_id}`)
+    }} >
         <div style={{
             background: 'black',
             borderTopRightRadius: '20px',
             borderTopLeftRadius: '20px',
             height: nonView ? '141px' : '280px',
-            backgroundImage: `url(${imageMain})`,
+            backgroundImage: `url(${`http://res.cloudinary.com/immotal/image/upload/${imageMain}.jpg`})`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             backgroundRepeat: 'no-repeat'
@@ -251,7 +255,7 @@ const MealComponent = ({ data, history }) => {
                         </p>
 
                         <p className="price">
-                            ${servings[index]}
+                            ${servings[index] || servings[2]}  {/* tthis logic here checks if this recipe has a serrviing for a siingle person else it falls back to 2 */}
                         </p>
                     </div>
                     {/* <Question className='question' onClick={e => {
@@ -349,3 +353,16 @@ export default function Meal({ category, list }) {
         </Component>
     )
 }
+
+
+
+     ///recipe 
+        ///steps
+        ///ingredients
+          /// name
+          /// picture
+          /// price
+      ///images
+        /// itemimage
+        /// cartimage
+        /// banner image

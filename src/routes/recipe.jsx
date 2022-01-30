@@ -1,23 +1,30 @@
 import React from "react";
 import { isMobile, isTablet } from 'react-mobile-app'
 import styled from "styled-components";
+import axiosCall from "../utils/axios";
+import html2canvas from "html2canvas"
+import jsPDF from 'jspdf'
+import cartObject from "../utils/cart";
+import { Image, Transformation } from 'cloudinary-react';
+// import {Cloudinary} from "@cloudinary/url-gen";
+
 const mobileMode = isMobile() || isTablet()
 
 
 const Main = styled.main`
 
     .recipe_body{
-        width: ${mobileMode?'90vw':'80vw'} ;
+        width: ${mobileMode ? '90vw' : '80vw'} ;
         margin: auto;
         position: relative;
         top: -120px;
-        padding: ${mobileMode ? '0':' 27px'} ;
+        padding: ${mobileMode ? '0' : ' 27px'} ;
         border-radius: 13px;
     }
 
     .recipe_body_top{
         display: grid;
-        grid-template-columns: ${mobileMode ? '1fr':' 0.7fr 0.35fr'} ;
+        grid-template-columns: ${mobileMode ? '1fr' : ' 0.7fr 0.35fr'} ;
         column-gap: 20px;
     }
 
@@ -39,7 +46,7 @@ const Main = styled.main`
         font-style: normal;
         font-weight: bold;
         font-size: 35px;
-        line-height: 21px;
+        line-height: 40px;
         /* or 53% */
 
 
@@ -95,7 +102,7 @@ const Main = styled.main`
         background: white;
         display: grid;
         margin-top: 25px;
-        grid-template-columns: ${mobileMode?'1fr':'0.7fr 0.35fr'};
+        grid-template-columns: ${mobileMode ? '1fr' : '0.7fr 0.35fr'};
         gap: 20px;
     }
 
@@ -128,9 +135,9 @@ const Main = styled.main`
     }
 
     .ingredient-list{
-        ${mobileMode?`display: flex;
+        ${mobileMode ? `display: flex;
         overflow: scroll;
-        max-width: 90vw;`:''}  
+        max-width: 90vw;`: ''}  
     }
 
     .backdrop{
@@ -144,17 +151,80 @@ const Main = styled.main`
 
 
 
-function RecipeItem() {
+function RecipeItem(props) {
+
+    const recipeId = props.match.params.id
+    const [data, setData] = React.useState(false)
+    const [index, setIndex] = React.useState('1')
+    const [loadMessage, setLoadMessage] = React.useState('........Loading')
+
+    React.useEffect(() => {
+        ///////
+        setIndex(cartObject.mealSize || '1')
+    }, [cartObject.mealSize])
+
+    const load = async () => {
+        try {
+            const { data } = await axiosCall.get(`meals/getmeal/${recipeId}`);
+            setData(data.payload.data)
+        } catch (error) {
+            setLoadMessage(`Can't load Meal Page 😔`)
+        }
+    }
+
+    React.useEffect(() => {
+        load()
+    }, [])
 
 
+    if (!data) {
+        return <p style={{
+            width:'100vw',
+            textAlign:'center',
+            paddingTop:"100px"
+        }} >{loadMessage}</p>
+    }
+
+
+    const printDocument = () => {
+        const input = document.getElementById('divToPrint')
+
+        html2canvas(input, {
+            scale: 3, // use the desired scale
+            allowTaint: true,
+            useCORS: true
+        }).then(canvas => {
+
+            // Your IMAGE_DATA_URI
+            var imgData = canvas.toDataURL('image/jpeg');
+
+            const pdf = new jsPDF();
+            pdf.addImage(imgData, "JPEG", 40, 0, 280, 280);
+            // pdf.output('dataurlnewwindow');
+            pdf.save("download.pdf");
+
+            // document.body.appendChild(canvas)
+
+            // // Make pdf
+            // var doc = new jsPDF();
+
+            // // add image
+            // doc.addImage(imgData, 'JPEG');
+
+            // // Save document
+            // doc.save('charts.pdf'); 
+        })
+
+
+    }
 
     return (
-        <Main>
+        <Main  >
             {mobileMode && <div className="backdrop">
-                 
+
             </div>}
             <div className="background" style={{
-                background: `url(${`https://cdn.shopify.com/s/files/1/0070/7032/files/food_photography_hero.jpg?v=1504106067`})`,
+                background: `url(${`http://res.cloudinary.com/immotal/image/upload/${data.recipeId.recipeImg}.jpg`})`,
                 height: '356px',
                 backgroundSize: 'contain',
                 backgroundPosition: 'center',
@@ -162,150 +232,81 @@ function RecipeItem() {
             }}  >
 
             </div>
-
-            <div className="recipe_body">
+            {/* <Image cloud_name='immotal' publicId="dnlaktlmojono70v1iai.jpg" signUrl="true">
+            <Transformation angle="90" />
+            </Image> */}
+            <div className="recipe_body" >
                 <div className="recipe_body_top">
                     <div className="left_recipe">
                         <div className="info">
                             <div className="short-details">
                                 <h3 className="name">
-                                    Egusi Soup
+                                    {data.name}
                                 </h3>
 
                                 <h4 className="price" >
-                                    $300
+                                    ${data.servings[index] || data.servings[2]}
                                 </h4>
                             </div>
 
-                            <div className="download-button">
+                            {/* <div onClick={printDocument} className="download-button">
                                 <p>
                                     Download Recipe
                                 </p>
-                            </div>
+                            </div> */}
                         </div>
 
                         <div className="extra-info">
                             <p>
-                                Our fried rice is made from the finest ingredients and veggies. single dish is made with fresh vegetables,
-                                rescued.Our fried rice is made from the finest ingredients and veggies.
-                                single dish is made with fresh vegetables, rescued.
+                                {data.recipeId.textDetails}
                             </p>
                         </div>
                     </div>
 
-                  <div className="right_recipe">
+                    <div className="right_recipe">
                         <div className="list-item">
                             <div className="item">
                                 <p className="item-header">
                                     Servings
                                 </p>
                                 <p className="item-count">
-                                    4
+                                    {data.servings[index] ? index : 2}  {/* tthis logic here checks if this recipe has a serrviing for a siingle person else it falls back to 2 */}
                                 </p>
                             </div>
 
-                            <div className="item">
-                                <p className="item-header">
-                                    Servings
-                                </p>
-                                <p className="item-count">
-                                    4
-                                </p>
-                            </div>
+
                         </div>
                     </div>
                 </div>
 
-                <div className="recipe_bottom">
+                <div className="recipe_bottom" id="divToPrint"   >
                     <div className="left_below">
                         <ul className="steps-list">
-                            <li className="list-item">
-                                <p>
-                                    Fried Rice Is Made From The Finest Ingredients And Veggies. Single Dish Is Made With Fresh Vegetables, Rescued.
-                                </p>
-                            </li>
-
-                            <li className="list_item">
-                                <p>
-                                    Fried Rice Is Made From The Finest Ingredients And Veggies. Single Dish Is Made With Fresh Vegetables, Rescued.
-                                </p>
-                            </li>
-
-                            <li className="list_item">
-                                <p>
-                                    Fried Rice Is Made From The Finest Ingredients And Veggies. Single Dish Is Made With Fresh Vegetables, Rescued.
-                                </p>
-                            </li>
-
-                            <li className="list_item">
-                                <p>
-                                    Fried Rice Is Made From The Finest Ingredients And Veggies. Single Dish Is Made With Fresh Vegetables, Rescued.
-                                </p>
-                            </li>
-
-                            <li className="list_item">
-                                <p>
-                                    Fried Rice Is Made From The Finest Ingredients And Veggies. Single Dish Is Made With Fresh Vegetables, Rescued.
-                                </p>
-                            </li>
+                            {data.recipeId.steps.map((step) => {
+                                return <li className="list_item">
+                                    <p>
+                                        {step}
+                                    </p>
+                                </li>
+                            })}
                         </ul>
                     </div>
                     <div className="rght_below">
                         <div className="ingredient-list">
-                            <div className="ingredient">
-                                <img src="https://static.toiimg.com/photo/68483689.cms" alt="" />
-                                <div className="details">
-                                    <p className="name">name</p>
-                                    <p className="size">
-                                        700ml
-                                    </p>
+
+
+                            {data.recipeId.ingredients.map(({ name }) => {
+                                return <div className="ingredient">
+                                    <img src="https://static.toiimg.com/photo/68483689.cms" alt="" />
+                                    <div className="details">
+                                        <p className="name">{name}</p>
+                                        <p className="size">
+                                            {/* 700ml */}
+                                        </p>
+                                    </div>
                                 </div>
-                            </div>
+                            })}
 
-
-                            <div className="ingredient">
-                                <img src="https://static.toiimg.com/photo/68483689.cms" alt="" />
-                                <div className="details">
-                                    <p className="name">name</p>
-                                    <p className="size">
-                                        700ml
-                                    </p>
-                                </div>
-                            </div>
-
-
-
-                            <div className="ingredient">
-                                <img src="https://static.toiimg.com/photo/68483689.cms" alt="" />
-                                <div className="details">
-                                    <p className="name">name</p>
-                                    <p className="size">
-                                        700ml
-                                    </p>
-                                </div>
-                            </div>
-
-
-
-                            <div className="ingredient">
-                                <img src="https://static.toiimg.com/photo/68483689.cms" alt="" />
-                                <div className="details">
-                                    <p className="name">name</p>
-                                    <p className="size">
-                                        700ml
-                                    </p>
-                                </div>
-                            </div>
-
-                            <div className="ingredient">
-                                <img src="https://static.toiimg.com/photo/68483689.cms" alt="" />
-                                <div className="details">
-                                    <p className="name">name</p>
-                                    <p className="size">
-                                        700ml
-                                    </p>
-                                </div>
-                            </div>
 
                         </div>
                     </div>
