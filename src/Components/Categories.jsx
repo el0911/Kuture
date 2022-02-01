@@ -4,6 +4,8 @@ import Meal from "./sharedComponents/meal";
 
 const Main = styled.main`
   
+  width:90%;
+  margin:auto;
 
   @media (min-width: 300px) and (max-width: 600px) {
     .title {
