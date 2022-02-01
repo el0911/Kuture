@@ -33,7 +33,7 @@ const ModalComponent = styled.div`
 
 
             .top p{
-                font-family: Sen;
+                
                 font-style: normal;
                 font-weight: bold;
                 font-size: 23px;
@@ -51,7 +51,7 @@ const ModalComponent = styled.div`
             .meal_plans p{
 
                 
-                font-family: Sen;
+                
                 font-style: normal;
                 font-weight: bold;
                 font-size: 15px;
@@ -83,7 +83,7 @@ const ModalComponent = styled.div`
 
          .total{
 
-        font-family: Sen;
+        
         font-style: normal;
         font-weight: bold;
         font-size: 50px;

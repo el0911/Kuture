@@ -4,7 +4,7 @@ import styled from "styled-components";
 const Main = styled.main`
 
 .page_title{
-    font-family: Sen;
+    
     font-style: normal;
     font-weight: bold;
     font-size: 35px;

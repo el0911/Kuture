@@ -3,7 +3,7 @@ import styled from "styled-components";
 import BackM from "./images/delivery_new.svg";
 
 const Main = styled.main`
-  font-family: "Sen", sans-serif;
+  
 
   @media (min-width: 300px) and (max-width: 600px) {
     .delivery_div {

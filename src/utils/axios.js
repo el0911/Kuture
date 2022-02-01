@@ -9,34 +9,31 @@ import AuthUtil from "./auth";
 
 function manageErrorConnection(err) {
     if (err.response && err.response.status >= 400 && err.response.status <= 500) {
-       try {
-        if (   err.response){
-           
-            if (err.response.status === 401 &&
-                  ( 
-                      !err.config.url.includes('signin') &&
-                      !err.config.url.includes('signup') ) 
-                )  {
+        try {
+            if (err.response) {
 
-                 AuthUtil.logout()
-                 return 
+                if (err.response.status === 401 &&
+                    (
+                        !err.config.url.includes('signin') &&
+                        !err.config.url.includes('signup'))
+                ) {
 
+                    AuthUtil.logout()
+                    return
+
+                }
+
+                const { data } = err.response;
+                const error = data.errors ? `${data.errors[0].message} ${data.errors[0].cause ? data.errors[0].cause : ''}` : data.payload.message
+                console.log('::::::::::', error)
+                toast(error)
+                throw new Error(error)
             }
-    
-            const { data } = err.response;
-            const error = data.errors ? `${data.errors[0].message} ${data.errors[0].cause ? data.errors[0].cause : ''}` : data.payload.message
-            console.log('::::::::::',error)
-            toast(error)
-            return Promise.reject(new Error(error))
-    
-       
-         
+        } catch (error) {
+            console.log(error)
         }
-    } catch (error) {
-        console.log(error)
-    }
         // this will trigger the `handleError` function in the promise chain
-      } else if (err.code === 'ECONNREFUSED') {
+    } else if (err.code === 'ECONNREFUSED') {
         // this will trigger the `handlerResponse` function in the promise chain
         // bacause we are not returning a rejection! Just an example
         return 'nevermind'
@@ -93,7 +90,7 @@ class AxiosCalls {
             }
 
         }
-        , manageErrorConnection
+            , manageErrorConnection
         )
 
     }

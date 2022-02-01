@@ -55,8 +55,9 @@ export default function Layout({ children }) {
                     {!!(mobileMode) && <div style={{
                         textAlign:'center',
                         marginTop:20,
-                        position: 'relative',
-                        zIndex: 20
+                        position: 'absolute',
+                        zIndex: 20,
+                        width: '100%',
                     }}  onClick={()=>{
                         history.push('./')
                       }} >

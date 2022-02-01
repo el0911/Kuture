@@ -13,8 +13,12 @@ import Signup from './signup'
 import Layout from "../Components/layout";
 import Login from "./login";
  // import Subscribe from "./subscribe";
-import HistoryPage from "./history";
+ import ResetRequest from "./resetPassword";
+ import Reset from "./resetPasswordPage";
+ import HistoryPage from "./history";
 import AuthUtil from "../utils/auth";
+import Recipes from "./recipes";
+import RecipeItem from "./recipe";
 
 const DoesNotExist = () =>{
   return <p>
@@ -34,19 +38,24 @@ export default function Routes() {
       <Switch>
         <Layout>
           <Route exact path="/" component={LandingPage} />
-          <Route exact path="/allrecipes" component={OurRecipes} />
+          <Route exact path="/allrecipes" component={Recipes} />
           {/* <Route exact path="/customise" component={CustomiseMenu} /> */}
           <Route exact path="/login" component={Login} />
+          <Route exact path="/recipe/:id" component={RecipeItem} />
           <Route exact path="/signup" component={Signup} />
           <Route exact path="/whykulturefresh" component={Whyus} />
-          {AuthUtil.isLogedIn() && <div>
+          <Route exact path="/reset-password" component={ResetRequest} />
+          <Route exact path="/reset-password/:token" component={Reset} />
+          {AuthUtil.isLogedIn() && 
+          <div>
             <Route exact path="/history" component={HistoryPage} />
             <Route exact path="/completed" component={CompletedOrder} />
             <Route exact path="/deliveryinfo" component={DeliveryInformation} />
-            <Route path="/recipe/:productId" component={EachRecipe} />
+            <Route exact path="/recipe/:productId" component={EachRecipe} />
             <Route exact path="/ordersummary" component={OrderSummary} />
             {/* <Route  path="*" component={DoesNotExist} /> */}
-          </div>}
+          </div>
+          }
           {/* <Route exact path="/sub" component={Subscribe} /> */}
 
 

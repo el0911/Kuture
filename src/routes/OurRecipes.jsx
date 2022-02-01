@@ -9,10 +9,13 @@ import axiosCall from "../utils/axios";
 import Loader from "react-loader-spinner";
 
 const Main = styled.main`
-  font-family: "Sen", sans-serif;
+  
+
+  width:80vw;
+  margin:40px auto;
 
   option {
-    font-family: "Sen", sans-serif;
+    
     font-weight: 800;
     font-size: 15px;
   }
@@ -23,32 +26,29 @@ const Main = styled.main`
     text-decoration: none;
   }
  
-  .background_div{
-    // background-image: url(${AllRecipesBackI});
-    position:relative;
-    min-height:80vh
-  }
+    d
 
   .wavesvg{
-    position: absolute;
-    bottom: 0;
+     bottom: 0;
     fill:#fafaef
   }
 
   .info_{
-    margin-top: 200px;
-    position: absolute;
-    width: 100vw;
-    text-align: center;
+    display: grid;
+    grid-template-columns: 1fr 250px;
   }
 
-  .info_ p{
-    font-family: Sen;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 40px;
-    line-height: 48px;
-    color: #AE5D29;
+  .info_ header{
+    font-family: Ubuntu;
+font-style: normal;
+font-weight: 500;
+font-size: 20px;
+line-height: 23px;
+/* identical to box height */
+
+
+color: #4E4E4F;
+    
   }
 
 
@@ -57,7 +57,7 @@ const Main = styled.main`
   }
   
   .text .title{
-    font-family: Sen;
+    
     font-style: normal;
     font-weight: normal;
     font-size: 23px;
@@ -67,7 +67,7 @@ const Main = styled.main`
   }
 
   .text .alltext{
-    font-family: Sen;
+    
     font-style: normal;
     font-weight: normal;
     font-size: 16px;
@@ -75,11 +75,15 @@ const Main = styled.main`
     color: #523523;
   }
 
-
-
   .select{
+    display: grid;
+    align-items: flex-end;
+  }
 
-    padding: 0 45.7px;
+
+  .select svg{
+
+    color: #FF785B !important
 
   }
 
@@ -91,8 +95,35 @@ const Main = styled.main`
 
   }
 
+  .category{
+    width: 159.38px;
+    height: 50px;
+    /* left: 305px; */
+    /* top: 286px; */
+    border: 1px solid #E89528;
+    box-sizing: border-box;
+    border-radius: 10px;
+    text-align: center;
+    display: grid;
+    font-size: 16px;
+    line-height: 18px;
+    align-items: center;
+    color: #000;
+    cursor:pointer;
+  }
+
+  .category:hover{
+    background: #E89528;
+    color:white
+  }
+
+  .row_categories{
+    display: grid;
+    grid-template-columns: repeat(3, 170px);
+  }
+
   .all_products .time{
-    font-family: Sen;
+    
     font-style: normal;
     font-weight: bold;
     font-size: 15px;
@@ -103,6 +134,7 @@ const Main = styled.main`
 
   @media  (max-width: 500px) {
 
+    /**background:#ffc850;
     .info_{
       margin-top: 122px;
     }
@@ -118,9 +150,10 @@ const Main = styled.main`
 export default function OurRecipes() {
   const [products, setProducts] = React.useState([]);
   const [categories, setCategories] = React.useState([]);
+  const [popular, setPopular] = React.useState([]);
   const [type, setType] = React.useState(false);
   const [loadinMeals, setLoadingMeals] = React.useState(false);
-  
+
 
   const customStyles = {
     option: (provided, state) => ({
@@ -129,22 +162,28 @@ export default function OurRecipes() {
 
     }),
 
+    indicatorContainer: () => ({
+      color: '#FF785B !important'
+    }),
+
     menu: () => ({
       width: '250px',
       backgroundColor: 'white'
     }),
 
     placeholder: styles => ({
-      fontFamily: 'sen',
+      fontFamily: 'Sen',
       fonyStyle: 'normal',
       fontWeight: 'normal',
-      fontSize: '18px',
+      fontSize: '12px',
       color: '#10145f'
     }),
     control: (provided) => ({
       ...provided,
       marginTop: "5%",
-      width: '250px', backgroundColor: 'white'
+      height:'50px',
+      width: '250px', backgroundColor: 'white',
+      borderColor: '#FFC850'
     })
   }
 
@@ -153,19 +192,21 @@ export default function OurRecipes() {
    * @param {*} category 
    * @returns 
    */
-   const fetchCategories = async () => {
+  const fetchCategories = async () => {
     try {
       const { data } = await axiosCall.get('/meals/category')
       // setCategories( data );
       const holdCat = []
-      data.payload.data.map((data)=>{
+      data.payload.data.map((data) => {
         holdCat.push({
-          value:{id:data._id,shortText:data.shortText,name:data.name} ,label:data.name
+          value: { id: data._id, shortText: data.shortText, name: data.name }, label: data.name
         })
       })
       console.log({
         holdCat
       })
+      setPopular(holdCat)
+
       setCategories(holdCat)
 
       return;
@@ -179,30 +220,29 @@ export default function OurRecipes() {
    * @description gets meals by categories
    * @param {*} categoryId 
    */
-  const getAllMealsForCategory = async (categoryId) =>{
+  const getAllMealsForCategory = async (categoryId) => {
     try {
       setLoadingMeals(true)
-      const { data } = await axiosCall.get('/meals/category/'+categoryId)
-       const allMeals = []
-       data.payload.data.map(( meal )=>{
+      const { data } = await axiosCall.get('/meals/category/' + categoryId)
+      const allMeals = []
+      data.payload.data.map((meal) => {
         allMeals.push({
           ...meal,
-          nonView: true 
-        }) 
-       })
+          nonView: true
+        })
+      })
+      setProducts(allMeals)
 
-       setProducts(allMeals)
-    } catch (error) {
+     } catch (error) {
       console.log(error)
-     }
+    }
     setLoadingMeals(false)
-
   }
- 
+
 
   React.useEffect(() => {
     fetchCategories();
-   }, [ ]);
+  }, []);
   return (
     <Main>
       <div class="custom-shape-divider-bottom-1629899704 background_div">
@@ -212,16 +252,27 @@ export default function OurRecipes() {
 
 
         <div className="info_">
-          <div className="title">
-            <p>
-              ALL RECIPES
+
+          <div>
+            <p className="header">
+              Popular Cuisines
             </p>
+
+            <div className="row_categories">
+              {popular.map(({label,value}) => {
+                return <div className="category" onClick={e=>{
+                  getAllMealsForCategory(value.id)
+                }} >
+                  {label}
+                </div>
+              })}
+            </div>
           </div>
 
           <Select styles={customStyles}
-            placeholder= {categories.length? "SELECT CATEGORY":"Loading Categories..."}
+            placeholder={categories.length ? "SELECT CATEGORY" : "Loading Categories..."}
             onChange={e => {
-              console.log({d:e.value})
+              console.log({ d: e.value })
               getAllMealsForCategory(e.value.id)
               setType(e.value)
             }}
@@ -229,15 +280,6 @@ export default function OurRecipes() {
             className="select" options={categories} />
 
 
-          {type && <div className="text select">
-            <p className='title' >
-              Everything you need for your {type.name} meals
-            </p>
-
-            <p className="alltext">
-             {type.shortText}
-            </p>
-          </div>}
 
 
 
@@ -246,11 +288,11 @@ export default function OurRecipes() {
       </div>
 
       <div className="all_products">
-     
-     
+
+
 
         <div className="products">
-        <div style={{
+          <div style={{
             textAlign: 'center'
           }}>
             {loadinMeals && <Loader

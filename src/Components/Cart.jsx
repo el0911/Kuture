@@ -69,7 +69,7 @@ top: 0;
     background: #FFC850;
     border-radius: 16px;
     border: 0;
-    font-family: Sen;
+    
     font-style: normal;
     font-weight: bold;
     font-size: 13px;

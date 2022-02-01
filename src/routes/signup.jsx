@@ -5,7 +5,7 @@ import { useLoadrConttext } from "../providers/fullLoader.provider";
 import AuthUtil from "../utils/auth";
  
 const Main = styled.main`
-  font-family: "Sen", sans-serif;
+  
 
   form div{
     display:grid !important;

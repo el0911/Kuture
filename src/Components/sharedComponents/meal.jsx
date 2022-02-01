@@ -2,11 +2,12 @@ import React from "react";
 import styled from "styled-components";
 import { useHistory } from "react-router-dom";
 import Modal from 'react-modal';
-import { Question } from "../../assets/svg";
+import { ClockSvg, Question } from "../../assets/svg";
 import CustomizedPlans from "../customizedPlans";
 import generalUttil from "../../utils/generalUtils";
 import MealPopup from "../mealPopUp";
 import cartObject from '../../utils/cart';
+import CustomDropDown from './customDropDown'
 
 const customStyles = {
     content: {
@@ -25,21 +26,23 @@ const customStyles = {
 const Component = styled.main`
 justify-content: center;
 margin-bottom: 20px;
-margin: 30px;
+margin-top: 20px;
 width: -webkit-fill-available;
 .showbox{
-    height: 340px
+        box-shadow: 0px 0px 10px 6px rgba(98, 98, 98, 0.1);
+border-radius: 13.3056px;
+cursor:pointer;
   }
 
   .box_home{
     display: grid;
-    width: 80VW;
-    margin: auto;
     gap:24px;
     grid-template-columns: repeat(auto-fit, minmax(255px, 1fr));
 }
 
- 
+ .showbox{
+     border-radius:15px
+ }
 
 .showbox img{
     width: inherit;
@@ -65,7 +68,7 @@ width: -webkit-fill-available;
     border-radius: 5px;
     border:0;
     color :white;
-    font-family: Sen;
+    
     font-style: normal;
     font-weight: normal;
     font-size: 15px;
@@ -79,16 +82,25 @@ width: -webkit-fill-available;
         margin: 0 20px;
     }
 
+    .name{
+        font-family: Ubuntu;
+font-style: normal;
+font-weight: bold;
+font-size: 17.2972px;
+line-height: 21px;
+/* identical to box height, or 123% */
+
+padding:0;
+
+color: #333333;
+
+    }
 
     .product_info p {
-        font-family: Sen;
         font-style: normal;
-        font-weight: bold;
-        padding: 6px;v 
-        font-size: 14px;
+        padding: 6px;
         line-height: 22px;
         /* identical to box height */
-        color: #10145F;
         margin:0 !important;
     }
 
@@ -98,7 +110,7 @@ width: -webkit-fill-available;
         border-radius: 5px;
         border: 0;
         color: white;
-        font-family: Sen;
+        
         font-style: normal;
         font-weight: normal;
         font-size: 15px;
@@ -129,12 +141,65 @@ width: -webkit-fill-available;
     
     .product_info{
         position: relative;
+        background: #fff;
+        border-bottom-left-radius: 20px;
+        border-bottom-right-radius: 20px;
+    }
+
+    .details{
+        color:#A7A7A7;
+        font-family: Ubuntu;
+        font-style: normal;
+        font-weight: 100;
+        font-size: 11px;
+        text-overflow: ellipsis;
+        font-style: normal;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        width: 100%;
+    }
+
+    .bar{
+        width: -webkit-fill-available;
+        border: 1px solid #EDEDED;
+    }
+
+    .price{
+        font-size: 18.6278px;
+        line-height: 20px;
+        color: #E89528;
+    }
+
+    .info_section{
+        width: 95%;
+        padding: 7px;
+        padding-bottom: 15px;
+    }
+
+    .timer{
+        display: grid;
+        grid-template-columns: 20px 1fr;
+        align-items: center;
+        width: 80px;
+        background: white;
+        padding: 5px 3px;
+        text-align: center;
+        border-radius: 12px;
+        top: 100px;
+        right: -7px;
+        font-size: 12px;
+        position: relative;
+    }
+
+    .timer p{
+        margin:0
     }
 
 `
 
 
-const MealComponent = ({data,history}) => {
+const MealComponent = ({ data, history }) => {
     const { servings, imageMain, nonView, name, _id, recipeId = { timeTaken: 0 }, openModal, ...rest } = data
     const convertToTTimeString = () => {
         let result = ''
@@ -144,73 +209,90 @@ const MealComponent = ({data,history}) => {
             console.log(error)
         }
 
-        return '30mins'
+        return '1hr'
     }
 
-    return <div className="showbox">
-          <div  style={{
-              background:'black',
-              height:nonView? '220px':'280px' ,
-              backgroundImage:`url(${imageMain})`,
-              backgroundSize:'cover',
-              backgroundPosition:'center',
-              backgroundRepeat:'no-repeat'
-          }} ></div>
-       {!nonView && <div className="info">
+    React.useEffect(() => {
+        ///////
+        setIndex(cartObject.mealSize || '1')
+    }, [cartObject.mealSize])
+
+    const [index, setIndex] = React.useState('1')
+
+    return <div className="showbox" onClick={e => {
+        ///
+        history.push(`/recipe/${_id}`)
+    }} >
+        <div style={{
+            background: 'black',
+            borderTopRightRadius: '20px',
+            borderTopLeftRadius: '20px',
+            height: nonView ? '141px' : '280px',
+            backgroundImage: `url(${`http://res.cloudinary.com/immotal/image/upload/${imageMain}.jpg`})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat'
+        }} >    <div className="timer">
+                <ClockSvg />  <p>{convertToTTimeString(recipeId.timeTaken)}</p>
+            </div> </div>
+        {!nonView && <div className="info">
             <p>
                 {name}
             </p>
-            <button   onClick={() => {
-                    history.push("/allrecipes");
-                }} >
+            <button onClick={() => {
+                history.push("/allrecipes");
+            }} >
                 View More
             </button>
         </div>}
 
         {
             nonView && <div className="product_info">
-                <div className="text">
-                    <p className="name">
-                        {name}
-                    </p>
+                <div className="info_section" >
+                    <div className="text">
+                        <p className="name">
+                            {name}
+                        </p>
 
-                    <p>
-                        {convertToTTimeString()}
-                    </p>
-
-
-
-                </div>
-                <Question className='question' onClick={e => {
+                        <p className="price">
+                            ${servings[index] || servings[2]}  {/* tthis logic here checks if this recipe has a serrviing for a siingle person else it falls back to 2 */}
+                        </p>
+                    </div>
+                    {/* <Question className='question' onClick={e => {
                     openModal(<MealPopup recipeId={recipeId._id} recipeName={name} />
                     )
-                }} />
+                }} /> */}
 
-                <button onClick={e => {
-                     if (cartObject.doIHavaABox()  ) {
-                        cartObject.addItemToBox({
-                            _id,
-                            name,
-                            servings,
-                            plan:1,
-                            imageMain,
-                            ...rest
-                        })
-                    }
-                    else{
-                        openModal(<CustomizedPlans closeModal={openModal} itemObject={{
-                            _id,
-                            name,
-                            servings,
-                            plan:1,////change the wordings for this quick it can confuse someone
-                            imageMain,
-                            ...rest
+
+
+                    <div className="bar"></div>
+                    <p className="details">
+                        {recipeId.textDetails}
+                    </p>
+                    <CustomDropDown onClick={e => {
+                        if (cartObject.doIHavaABox()) {
+                            cartObject.addItemToBox({
+                                _id,
+                                name,
+                                servings,
+                                plan: 1,
+                                imageMain,
+                                ...rest
+                            })
                         }
-                    } servings={servings} />)
-                    }
-                }} >
-                    add to Box
-                </button>
+                        else {
+                            openModal(<CustomizedPlans closeModal={openModal} itemObject={{
+                                _id,
+                                name,
+                                servings,
+                                plan: 1,////change the wordings for this quick it can confuse someone
+                                imageMain,
+                                ...rest
+                            }
+                            } servings={servings} />)
+                        }
+                    }} />
+                </div>
             </div>
         }
     </div>
@@ -271,3 +353,16 @@ export default function Meal({ category, list }) {
         </Component>
     )
 }
+
+
+
+     ///recipe 
+        ///steps
+        ///ingredients
+          /// name
+          /// picture
+          /// price
+      ///images
+        /// itemimage
+        /// cartimage
+        /// banner image

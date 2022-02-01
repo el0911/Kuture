@@ -13,7 +13,7 @@ import { useLoadrConttext } from "../providers/fullLoader.provider";
 import { useHistory } from "react-router-dom";
  
 const Main = styled.main`
-  font-family: "Sen", sans-serif;
+  
   position: relative;
     top: -93px;
  
@@ -237,7 +237,7 @@ const Main = styled.main`
   }
 
   .overlay .header{
-    font-family: Sen;
+    
     font-style: normal;
     font-weight: 800;
     font-size: 60px;
@@ -247,7 +247,7 @@ const Main = styled.main`
   }
 
   .overlay .text{
-    font-family: Sen;
+    
     font-style: normal;
     font-weight: bold;
     font-size: 20px;

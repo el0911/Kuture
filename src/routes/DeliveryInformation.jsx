@@ -8,7 +8,7 @@ import Loader from "react-loader-spinner";
 
 
 const Main = styled.main`
-  font-family: "Sen", sans-serif;
+  
   margin-top:100px;
 
   select{

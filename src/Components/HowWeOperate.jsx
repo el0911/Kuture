@@ -11,7 +11,7 @@ import BannerM from "../assets/svg/bannerM.svg";
 import BannerL from "../assets/images/bannerL.jpg";
 
 const Main = styled.main`
-  font-family: "Sen", sans-serif;
+  
 
   @media (min-width: 300px) and (max-width: 600px) {
     .title {
