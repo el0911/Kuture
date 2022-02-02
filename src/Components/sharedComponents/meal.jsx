@@ -37,7 +37,7 @@ cursor:pointer;
   .box_home{
     display: grid;
     gap:24px;
-    grid-template-columns: repeat(auto-fit, minmax(255px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(255px, 1fr));
 }
 
  .showbox{
