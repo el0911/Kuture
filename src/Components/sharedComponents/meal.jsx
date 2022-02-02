@@ -64,7 +64,7 @@ cursor:pointer;
   .showbox .info button{
     width: 95px;
     height: 38px;
-    background: #FF2400;
+    background: #45CD63;
     border-radius: 5px;
     border:0;
     color :white;
@@ -106,7 +106,7 @@ color: #333333;
 
     .top_button {
          height: 38px;
-        background: #FF2400;
+        background: #45CD63;
         border-radius: 5px;
         border: 0;
         color: white;
@@ -121,7 +121,7 @@ color: #333333;
       }
 
       .product_info button{
-        background: #FF2400;
+        background: #45CD63;
         border-radius: 0px 0px 5px 5px;
         color: white;
         width: -webkit-fill-available;
@@ -186,7 +186,6 @@ color: #333333;
         padding: 5px 3px;
         text-align: center;
         border-radius: 12px;
-        top: 100px;
         right: -7px;
         font-size: 12px;
         position: relative;
@@ -216,8 +215,7 @@ const MealComponent = ({ data, history }) => {
         ///////
         setIndex(cartObject.mealSize || '1')
     }, [cartObject.mealSize])
-
-    const [index, setIndex] = React.useState('1')
+     const [index, setIndex] = React.useState('1')
 
     return <div className="showbox" onClick={e => {
         ///
@@ -232,7 +230,9 @@ const MealComponent = ({ data, history }) => {
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             backgroundRepeat: 'no-repeat'
-        }} >    <div className="timer">
+        }} >    <div className="timer" style={{
+             bottom:  nonView ? '-102px' : '-235px' 
+        }} >
                 <ClockSvg />  <p>{convertToTTimeString(recipeId.timeTaken)}</p>
             </div> </div>
         {!nonView && <div className="info">
@@ -242,7 +242,7 @@ const MealComponent = ({ data, history }) => {
             <button onClick={() => {
                 history.push("/allrecipes");
             }} >
-                View More
+                View
             </button>
         </div>}
 

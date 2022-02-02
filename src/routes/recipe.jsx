@@ -295,9 +295,9 @@ function RecipeItem(props) {
                         <div className="ingredient-list">
 
 
-                            {data.recipeId.ingredients.map(({ name }) => {
+                            {data.recipeId.ingredients.map(({ name,imageId }) => {
                                 return <div className="ingredient">
-                                    <img src="https://static.toiimg.com/photo/68483689.cms" alt="" />
+                                    <img src={`${`http://res.cloudinary.com/immotal/image/upload/${imageId}.jpg`}`} alt="" />
                                     <div className="details">
                                         <p className="name">{name}</p>
                                         <p className="size">
