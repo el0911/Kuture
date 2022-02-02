@@ -169,7 +169,7 @@ export default function Header() {
         display: 'grid',
         position: 'relative'
         }} onClick={()=>{
-          history.push('./')
+          history.push('/')
         }} >
               <LogoSVG />
       </div>

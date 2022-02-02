@@ -6,6 +6,10 @@ import FavRec from "../assets/images/favrecipe1.jpg";
 import Meal from "./sharedComponents/meal";
 
 const Main = styled.main`
+
+width:90%;
+margin:auto;
+
 .title {
   font-weight: bold;
   font-size: 25px;
