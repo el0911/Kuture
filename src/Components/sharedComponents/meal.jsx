@@ -270,6 +270,7 @@ const MealComponent = ({ data, history }) => {
                         {recipeId.textDetails}
                     </p>
                     <CustomDropDown onClick={e => {
+                        e.stopPropagation()
                         if (cartObject.doIHavaABox()) {
                             cartObject.addItemToBox({
                                 _id,
