@@ -182,13 +182,13 @@ export default function Header() {
         }} >
         <div></div>
         <button onClick={e => {
-          history.push('./allrecipes')
+          history.push('/allrecipes')
         }} >
           Our Recipes
         </button>
 
         <button onClick={e => {
-          history.push('./whykulturefresh')
+          history.push('/whykulturefresh')
         }}>
           Why KultureFresh?
         </button>
@@ -226,13 +226,13 @@ export default function Header() {
               <ul>
 
                 <li onClick={e => {
-                  history.push('./history')
+                  history.push('/history')
                 }}>
                   Order History
                 </li>
 
                  {/* <li onClick={e => {
-                  history.push('./history')
+                  history.push('/history')
                 }}>
                   Favourites
                 </li> */}
@@ -249,7 +249,7 @@ export default function Header() {
           </div>
 
         </div> : <button onClick={e => {
-          history.push('./login')
+          history.push('/login')
         }} >
           Login
         </button>}

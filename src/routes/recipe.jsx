@@ -226,7 +226,7 @@ function RecipeItem(props) {
             <div className="background" style={{
                 background: `url(${`http://res.cloudinary.com/immotal/image/upload/${data.recipeId.recipeImg}.jpg`})`,
                 height: '356px',
-                backgroundSize: 'contain',
+                backgroundSize: 'cover',
                 backgroundPosition: 'center',
                 width: '100vw',
             }}  >
@@ -252,6 +252,17 @@ function RecipeItem(props) {
                             {/* <div onClick={printDocument} className="download-button">
                                 <p>
                                     Download Recipe
+                                </p>
+                            </div> */}
+
+                            {/* <div style={{
+                                background:'#45CD63',
+                                color:'white'
+                            }}  onClick={e=>{
+                                
+                            }} className="download-button">
+                                <p>
+                                    ADD TO BOX
                                 </p>
                             </div> */}
                         </div>

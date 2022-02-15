@@ -102,7 +102,7 @@ function CartItem({ item }) {
   
     return (
         <Main>
-            <img src={item.media||item.imageMain} alt="each" />
+            <img src={`${`http://res.cloudinary.com/immotal/image/upload/${item.media||item.imageMain}.jpg`}`}  alt="each" />
             <div className="text_div">
                 <div className="left_info">
                      <p className='name' >{item.name} </p>
