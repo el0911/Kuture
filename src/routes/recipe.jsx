@@ -5,7 +5,8 @@ import axiosCall from "../utils/axios";
 import html2canvas from "html2canvas"
 import jsPDF from 'jspdf'
 import cartObject from "../utils/cart";
-import { Image, Transformation } from 'cloudinary-react';
+import Modal from 'react-modal';
+import CustomizedPlans from "../Components/customizedPlans";
 // import {Cloudinary} from "@cloudinary/url-gen";
 
 const mobileMode = isMobile() || isTablet()
@@ -158,6 +159,22 @@ function RecipeItem(props) {
     const [index, setIndex] = React.useState('1')
     const [loadMessage, setLoadMessage] = React.useState('........Loading')
 
+
+    const [modalIsOpen, setIsOpen] = React.useState(false);
+
+    function openModal(component) {
+        setIsOpen(component);
+    }
+
+    function afterOpenModal() {
+        // references are now sync'd and can be accessed.
+        // subtitle.style.color = '#f00';
+    }
+
+    function closeModal() {
+        setIsOpen(false);
+    }
+
     React.useEffect(() => {
         ///////
         setIndex(cartObject.mealSize || '1')
@@ -171,6 +188,21 @@ function RecipeItem(props) {
             setLoadMessage(`Can't load Meal Page 😔`)
         }
     }
+
+    const customStyles = {
+        content: {
+            top: '50%',
+            left: '50%',
+            right: 'auto',
+            bottom: 'auto',
+            padding: 0,
+            background: 'transparent',
+            marginRight: '-50%',
+            transform: 'translate(-50%, -50%)',
+            border: 'none'
+        },
+    };
+    
 
     React.useEffect(() => {
         load()
@@ -255,16 +287,25 @@ function RecipeItem(props) {
                                 </p>
                             </div> */}
 
-                            {/* <div style={{
+                            <div style={{
                                 background:'#45CD63',
                                 color:'white'
                             }}  onClick={e=>{
-                                
+                                if (cartObject.doIHavaABox()) {
+                                    cartObject.addItemToBox({
+                                        ...data
+                                    })
+                                }else{
+                                    openModal(<CustomizedPlans closeModal={openModal} itemObject={{
+                                      ...data
+                                    }
+                                    } servings={data.servings} />)
+                                 }
                             }} className="download-button">
                                 <p>
                                     ADD TO BOX
                                 </p>
-                            </div> */}
+                            </div>
                         </div>
 
                         <div className="extra-info">
@@ -323,6 +364,16 @@ function RecipeItem(props) {
                     </div>
                 </div>
             </div>
+            <Modal
+                isOpen={!!modalIsOpen}
+                onAfterOpen={afterOpenModal}
+                onRequestClose={closeModal}
+                style={customStyles}
+            >
+
+                {modalIsOpen}
+
+            </Modal>
         </Main>
     );
 }
