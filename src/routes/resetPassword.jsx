@@ -124,7 +124,7 @@ function Subscribe() {
                 } catch (error) {
                   toast('Failed to Send Reset Email')                
                 }
-              }} title='Reequest Reset ' />
+              }} title='Request Reset ' />
             </div>
 
             
