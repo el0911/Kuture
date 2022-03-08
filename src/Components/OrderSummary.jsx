@@ -43,7 +43,7 @@ export default function OrderSummary({
 }) {
 
   const history = useHistory()
-  const [data, setAddress] = React.useState([])
+  const [data, setAddress] = React.useState(false)
   const [mark, setMark] = React.useState(false)
   const loadAllAddresses = async () => {
 
@@ -83,14 +83,14 @@ export default function OrderSummary({
             <div  style={{
                 textAlign:'center'
             }}>
-            {!data.length &&  <Loader
+            {!data &&  <Loader
                 type="ThreeDots"
                 color="#FFC850"
                 height={100}
                 width={100}
             />}
             </div>
-            {data.map((addressDetails, i) => { return <AddressComponent key={i} setMarked={setMark} marked={mark} details={addressDetails} /> })}
+            { data && data.map((addressDetails, i) => { return <AddressComponent key={i} setMarked={setMark} marked={mark} details={addressDetails} /> })}
           </div>
 
           }

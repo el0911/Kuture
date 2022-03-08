@@ -1,8 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
 import LandingPage from "./landingPage";
-import OurRecipes from "./OurRecipes";
-import CustomiseMenu from "../Components/CustomiseMenu";
 import OrderSummary from "../Components/OrderSummary";
 import CompletedOrder from "../Components/CompletedOrder";
 // import Modal from "./Components/Modal";
