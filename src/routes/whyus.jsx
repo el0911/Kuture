@@ -63,8 +63,13 @@ export default function Whyus() {
             <div className="words">
                 <p className="title">why kulturefresh</p>
                 <p className="content">
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                    Authentic ethnic food is sometimes hard to cook and even harder to source for
+                    ingredients,even still there is just something truly beautiful about tasting foods from other
+                    cultures that is truly amazing,so we go out of our way to find it just to have a taste of
+                    something different or just to experience a little bit of nostalgia .We created kulturefresh to
+                    bring authentic foods from diverse cultures to the homes of the curious and adventurous, to
+                    create a fun easy way for our customers to experience great foods from the comfort of their
+                    homes and share great experiences with family and friends.
                 </p>
             </div>
         </Component>
