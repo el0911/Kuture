@@ -116,8 +116,8 @@ function Login() {
               <RedButton onClick={(e) => {
                 e.preventDefault();
                 AuthUtil.login({
-                  email: inputEmail.current.value,
-                  password: inputPassword.current.value
+                  email: inputEmail.current.value.split(" ").join(""),
+                  password: inputPassword.current.value.split(" ").join("")
                 }, {
                   preLoad: () => {
                     loader.setLoader(true)

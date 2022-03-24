@@ -107,11 +107,11 @@ const Main = styled.main`
                   <RedButton   onClick={(e)=>{
                     e.preventDefault();
                     AuthUtil.signup({
-                      email:inputEmail.current.value,
-                      password:inputPassword.current.value,
-                      firstName:inputFirstName.current.value,
-                      lastName:inputLastName.current.value,
-                      phoneNumber:inputPhoneNumber.current.value,
+                      email:inputEmail.current.value.split(" ").join(""),
+                      password:inputPassword.current.value.split(" ").join(""),
+                      firstName:inputFirstName.current.value.split(" ").join(""),
+                      lastName:inputLastName.current.value.split(" ").join(""),
+                      phoneNumber:inputPhoneNumber.current.value.split(" ").join(""),
                     },
                     {
                       preLoad: () => {
