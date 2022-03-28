@@ -428,7 +428,7 @@ export default function EachRecipe({ produc }) {
   // console.log(Eachproduct, "EACH");
   console.log(produc);
 
-  return <h3>test</h3>;
+  return <h3></h3>;
   // return (
   //   <Div>
   //     <div className="modal_background">
