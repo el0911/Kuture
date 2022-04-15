@@ -178,7 +178,7 @@ export default function Header() {
         'grid-template-columns': '1fr 110px 152px 142px'
       }
         : {
-          'grid-template-columns': '1fr 110px 152px 50px'
+          'grid-template-columns': '1fr 110px 152px 50px 50px'
         }} >
         <div></div>
         <button onClick={e => {
@@ -249,10 +249,16 @@ export default function Header() {
           </div>
 
         </div> : <button onClick={e => {
+          history.push('/signup')
+        }} >
+          Signup
+        </button>}
+
+        {!AuthUtil.isLogedIn() && <button onClick={e => {
           history.push('/login')
         }} >
           Login
-        </button>}
+        </button> }
 
       </div>
     </HeaderMain>

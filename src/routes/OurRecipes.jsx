@@ -1,8 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import AllRecipesBackI from "../assets/svg/allrecipes_bacI.svg";
-import Footer from "../Components/Footer";
-import { commerce } from "../lib/Commerce";
 import Select from 'react-select';
 import Meal from "../Components/sharedComponents/meal";
 import axiosCall from "../utils/axios";

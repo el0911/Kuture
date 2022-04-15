@@ -4,6 +4,8 @@ import styled from "styled-components";
 import RedButton from "../Components/sharedComponents/redButton";
 import { useLoadrConttext } from "../providers/fullLoader.provider";
 import AuthUtil from "../utils/auth";
+import { isMobile, isTablet } from 'react-mobile-app'
+const mobileMode = isMobile() || isTablet()
 
 const Main = styled.main`
   
@@ -87,7 +89,8 @@ const Main = styled.main`
 
   .loweer_text_conteent{
     justify-content: space-between;
-    display: flex !important;
+    display:   ${mobileMode ? 'block' : ' flex'}   !important;
+    ${mobileMode ? 'text-align:center' : ' '} 
   }
 
 `;

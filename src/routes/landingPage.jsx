@@ -7,7 +7,6 @@ import Categories from "../Components/Categories";
 import HowWeOperate from "../Components/HowWeOperate";
 import FavouriteRecipes from "../Components/FavouriteRecipes";
 import Footer from "../Components/Footer";
-import { commerce } from "../lib/Commerce";
 import axiosCall from "../utils/axios";
 import { useLoadrConttext } from "../providers/fullLoader.provider";
 import { useHistory } from "react-router-dom";
@@ -523,7 +522,7 @@ export default function LandingPage() {
             <p className="text">
               Experience different cultures <br /> all in one box. <br /> <br /> <br /> 
                 <span className='pointer'  onClick={e=>{
-                  history.push('/login')
+                  history.push('/signup')
                 }} >
                 Join the Kulture
                 </span>
