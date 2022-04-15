@@ -71,7 +71,7 @@ export default function HeeaderMobile({ cart, handleClick }) {
     {
       Icon: AllRecipeSVG,
       route: '/allrecipes',
-      text: 'Recopes'
+      text: 'Recipes'
     }, {
       Icon: QuestionSVG,
       route: '/whykulturefresh',
@@ -100,7 +100,7 @@ export default function HeeaderMobile({ cart, handleClick }) {
     }, {
       Icon: AllRecipeSVG,
       route: '/allrecipes',
-      text: 'Recopes'
+      text: 'Recipes'
     }, {
       Icon: CartComponeent,
       onClick: () => {
