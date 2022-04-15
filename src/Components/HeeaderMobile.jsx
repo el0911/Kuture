@@ -17,6 +17,7 @@ const NavBarMobileComponent = styled.nav`
   width: 100vw;
   grid-auto-columns: minmax(0, 1fr);
   grid-auto-flow: column;
+  padding-top: 10px;
 
      position: fixed;
     bottom: 0;
@@ -66,49 +67,58 @@ export default function HeeaderMobile({ cart, handleClick }) {
 
   const navItemsNotLoggedIn = [
     {
-      Icon: AllRecipeSVG,
-      route: '/allrecipes'
-    }, {
       Icon: UserSVG,
-      route: '/login'
+      route: '/login',
+      text: 'Signup'
+    },
+    {
+      Icon: AllRecipeSVG,
+      route: '/allrecipes',
+      text: 'Recopes'
     }, {
       Icon: QuestionSVG,
-      route: '/whykulturefresh'
+      route: '/whykulturefresh',
+      text: 'About us'
     }
   ]
 
-  const CartComponeent = () =>{
+  const CartComponeent = () => {
     return <div style={{
-      position:'relative'
+      position: 'relative'
     }} >
       <CartSvg />
-            {isCartReady && <div className="text">
-              <p>
-                {cartObject.gettAllBoxCount()}
-              </p>
-            </div>}
+      {isCartReady && <div className="text">
+        <p>
+          {cartObject.gettAllBoxCount()}
+        </p>
+      </div>}
     </div>
   }
 
   const navItemsLoggedIn = [
     {
       Icon: HistorySvg,
-      route: '/history'
+      route: '/history',
+      text: 'Orders'
     }, {
       Icon: AllRecipeSVG,
-      route: '/allrecipes'
+      route: '/allrecipes',
+      text: 'Recopes'
     }, {
       Icon: CartComponeent,
       onClick: () => {
         ///
         setCartShow(true)
-      }
+      },
+      text: 'Cart'
+
     }, {
       Icon: LogoutSVG,
       onClick: () => {
         ///
         AuthUtil.logout()
-      }
+      },
+      text: 'Logout'
     }
   ]
 
@@ -116,11 +126,14 @@ export default function HeeaderMobile({ cart, handleClick }) {
   return (
     <NavBarMobileComponent>
       {(AuthUtil.isLogedIn() ? navItemsLoggedIn : navItemsNotLoggedIn).map((data, index) => {
-        const { Icon, route, onClick } = data
+        const { Icon, route, onClick, text } = data
         return <div className='svg' onClick={() => {
           onClick ? onClick() : history.push(route)
         }} >
           <Icon />
+          <p className="nav_text">
+            {text}
+          </p>
         </div>
       })}
     </NavBarMobileComponent>

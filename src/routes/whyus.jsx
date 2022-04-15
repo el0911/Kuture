@@ -18,6 +18,7 @@ export default function Whyus() {
         margin-left: 30vw;
         padding-right: 20px;
         margin-top: 64px;
+        
     }
 
     .words .title{
@@ -45,6 +46,7 @@ export default function Whyus() {
             max-width: 540px;
             margin: auto;
             padding:0 20px;
+            margin-top: 50px;
         }
 
         .words .title{

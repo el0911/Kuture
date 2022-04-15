@@ -489,7 +489,7 @@ export default function LandingPage() {
  
     try {
       setLoader(true)
-      const { data } = await axiosCall.get('/meals/poromoted/10')
+      const { data } = await axiosCall.get('/meals/promoted/10')
       // setCategories( data );
       const info = data.payload
   

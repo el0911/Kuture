@@ -220,7 +220,7 @@ export default function OurRecipes() {
    * @description gets meals by categories
    * @param {*} categoryId 
    */
-  const getAllMealsForCategory = async (categoryId) => {
+   const getAllMealsForCategory = async (categoryId) => {
     try {
       setLoadingMeals(true)
       const { data } = await axiosCall.get('/meals/category/' + categoryId)
@@ -240,9 +240,12 @@ export default function OurRecipes() {
   }
 
 
+
+ 
+
   React.useEffect(() => {
     fetchCategories();
-  }, []);
+   }, []);
   return (
     <Main>
       <div class="custom-shape-divider-bottom-1629899704 background_div">

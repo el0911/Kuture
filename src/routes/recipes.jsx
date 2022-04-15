@@ -334,8 +334,34 @@ function Recipes() {
   }
 
 
+   /**
+   * @description gets meals by promoted meals
+   * @param {*} categoryId 
+   */
+    const getPopularMeals = async (categoryId) => {
+      try {
+        setLoadingMeals(true)
+        const { data } = await axiosCall.get('/meals/promoted/20')
+        const allMeals = []
+        data.payload.data.map((meal) => {
+          allMeals.push({
+            ...meal,
+            nonView: true
+          })
+        })
+        setProducts(allMeals)
+  
+       } catch (error) {
+        console.log(error)
+      }
+      setLoadingMeals(false)
+    }
+  
+
   React.useEffect(() => {
     fetchCategories();
+    getPopularMeals()
+
   }, []);
 
   return (
