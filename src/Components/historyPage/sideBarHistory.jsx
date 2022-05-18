@@ -48,13 +48,10 @@ border-radius: 10px;
 export default function SideBarHistory({ itemlist,className }) {
 
     let [price , setPrice] = React.useState(0)
+    console.log({itemlist})
     React.useEffect(()=>{
-        itemlist.allMeals.map((data)=>{
-            price  = price + data.servings[itemlist.mealSize]
-        })
-
-        setPrice(price)
-    },[])
+        setPrice(itemlist.price)
+    },[itemlist.price])
 
     return (
         <Component className={className}>

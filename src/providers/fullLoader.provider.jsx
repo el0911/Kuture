@@ -17,6 +17,19 @@ const Component = styled.div`
    top:0
 }
 
+.message{
+  position: sticky;
+}
+
+.message p{
+  background: #ffdec0;
+  margin: 0;
+  padding: 20px 0;
+  font-size: 23px;
+  font-weight: 700;
+  text-align: center;
+}
+
 `;
 
 
@@ -36,6 +49,11 @@ const LoaderProvider = ({ children }) => {
             width={100}
           />
         </div>}
+        <div className="message" >
+          <p>
+            Get 25% On Your First Order
+          </p>
+        </div>
         {children}
       </LoaderContext.Provider>
     </Component>

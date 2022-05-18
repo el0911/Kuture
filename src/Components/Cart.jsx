@@ -217,7 +217,7 @@ export default function Cart({ setCartShow, children, history }) {
           <button
             onClick={() => {
 
-              history.push('ordersummary');
+              history.push('/ordersummary');
               setCartShow(false)
             }}
           >

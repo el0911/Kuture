@@ -278,7 +278,7 @@ function OrderSummaryComponent({
 
   function closeModal() {
     toggleModal(false);
-}
+  }
 
 
   if (!summary) {
@@ -310,13 +310,18 @@ function OrderSummaryComponent({
               <h5>${summary.itemCost}</h5>
             </div>
 
+            {summary.discountPrice && <div className="name_amt_div">
+              <h5>{'Discount'} </h5>
+              <h5> -${summary.discountPrice}</h5>
+            </div>}
+
             <div className="shipping_div">
               <h5>Shipping and handling</h5>
-              <h5>${summary.shipping}</h5>
+              <h5>+${summary.shipping}</h5>
             </div>
             <div className="tax_div">
               <h5>Tax</h5>
-              <h5>${summary.tax}</h5>
+              <h5>+${summary.tax}</h5>
             </div>
 
             <div>
@@ -353,7 +358,7 @@ function OrderSummaryComponent({
         contentLabel="Example Modal"
       >
         <Elements stripe={stripeTestPromise}>
-          <CardPayments addressId ={mark} />
+          <CardPayments addressId={mark} />
         </Elements>
 
 

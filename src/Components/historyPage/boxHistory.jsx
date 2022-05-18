@@ -71,7 +71,7 @@ const Component = styled.main`
 `;
  
 
-export default function BoxHistory({allMeals , boxSize ,mealSize, shortKey , setMoreFunct}) {
+export default function BoxHistory({allMeals , boxSize ,mealSize, shortKey , setMoreFunct,price}) {
     const firstMeal = allMeals[0]
 
 
@@ -92,15 +92,15 @@ export default function BoxHistory({allMeals , boxSize ,mealSize, shortKey , set
 
                 <div className="lower">
                     <p className="price">
-                        {`$${firstMeal.servings[mealSize]}`}
+                        {`$${price}`}
                     </p>
 
                     <RedButton onClick = {
                         ()=>{
-                            setMoreFunct(show ? false : {allMeals,mealSize,shortKey})
-                            setShow(!show)
+                            setMoreFunct( {allMeals,mealSize,shortKey,price})
+                            // setShow(!show)
                         }
-                    } title= {show ?'Hide Details':'View More'} />
+                    } title= {'View Details'} />
                 </div>
             </div>
 
