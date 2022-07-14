@@ -199,7 +199,7 @@ color: #333333;
 
 
 const MealComponent = ({ data, history }) => {
-    const { servings, imageMain, nonView, name, _id, recipeId = { timeTaken: 0 }, openModal, ...rest } = data
+    const { servings, imageMain, nonView, name, _id,url, recipeId = { timeTaken: 0 }, openModal, ...rest } = data
     const convertToTTimeString = () => {
         let result = ''
         try {
@@ -219,7 +219,7 @@ const MealComponent = ({ data, history }) => {
 
     return <div className="showbox" onClick={e => {
         ///
-        history.push(`/recipe/${_id}`)
+        history.push(`/recipe/${url}`)
     }} >
         <div style={{
             background: 'black',

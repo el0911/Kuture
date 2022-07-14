@@ -39,7 +39,7 @@ export default function Routes() {
           <Route exact path="/allrecipes" component={Recipes} />
           {/* <Route exact path="/customise" component={CustomiseMenu} /> */}
           <Route exact path="/login" component={Login} />
-          <Route exact path="/recipe/:id" component={RecipeItem} />
+          <Route exact path="/recipe/:url" component={RecipeItem} />
           <Route exact path="/signup" component={Signup} />
           <Route exact path="/whykulturefresh" component={Whyus} />
           <Route exact path="/reset-password" component={ResetRequest} />

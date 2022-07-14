@@ -120,7 +120,8 @@ function Login() {
                 e.preventDefault();
                 AuthUtil.login({
                   email: inputEmail.current.value.split(" ").join(""),
-                  password: inputPassword.current.value.split(" ").join("")
+                  password: inputPassword.current.value.split(" ").join(""),
+                  // test:''
                 }, {
                   preLoad: () => {
                     loader.setLoader(true)

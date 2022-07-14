@@ -154,7 +154,7 @@ const Main = styled.main`
 
 function RecipeItem(props) {
 
-    const recipeId = props.match.params.id
+    const recipeId = props.match.params.url
     const [data, setData] = React.useState(false)
     const [index, setIndex] = React.useState('1')
     const [loadMessage, setLoadMessage] = React.useState('........Loading')
