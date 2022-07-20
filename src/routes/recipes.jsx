@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
- 
+import {Helmet} from "react-helmet";
+
 import Select from 'react-select';
 import Meal from "../Components/sharedComponents/meal";
 import axiosCall from "../utils/axios";
@@ -366,9 +367,14 @@ function Recipes() {
 
   return (
     <MainComponent>
+       <Helmet>
+                <meta charSet="utf-8" />
+                <title>Kulture Fresh Recipes</title>
+                <link rel="canonical" href="http://mysite.com/example" />
+      </Helmet>
       {mobileMode && <div className="board"> </div>}
 
-
+      
       <div style={
         mobileMode ? {
           zIndex: 3,

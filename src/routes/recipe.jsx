@@ -5,6 +5,7 @@ import axiosCall from "../utils/axios";
 import html2canvas from "html2canvas"
 import jsPDF from 'jspdf'
 import cartObject from "../utils/cart";
+import { Helmet } from "react-helmet";
 import Modal from 'react-modal';
 import CustomizedPlans from "../Components/customizedPlans";
 // import {Cloudinary} from "@cloudinary/url-gen";
@@ -202,7 +203,7 @@ function RecipeItem(props) {
             border: 'none'
         },
     };
-    
+
 
     React.useEffect(() => {
         load()
@@ -211,9 +212,9 @@ function RecipeItem(props) {
 
     if (!data) {
         return <p style={{
-            width:'100vw',
-            textAlign:'center',
-            paddingTop:"100px"
+            width: '100vw',
+            textAlign: 'center',
+            paddingTop: "100px"
         }} >{loadMessage}</p>
     }
 
@@ -252,6 +253,12 @@ function RecipeItem(props) {
 
     return (
         <Main  >
+            <Helmet>
+                <meta charSet="utf-8" />
+                <title>Recipe for {data.name}</title>
+                <meta content={`cooking,african recipes,nigerian recipes,ghanian recipes ${data.name}`} name="keywords" />
+                <link rel="canonical" href="http://mysite.com/example" />
+            </Helmet>
             {mobileMode && <div className="backdrop">
 
             </div>}
@@ -288,19 +295,19 @@ function RecipeItem(props) {
                             </div> */}
 
                             <div style={{
-                                background:'#45CD63',
-                                color:'white'
-                            }}  onClick={e=>{
+                                background: '#45CD63',
+                                color: 'white'
+                            }} onClick={e => {
                                 if (cartObject.doIHavaABox()) {
                                     cartObject.addItemToBox({
                                         ...data
                                     })
-                                }else{
+                                } else {
                                     openModal(<CustomizedPlans closeModal={openModal} itemObject={{
-                                      ...data
+                                        ...data
                                     }
                                     } servings={data.servings} />)
-                                 }
+                                }
                             }} className="download-button">
                                 <p>
                                     ADD TO BOX
@@ -347,7 +354,7 @@ function RecipeItem(props) {
                         <div className="ingredient-list">
 
 
-                            {data.recipeId.ingredients.map(({ name,imageId }) => {
+                            {data.recipeId.ingredients.map(({ name, imageId }) => {
                                 return <div className="ingredient">
                                     <img src={`${`http://res.cloudinary.com/immotal/image/upload/${imageId}.jpg`}`} alt="" />
                                     <div className="details">
