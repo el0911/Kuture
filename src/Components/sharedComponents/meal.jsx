@@ -199,7 +199,7 @@ color: #333333;
 
 
 const MealComponent = ({ data, history }) => {
-    const { servings, imageMain, nonView, name, _id,url, recipeId = { timeTaken: 0 }, openModal, ...rest } = data
+    const { servings, imageMain, nonView, name, _id, url, recipeId = { timeTaken: 0 }, openModal, ...rest } = data
     const convertToTTimeString = () => {
         let result = ''
         try {
@@ -215,12 +215,15 @@ const MealComponent = ({ data, history }) => {
         ///////
         setIndex(cartObject.mealSize || '1')
     }, [cartObject.mealSize])
-     const [index, setIndex] = React.useState('1')
+    const [index, setIndex] = React.useState('1')
 
     return <div className="showbox" onClick={e => {
         ///
         history.push(`/recipe/${url}`)
     }} >
+        <a style={{
+            display: 'none'
+        }} href={`/recipe/${url}`}></a>
         <div style={{
             background: 'black',
             borderTopRightRadius: '20px',
@@ -231,7 +234,7 @@ const MealComponent = ({ data, history }) => {
             backgroundPosition: 'center',
             backgroundRepeat: 'no-repeat'
         }} >    <div className="timer" style={{
-             bottom:  nonView ? '-102px' : '-235px' 
+            bottom: nonView ? '-102px' : '-235px'
         }} >
                 <ClockSvg />  <p>{convertToTTimeString(recipeId.timeTaken)}</p>
             </div> </div>
@@ -240,7 +243,7 @@ const MealComponent = ({ data, history }) => {
                 {name}
             </p>
             <button onClick={() => {
-                history.push("/allrecipes");
+                //use less
             }} >
                 View
             </button>
