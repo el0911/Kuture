@@ -222,7 +222,7 @@ const MealComponent = ({ data, history }) => {
         history.push(`/recipe/${url}`)
     }} >
         <a style={{
-            display: 'none'
+            display: "none"
         }} href={`/recipe/${url}`}></a>
         <div style={{
             background: 'black',
